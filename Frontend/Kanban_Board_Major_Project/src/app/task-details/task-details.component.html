@@ -36,8 +36,7 @@
                     <mat-label>Add comment here</mat-label>
                     <textarea matInput formControlName="comment" class="form-control form-control-lg">
                     </textarea>
-                    <button type="submit" class="btn btn-light button"
-                         onClick="window.location.reload();">Comment</button>
+                    <button type="submit" class="btn btn-light button">Comment</button>
                     <mat-error *ngIf="comment?.errors?.['required']">comment is required</mat-error>
                     <mat-error *ngIf="comment?.errors?.['minlength']">
                          comment should have minimum of {{comment?.errors?.['minlength']?.requiredLength}}
@@ -48,7 +47,7 @@
           </form>
      </div>
      <h3 style="font-weight: bold;">All comments are here</h3>
-     <!-- <div class="commentbox">
+     <div class="commentbox">
           <div *ngFor="let comment of comments">
                <div class="mycard">
                     <h3 class="comment">{{getFirstCharOfName(comment?.commenter?.name)}}</h3>
@@ -56,7 +55,7 @@
                </div>
                <h3 class="com">{{comment?.comment}}</h3>
           </div>
-     </div> -->
+     </div>
      <div mat-dialog-action>
           <button mat-button mat-dialog-close>Close</button>
      </div>

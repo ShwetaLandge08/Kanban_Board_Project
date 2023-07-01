@@ -1,14 +1,12 @@
 package com.niit.kanban.KanbanService.controller;
 
-import com.niit.kanban.KanbanService.domain.Project;
-import com.niit.kanban.KanbanService.domain.Stage;
-import com.niit.kanban.KanbanService.domain.Task;
-import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.domain.*;
 import com.niit.kanban.KanbanService.exception.*;
 import com.niit.kanban.KanbanService.service.ProjectService;
 import com.niit.kanban.KanbanService.service.UserService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -79,6 +77,7 @@ public class ProjectController {
             throw new RuntimeException(e);
         }
     }
+
     @GetMapping("/userTask")
     public ResponseEntity<?> getAllUserTaskFromAllProject(HttpServletRequest servletRequest) {
         Claims claims = (Claims) servletRequest.getAttribute("claims");
@@ -175,6 +174,30 @@ public class ProjectController {
         } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);
 
+        }
+    }
+
+    @GetMapping("/comments/{taskId}/{projectId}")
+    public ResponseEntity<?> getAllCommentsOnTask(@PathVariable int taskId,@PathVariable int projectId) {
+        try {
+//            System.out.println(taskId);
+//            System.out.println(projectId);
+            return new ResponseEntity<>(projectService.getAllCommentOnTask(taskId, projectId), HttpStatus.OK);
+        } catch (ProjectNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("/addComment/{taskId}/{projectId}")
+    public ResponseEntity<?> createTask(@RequestBody Comment comment, @PathVariable int taskId,
+                                        @PathVariable int projectId) {
+        try {
+//            System.out.println(comment);
+//            System.out.println(taskId);
+//            System.out.println(projectId);
+            return new ResponseEntity<>(projectService.addCommentOnTask(comment,taskId,projectId), HttpStatus.CREATED);
+        } catch (ProjectNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

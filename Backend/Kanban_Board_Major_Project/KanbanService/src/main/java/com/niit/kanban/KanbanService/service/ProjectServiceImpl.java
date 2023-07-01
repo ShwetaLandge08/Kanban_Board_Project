@@ -1,9 +1,6 @@
 package com.niit.kanban.KanbanService.service;
 
-import com.niit.kanban.KanbanService.domain.Project;
-import com.niit.kanban.KanbanService.domain.Stage;
-import com.niit.kanban.KanbanService.domain.Task;
-import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.domain.*;
 import com.niit.kanban.KanbanService.exception.*;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -179,16 +176,56 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<Task> getAllUserTaskFromAllProjects(String email) throws ProjectNotFoundException {
         List<Project> getAllProject = getAllProjects();
-        List<Task> myTask=new ArrayList<>();
-        for(Project project:getAllProject){
+        List<Task> myTask = new ArrayList<>();
+        for (Project project : getAllProject) {
             List<Task> tasks = project.getTasks();
-            for(Task task:tasks){
-                if(task.getAssignee().getEmail().equals(email)){
+            for (Task task : tasks) {
+                if (task.getAssignee().getEmail().equals(email)) {
                     myTask.add(task);
                 }
             }
         }
         return myTask;
+    }
+
+    @Override
+    public Project addCommentOnTask(Comment comment, int taskId, int projectId) throws ProjectNotFoundException {
+        if (projectRepository.findById(projectId).isEmpty()) {
+            throw new ProjectNotFoundException();
+        }
+        Project project = projectRepository.findByProjectId(projectId);
+        List<Task> getAllTask = project.getTasks();
+        for (Task task1 : getAllTask) {
+            int lastId = 0;
+            if (task1.getId() == taskId) {
+                if (task1.getComments() == null) {
+                    comment.setId(lastId + 1);
+                    task1.setComments(Arrays.asList(comment));
+                } else {
+                    List<Comment> comments = task1.getComments();
+                    lastId = ((Comment) comments.toArray()[comments.size() - 1]).getId();
+                    comment.setId(lastId + 1);
+                    comments.add(comment);
+                    task1.setComments(comments);
+                }
+            }
+        }
+        return projectRepository.save(project);
+    }
+
+    @Override
+    public List<Comment> getAllCommentOnTask(int taskId, int projectId) throws ProjectNotFoundException {
+        List<Project> getAllProject = getAllProjects();
+        List<Comment> myComments = new ArrayList<>();
+        for (Project project : getAllProject) {
+            List<Task> tasks = project.getTasks();
+            for (Task task : tasks) {
+                if (task.getId() == taskId) {
+                    myComments = task.getComments();
+                }
+            }
+        }
+        return myComments;
     }
 
 //    @Override
