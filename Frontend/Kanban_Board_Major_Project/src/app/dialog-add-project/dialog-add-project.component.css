@@ -1,0 +1,14 @@
+.container {
+     /* text-align: center; */
+     width: 540px;
+     /* height: 560px; */
+ }
+ 
+ .limit-width {
+     width: 150px;
+     margin: 0 15px;
+ }
+ 
+ .full-width {
+     width: 100%;
+ } 

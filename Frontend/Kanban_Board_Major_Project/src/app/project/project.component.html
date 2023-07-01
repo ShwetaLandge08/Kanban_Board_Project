@@ -1,0 +1,32 @@
+<mat-card class="project-card">
+    <div class="card" routerLink="{{project.projectId}}">
+        <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image">{{project.admin}}</div> -->
+            <mat-card-title>{{project.title}}</mat-card-title>
+            <mat-card-subtitle>{{project.admin?.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <strong>Start Date: </strong> {{project.startDate}}<br>
+            <strong>Due Date: </strong> {{project.dueDate}}
+            <strong>Description: </strong>
+            <p>{{project.description}}</p>
+            <!-- <mat-option *ngFor="let task of project.tasks">{{task}}</mat-option> -->
+            <h3 style="font-weight: bold;" *ngIf="project.priority == 'High' || project.priority == 'critical'">
+                Priority:
+                <span class="badge badge-pill badge-danger"> {{project.priority}}</span>
+            </h3>
+            <h3 style="font-weight: bold;" *ngIf="project.priority == 'Low' || project.priority == 'low'">Priority:
+                <span class="badge badge-pill badge-light"> {{project.priority}}</span>
+            </h3>
+            <h3 style="font-weight: bold;" *ngIf="project.priority == 'Medium' || project.priority == 'medium'">
+                Priority:
+                <span class="badge badge-pill badge-dark"> {{project.priority}}</span>
+            </h3>
+            <!-- <mat-progress-bar mode="determinate" value="project.status"></mat-progress-bar> -->
+        </mat-card-content>
+    </div>
+    <mat-card-actions>
+        <button mat-button (click)="openAddProjectDialog()"><mat-icon>edit</mat-icon>Edit</button>
+        <button mat-button (click)="deleteProject(project)"><mat-icon>delete</mat-icon>Delete</button>
+    </mat-card-actions>
+</mat-card>

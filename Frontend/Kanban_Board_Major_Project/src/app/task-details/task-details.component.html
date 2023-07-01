@@ -1,0 +1,63 @@
+<div class="container">
+     <div class="title" role="alert">
+          <h2>{{task?.title}}</h2>
+     </div>
+     <div>
+          <div>
+               <h3 style="font-weight: bold;">Assignee:
+                    {{task?.assignee?.name}}
+               </h3>
+          </div>
+          <div>
+               <h3 style="font-weight: bold;">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
+               </h3>
+          </div>
+          <div>
+               <h3 style="font-weight: bold;" *ngIf="task?.priority == 'High' || task?.priority == 'critical'">Priority:
+                    <span class="badge badge-pill badge-danger"> {{task?.priority}}</span>
+               </h3>
+               <h3 style="font-weight: bold;" *ngIf="task?.priority == 'Low' || task?.priority == 'low'">Priority: <span
+                         class="badge badge-pill badge-light"> {{task?.priority}}</span>
+               </h3>
+               <h3 style="font-weight: bold;" *ngIf="task?.priority == 'Medium' || task?.priority == 'medium'">Priority:
+                    <span class="badge badge-pill badge-dark"> {{task?.priority}}</span>
+               </h3>
+          </div>
+
+          <div>
+               <h3 style="font-weight: bold;">Description:</h3>
+               <h4 style="font-weight: light;">{{task?.description}}</h4>
+          </div>
+     </div>
+     <div>
+          <form (ngSubmit)="addCommentOnTask(formComment)" [formGroup]="formComment">
+
+               <mat-form-field appearance="outline" class="full_wide">
+                    <mat-label>Add comment here</mat-label>
+                    <textarea matInput formControlName="comment" class="form-control form-control-lg">
+                    </textarea>
+                    <button type="submit" class="btn btn-light button"
+                         onClick="window.location.reload();">Comment</button>
+                    <mat-error *ngIf="comment?.errors?.['required']">comment is required</mat-error>
+                    <mat-error *ngIf="comment?.errors?.['minlength']">
+                         comment should have minimum of {{comment?.errors?.['minlength']?.requiredLength}}
+                         characters
+                    </mat-error>
+               </mat-form-field>
+
+          </form>
+     </div>
+     <h3 style="font-weight: bold;">All comments are here</h3>
+     <!-- <div class="commentbox">
+          <div *ngFor="let comment of comments">
+               <div class="mycard">
+                    <h3 class="comment">{{getFirstCharOfName(comment?.commenter?.name)}}</h3>
+                    <h4 style="font-weight: bold">{{comment?.commenter?.name}}</h4>
+               </div>
+               <h3 class="com">{{comment?.comment}}</h3>
+          </div>
+     </div> -->
+     <div mat-dialog-action>
+          <button mat-button mat-dialog-close>Close</button>
+     </div>
+</div>

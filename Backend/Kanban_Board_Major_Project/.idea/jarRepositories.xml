@@ -17,6 +17,11 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-snapshots" />
+      <option name="name" value="Spring Snapshots" />
+      <option name="url" value="https://repo.spring.io/snapshot" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="netflix-candidates" />
       <option name="name" value="Netflix Candidates" />
       <option name="url" value="https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates" />

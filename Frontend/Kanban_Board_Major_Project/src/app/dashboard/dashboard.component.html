@@ -1,0 +1,15 @@
+<div class="container">
+     <h1>My Projects</h1>
+     <app-project *ngFor="let project of projects" [project]="project"></app-project>
+     <br><br>
+     <mat-divider></mat-divider>
+     <br><br>
+     <h1>My Tasks</h1>
+     <div *ngFor="let task of tasks">
+        <h3 (click)="openTaskDetailsDialogBox(task)">{{task.title}}</h3>
+     </div>
+     <br><br>
+     <h1>Projects Assigned to Me</h1>
+     <app-project *ngFor="let projects of userProjects" [project]="projects"></app-project>
+ </div>
+ 

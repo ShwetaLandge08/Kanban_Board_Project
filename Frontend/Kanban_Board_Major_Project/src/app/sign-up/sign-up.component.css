@@ -1,0 +1,33 @@
+.form-container {
+     margin: 1rem auto;
+     width: fit-content;
+     text-align: center;
+     background-color: rgb(245, 243, 243);
+     border: 1.5px solid grey;
+     padding: 15px;
+     border-radius: 15px;
+ }
+ 
+ h1 {
+     font-weight: 500;
+ }
+ 
+ .full_wide {
+     width: 100%
+ }
+ 
+ .button {
+     display: flex;
+     justify-content: space-evenly;
+ }
+ 
+ button {
+     padding: 0 2rem;
+     margin: 2% 7%;
+ }
+ 
+ a {
+     text-decoration: none;
+     color: antiquewhite
+ }
+ 

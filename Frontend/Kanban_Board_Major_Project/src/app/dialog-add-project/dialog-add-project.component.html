@@ -1,0 +1,89 @@
+<div class="container">
+     <h1 mat-dialog-title>Create Project</h1>
+     <br>
+     <form mat-dialog-content (ngSubmit)="addProject(projectForm)" [formGroup]="projectForm">
+
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Title</mat-label>
+               <input matInput formControlName="title" placeholder="Project Title">
+               <mat-icon matSuffix>title</mat-icon>
+               <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
+               <mat-error *ngIf="title?.errors?.['minlength']">
+                    Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Description</mat-label>
+               <textarea matInput formControlName="description" rows="3" placeholder="Describe Project"></textarea>
+               <mat-icon matSuffix>description</mat-icon>
+               <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+               <mat-error *ngIf="description?.errors?.['minlength']">
+                    Description should have minimum of {{description?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field>
+          <br><br>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Due Date</mat-label>
+               <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" [min]="currentDate"
+                    placeholder="MM/DD/YYYY" (click)="dueDatePicker.open()">
+               <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+               <mat-datepicker #dueDatePicker></mat-datepicker>
+               <mat-error *ngIf="dueDate?.errors?.['required']">Due Date is required</mat-error>
+               <mat-error *ngIf="dueDate?.errors?.['pastDate']">Due Date can not be past date</mat-error>
+          </mat-form-field>
+          <br><br>
+          <div formArrayName="stages">
+               <strong>Stages:</strong><br><br>
+               <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i">
+                    <mat-form-field appearance="outline">
+                         <mat-label>Name</mat-label>
+                         <input matInput formControlName="name" placeholder="Stage Name">
+                         <mat-icon matSuffix>title</mat-icon>
+                         <mat-error *ngIf="control?.errors?.['required']">Name is required</mat-error>
+                         <mat-error *ngIf="control?.errors?.['minlength']">
+                              Name should have minimum of {{control?.errors?.['minlength']?.requiredLength}} characters
+                         </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="limit-width">
+                         <mat-label>Limit</mat-label>
+                         <input matInput formControlName="wipLimit" placeholder="Work in Progress Limit">
+                         <mat-icon matSuffix>production_quantity_limits</mat-icon>
+                    </mat-form-field>
+                    <button type="button" mat-mini-fab color="warn" (click)="removeStage(i)">
+                         <mat-icon>close</mat-icon></button>
+               </div>
+               <button type="button" mat-raised-button color="primary" (click)="addStage()">
+                    <mat-icon>add</mat-icon>Add Stage
+               </button>
+          </div>
+          <br><br>
+
+          <mat-form-field appearance="outline" class="full_wide">
+               <mat-label>Select Members</mat-label>
+               <mat-select formControlName="members" multiple>
+                    <mat-select-trigger>
+                         {{members?.value?.[0]?.name || ''}}
+                         <span *ngIf="(members?.value?.length || 0) > 1" class="example-additional-selection">
+                              (+{{(members?.value?.length || 0) - 1}} {{members?.value?.length === 2 ? 'other' :
+                              'others'}})
+                         </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+               </mat-select>
+          </mat-form-field><br>
+
+          <mat-radio-group aria-label="Select priority" formControlName="priority">
+               <label><strong>Priority: </strong> </label>
+               <mat-radio-button value="High">High</mat-radio-button>
+               <mat-radio-button value="Medium">Medium</mat-radio-button>
+               <mat-radio-button value="Low">Low</mat-radio-button>
+          </mat-radio-group>
+          <br><br>
+          <div mat-dialog-actions class="button">
+               <button mat-button mat-dialog-close>No</button>
+               <button type="submit" mat-raised-button color="primary" mat-dialog-close
+                    [disabled]="projectForm.invalid">Add</button>
+          </div>
+     </form>
+</div>

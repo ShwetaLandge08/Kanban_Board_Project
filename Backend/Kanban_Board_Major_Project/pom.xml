@@ -19,6 +19,10 @@
 
     <modules>
         <module>EurekaService</module>
+        <module>APIGatewayService</module>
+        <module>KanbanService</module>
+        <module>NotificationService</module>
+        <module>UserAuthentication</module>
     </modules>
 
     <properties>

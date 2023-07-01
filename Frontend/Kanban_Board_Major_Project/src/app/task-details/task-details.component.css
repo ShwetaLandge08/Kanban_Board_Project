@@ -1,0 +1,67 @@
+form {
+     display: flex;
+}
+
+.container {
+     /* border: 1px solid grey; */
+     /* margin-top: 30px; */
+     padding: 20px;
+     width: 100%;
+     /* border-radius: 20px; */
+     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
+          0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+     height: min-content;
+     padding-top: 5px;
+     text-align: center;
+     background-color: rgb(231, 217, 241);
+     border-radius: 10px;
+}
+
+span {
+     font-size: medium;
+}
+
+mat-form-field {
+     width: 100%;
+}
+
+.button {
+     margin-left: 490px;
+     padding: 5px;
+     border-radius: 20px;
+}
+
+.mycard {
+     margin-bottom: 10px;
+     padding-top: 15px;
+     padding-left: 10px;
+     display: flex;
+}
+
+.comment {
+     margin-right: 10px;
+     border-radius: 50%;
+     background-color: rgb(196, 13, 74);
+     color: white;
+     padding: 0 10px;
+     font-weight: bold;
+}
+
+.commentbox {
+     background-color: rgb(238, 236, 236);
+     padding: 5px;
+     margin: 5px;
+     height: 150px;
+     overflow-y: auto;
+     overflow-x: hidden;
+     border-radius: 10px;
+}
+
+.com {
+     margin-left: 50px;
+     margin-top: -30px;
+     /* margin-bottom: -10px; */
+}

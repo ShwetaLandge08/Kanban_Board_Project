@@ -1,0 +1,14 @@
+<div class="stage-container">
+     <h2>{{stage.name}}
+         <span class="spacer">
+             <button mat-mini-fab color="primary" (click)="openAddTaskDialog()">
+                 <mat-icon>add</mat-icon>
+             </button>
+         </span>
+     </h2>
+     <div cdkDropList [cdkDropListData]="[(stage)]" class="example-list" (cdkDropListDropped)="drop($event)">
+         <!-- <app-task class="example-box" *ngFor="let task of stage.tasks" [task]="task" cdkDrag></app-task> -->
+     </div>
+     <button mat-raised-button (click)="openAddTaskDialog()">Add Task</button>
+ </div>
+ 

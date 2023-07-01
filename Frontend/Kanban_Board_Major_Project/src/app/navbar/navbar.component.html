@@ -1,0 +1,52 @@
+<mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport
+                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+                [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+                <mat-toolbar style="color: white;">Menu</mat-toolbar>
+                <mat-nav-list>
+                        <a mat-list-item (click)="openAddProjectDialog()">Add Project</a>
+                        <a mat-list-item routerLink="/dashboard">Dashboard</a>
+                        <a mat-list-item routerLink="/home">Home</a>
+                </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+                <mat-toolbar>
+                        <button *ngIf="isLoggedIn" type="button" aria-label="Toggle sidenav" mat-icon-button
+                                (click)="drawer.toggle()">
+                                <mat-icon aria-label="Side nav toggle icon" style="color:white">menu</mat-icon>
+                        </button>
+                        <img src="../assets/images.png" alt="logo">
+                        <span><a routerLink="/home">Kanban Board</a></span>
+                        <span class="spacer"></span>
+                        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
+                                routerLinkActive="active">Login</button>
+                        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
+                                routerLinkActive="active">Register</button>
+                        <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;">{{ username }}</a>
+
+                        <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">
+                                <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                                <button mat-menu-item mat-dialog-close (click)="openChangePasswordDialog()">
+                                        <mat-icon>remove_red_eye</mat-icon>
+                                        <span class="myspan">Change Password</span>
+                                </button>
+                                <button mat-menu-item mat-dialog-close (click)="openUpdateUserDialog()">
+                                        <mat-icon>update</mat-icon>
+                                        <span class="myspan">Update Profile</span>
+                                </button>
+                                <button mat-menu-item mat-dialog-close (click)="delete()">
+                                        <mat-icon>delete</mat-icon>
+                                        <span class="myspan">Delete Account</span>
+                                </button>
+                                <button mat-menu-item mat-dialog-close (click)="logout()">
+                                        <mat-icon>exit_to_app</mat-icon>
+                                        <span class="myspan">Logout</span>
+                                </button>
+                        </mat-menu>
+                </mat-toolbar>
+                <!-- Add Content Here -->
+                <router-outlet></router-outlet>
+        </mat-sidenav-content>
+</mat-sidenav-container>

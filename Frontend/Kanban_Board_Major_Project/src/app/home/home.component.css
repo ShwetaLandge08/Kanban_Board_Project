@@ -1,0 +1,69 @@
+.heading>h1 {
+     font-size: 40px;
+     margin-top: 50px;
+     margin-bottom: 50px;
+     font-weight: 800;
+     line-height: 50px;
+}
+
+.heading>h4 {
+     margin-top: 50px;
+     margin-bottom: 50px;
+     font-weight: 500;
+     line-height: 40px;
+}
+
+.div1 {
+     display: grid;
+     grid-template-columns: 50% 50%;
+     background-color: rgba(175, 237, 241, 0.062);
+     padding: 0 50px;
+     border-bottom-left-radius: 30px;
+     border-bottom-right-radius: 30px;
+}
+
+.plan {
+     font-size: 40px;
+     align-content: center;
+     font-weight: 800;
+     line-height: 50px;
+}
+
+.div2,
+.div3 {
+     display: grid;
+     grid-template-columns: 50% 50%;
+     padding: 0 50px;
+     border-radius: 30px;
+     line-height: 30px;
+}
+
+p {
+     font-weight: 500;
+     line-height: 20px;
+}
+
+.div3 {
+     background-color: rgba(175, 237, 241, 0.062);
+}
+
+footer {
+     text-align: center;
+     font-size: large;
+     font-weight: bold;
+     padding: 20px;
+}
+
+a {
+     text-decoration: none;
+}
+.subdiv3{
+     align-content: center;
+     font-weight: 500;
+     line-height: 20px;
+     margin-top: 150px;
+}
+.img{
+     margin-top: 30px;
+     border-radius: 10px;
+}

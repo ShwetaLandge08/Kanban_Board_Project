@@ -1,0 +1,54 @@
+<div class="div1">
+     <div class="heading">
+          <h1>Start Agile Board Project Using Kanaban Board</h1>
+          <h4>Create your Own Kanban board to see the progress of your team<br>
+               Clicked on Login if Already Register.<br>
+               Otherwise register yourself to explore more about Kanaban Board.</h4>
+     </div>
+     <div *ngIf="!isLoggedIn">
+          <app-sign-up></app-sign-up>
+     </div>
+     <div *ngIf="isLoggedIn">
+          <img src="https://www.idalko.com/wp-content/uploads/2021/10/Final-Copy-Kanban-Boards-in-Jira-Final.jpg"
+               height="350px" width="550px" class="img">
+     </div>
+</div>
+<div class="div2">
+     <img src="https://www.datocms-assets.com/17507/1606823054-kanban-workflow-integrify.png?fit=max&fm=webp&q=60&w=736"
+          height="350px" width="550px">
+     <ul style="list-style-type:circle;">
+          <h1 class="plan">Easily plan, track and manage work across sprints.</h1>
+          <li>
+               <strong>Plan upcoming work in a backlog:</strong>
+               <p>Prioritize and plan your team's work on the backlog.
+                    Break down work from your project roadmap, and
+                    order work items so your team knows what to deliver first.</p>
+          </li>
+          <li>
+               <strong>Organize cycles of work into sprints:</strong>
+               <p>Use sprints to drive incremental delivery, allow
+                    your team to ship high-quality work and deliver value
+                    faster.</p>
+          </li>
+          <li>
+               <strong>Understand your team’s velocity and capacity:</strong>
+               <p>Improve predictability on planning and delivery with out-of-the-box reports,
+                    including the sprint report and velocity chart.</p>
+          </li>
+     </ul>
+</div>
+<div class="div3">
+     <div class="subdiv3">
+          <h2>Customize how your team’s work flows<br>
+               <small>Set up, clean up, and automate even the most complicated project workflows.</small>
+          </h2>
+     </div>
+     <img src="https://gofarwell.com/wp-content/uploads/2020/12/Kanban-Board-Flow-Do-Doing-Done1000px.png" width="600px"
+          height="350px">
+</div>
+<footer class="footer">
+     <div>
+          ©2023 Copyright:
+          <a class="text-white" href="https://en.wikipedia.org/wiki/Kanban_board">Know more about Kanban Board</a>
+     </div>
+</footer>

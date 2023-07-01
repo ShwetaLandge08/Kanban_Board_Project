@@ -1,0 +1,46 @@
+span {
+     font-size: xx-large;
+     font-weight: bolder;
+ }
+ 
+ .spacer {
+     flex: 1 1 auto;
+ }
+ 
+ a {
+     color: white;
+     text-decoration: none;
+     margin-right: 20px;
+ }
+ 
+ .active {
+     color: white;
+     font-size: x-large;
+ }
+ 
+ img {
+     height: 40px;
+     width: 40px;
+     border-radius: 50%;
+     /* margin-top: 15px; */
+     margin-left: 20px;
+     margin-right: 10px;
+     /* object-fit: cover; */
+ }
+ 
+ mat-toolbar {
+     background-color: rgb(149, 76, 218);
+ }
+ 
+ .btn {
+     background-color: white;
+     color: rgb(149, 76, 218);
+     margin-left: 10px;
+     margin-right: 10px;
+ }
+ .myspan{
+     font-size: medium;
+ }
+ #menu{
+     color: white;
+ } 
