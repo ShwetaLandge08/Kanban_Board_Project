@@ -1,28 +1,50 @@
-<mat-card class="project-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image">{{project.admin?.name}}</div>
-        <mat-card-title>{{project.title}}</mat-card-title>
-        <mat-card-subtitle>{{project.admin?.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        {{project.startDate}}<span></span>{{project.dueDate}}
-        <!-- <p>{{project.description}}</p> -->
-        <mat-option *ngFor="let task of project.tasks">{{task}}</mat-option>
-        <!-- <mat-chip>{{project.priority}}</mat-chip> -->
-        <h3 style="font-weight: bold;" *ngIf="project.priority == 'High' || project.priority == 'critical'">Priority:
-            <span class="badge badge-pill badge-danger"> {{project.priority}}</span>
-        </h3>
-        <h3 style="font-weight: bold;" *ngIf="project.priority == 'Low' || project.priority == 'low'">Priority: <span
-                class="badge badge-pill badge-light"> {{project.priority}}</span>
-        </h3>
-        <h3 style="font-weight: bold;" *ngIf="project.priority == 'Medium' || project.priority == 'medium'">Priority:
-            <span class="badge badge-pill badge-dark"> {{project.priority}}</span>
-        </h3>
-        <br><br>
-        <mat-progress-bar mode="determinate" value="project.status"></mat-progress-bar>
-    </mat-card-content>
-    <mat-card-actions>
-        <!-- <button mat-button (click)="openAddProjectDialog()"><mat-icon>edit</mat-icon>Edit</button> -->
-        <button mat-button><mat-icon>delete</mat-icon>Delete</button>
-    </mat-card-actions>
-</mat-card>
+<div class="container">
+    <h1 mat-dialog-title>Update Project</h1>
+    <br>
+    <form mat-dialog-content (ngSubmit)="updateUser(projectToUpdate)" [formGroup]="projectToUpdate">
+
+         <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" placeholder="Project Title">
+              <mat-icon matSuffix>title</mat-icon>
+              <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
+              <mat-error *ngIf="title?.errors?.['minlength']">
+                   Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
+              </mat-error>
+         </mat-form-field>
+         <br><br>
+         <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" rows="3" placeholder="Describe Project"></textarea>
+              <mat-icon matSuffix>description</mat-icon>
+              <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+              <mat-error *ngIf="description?.errors?.['minlength']">
+                   Description should have minimum of {{description?.errors?.['minlength']?.requiredLength}} characters
+              </mat-error>
+         </mat-form-field>
+         <br><br>
+         <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Due Date</mat-label>
+              <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" [min]="currentDate"
+                   placeholder="MM/DD/YYYY" (click)="dueDatePicker.open()">
+              <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #dueDatePicker></mat-datepicker>
+              <mat-error *ngIf="dueDate?.errors?.['required']">Due Date is required</mat-error>
+              <mat-error *ngIf="dueDate?.errors?.['pastDate']">Due Date can not be past date</mat-error>
+         </mat-form-field>
+         <br><br>
+
+         <mat-radio-group aria-label="Select priority" formControlName="priority">
+              <label><strong>Priority: </strong> </label>
+              <mat-radio-button value="High">High</mat-radio-button>
+              <mat-radio-button value="Medium">Medium</mat-radio-button>
+              <mat-radio-button value="Low">Low</mat-radio-button>
+         </mat-radio-group>
+         <br><br>
+         <div mat-dialog-actions class="button">
+              <button mat-button mat-dialog-close>No</button>
+              <button type="submit" mat-raised-button color="primary" mat-dialog-close
+                   [disabled]="projectToUpdate.invalid">Update</button>
+         </div>
+    </form>
+</div>

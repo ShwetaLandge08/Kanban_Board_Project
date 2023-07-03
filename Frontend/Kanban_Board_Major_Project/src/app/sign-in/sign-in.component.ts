@@ -12,8 +12,8 @@ import { User } from '../_models/user';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit{
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, 
+export class SignInComponent implements OnInit {
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar,
     private authService: AuthService, private tokenStorage: TokenStorageService,
     private dataSharingService: DataStorageService, private router: Router) { }
 
@@ -55,7 +55,7 @@ export class SignInComponent implements OnInit{
           this.dataSharingService.isLoggedIn.next(true);
 
           this.router.navigate(['/dashboard']);
-          this.snackBar.open("Logged in as " + data.role, 'OK', {
+          this.snackBar.open("You are Looged In", 'OK', {
             duration: 5000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });
@@ -63,7 +63,7 @@ export class SignInComponent implements OnInit{
         error: err => {
           this.errorMessage = err.error.message;
           // console.log(err);
-          
+
           this.isLoginFailed = true;
           this.snackBar.open(this.errorMessage, "Failed", {
             duration: 5000,

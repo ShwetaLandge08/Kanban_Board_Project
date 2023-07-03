@@ -64,6 +64,8 @@ export class TaskDetailsComponent {
 
     this.kanbanService.addCommentOnTask(myComment, taskId,projectId).subscribe(data => {
       console.log(data);
+      //formComment.reset();
+      //window.location.reload();
     },
       err => {
         console.log(err);

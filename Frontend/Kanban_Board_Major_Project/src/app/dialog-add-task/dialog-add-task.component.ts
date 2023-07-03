@@ -66,7 +66,8 @@ export class DialogAddTaskComponent {
     this.kanbanService.getAllMembersForGivenProject(this.myProject.projectId).subscribe({
       next: data => {
         this.users = data;
-        //console.log(this.users);
+        console.log(this.myProject.projectId);
+        console.log(this.users);
       },
       error: err => {
         console.log(err);

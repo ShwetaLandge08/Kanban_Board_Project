@@ -30,8 +30,11 @@ export class KanbanService {
   addProject(project: Project): Observable<any> {
     return this.http.post(PROJECT_API + "add", project, httpOptions);
   }
-  deleteProject(project: Project): Observable<any> {
+  deleteProject(): Observable<any> {
     return this.http.delete(DELETE_PROJECT_API, httpOptions);
+  }
+  updateProject(project: Project): Observable<any> {
+    return this.http.put(PROJECT_API + "update", project, httpOptions);
   }
 
   getAdminProjects(): Observable<any> {

@@ -4,24 +4,29 @@
 <div class="root">
     <div class="board">
         <div class="board-bar">
-            <!-- <p class="boardName">Project Name</p> -->
-            <!-- <button mat-raised-button (click)="openAddProjectDialog()">Add Project</button> -->
+            <p class="boardName"> {{myProject.title}}</p>
+            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openAddTaskDialog()">Add Task</button>
+                <button mat-menu-item (click)="openAddStageDialog()">Add Stage</button>
+            </mat-menu>
 
-            <!-- <button *ngIf="isProjectname !=null" mat-raised-button (click)="openAddStageDialog()">Add Stage</button> -->
-            <button mat-raised-button (click)="openAddTaskDialog()">Add Task</button>
-            <button mat-raised-button (click)="openAddStageDialog()">Add Stage</button>
-            <!-- <p>Project Name</p> -->
         </div>
-        <div class="board-wrapper">
+        <div class="board-wrapper" cdkDropList (cdkDropListDropped)="onTaskDropped($event)">
             <div class="board-columns" *ngFor="let stage of stages">
                 <div class="board-column">
                     <div class="column-title">
                         {{stage.name}}
                     </div>
-                    <div class="task-container" *ngFor="let task of tasks">
-                        <mat-card *ngIf="task.status == stage.name" class="task" cdkDrag (click)="openTaskDetailsDialogBox(task)">
+                    <div class="task-container" *ngFor="let task of tasks" cdkDrag [cdkDragData]="task">
+                        <mat-card *ngIf="task.status == stage.name" class="task"
+                            (click)="openTaskDetailsDialogBox(task)">
                             <mat-card-header>
-                                <h3>Title: {{task.title}}</h3>
+                                <h3>Title: {{task.title}}
+                                    <br>Status: {{task.status}}
+                                </h3>
                             </mat-card-header>
                         </mat-card>
                     </div>

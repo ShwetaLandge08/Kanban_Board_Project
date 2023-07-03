@@ -17,13 +17,13 @@
      display: grid;
      grid-template-columns: 50% 50%;
      background-color: rgba(175, 237, 241, 0.062);
-     padding: 0 50px;
+     padding: 10px 50px;
      border-bottom-left-radius: 30px;
      border-bottom-right-radius: 30px;
 }
 
 .plan {
-     font-size: 40px;
+     font-size: 30px;
      align-content: center;
      font-weight: 800;
      line-height: 50px;
@@ -33,7 +33,7 @@
 .div3 {
      display: grid;
      grid-template-columns: 50% 50%;
-     padding: 0 50px;
+     padding: 10px 50px;
      border-radius: 30px;
      line-height: 30px;
 }
@@ -56,6 +56,7 @@ footer {
 
 a {
      text-decoration: none;
+     color: black;
 }
 .subdiv3{
      align-content: center;

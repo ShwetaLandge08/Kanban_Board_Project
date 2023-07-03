@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #drawer class="sidenav" fixedInViewport
+        <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport
                 [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                 [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
                 <mat-toolbar style="color: white;">Menu</mat-toolbar>
@@ -8,20 +8,22 @@
                         <a mat-list-item routerLink="/dashboard">Dashboard</a>
                         <a mat-list-item routerLink="/home">Home</a>
                 </mat-nav-list>
-        </mat-sidenav>
+        </mat-sidenav> -->
         <mat-sidenav-content>
                 <mat-toolbar>
-                        <button *ngIf="isLoggedIn" type="button" aria-label="Toggle sidenav" mat-icon-button
+                        <!-- <button *ngIf="isLoggedIn" type="button" aria-label="Toggle sidenav" mat-icon-button
                                 (click)="drawer.toggle()">
                                 <mat-icon aria-label="Side nav toggle icon" style="color:white">menu</mat-icon>
-                        </button>
-                        <img src="../assets/images.png" alt="logo">
+                        </button> -->
+                        <img src="../assets/images.png" alt="logo" routerLink="/dashboard">
                         <span><a routerLink="/home">Kanban Board</a></span>
                         <span class="spacer"></span>
                         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
                                 routerLinkActive="active">Login</button>
                         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
                                 routerLinkActive="active">Register</button>
+                        <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;"
+                                (click)="openAddProjectDialog()">Add Project</a>
                         <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;">{{ username }}</a>
 
                         <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">

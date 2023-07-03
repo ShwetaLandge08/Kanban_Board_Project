@@ -43,6 +43,7 @@ public class ProjectController {
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findProject(@PathVariable int id) {
         try {
@@ -52,6 +53,14 @@ public class ProjectController {
         }
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<?> updateProject(@RequestBody Project project) {
+        try {
+            return new ResponseEntity<>(projectService.updateProject(project), HttpStatus.OK);
+        } catch (ProjectNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteProject(@RequestBody Project project) {
         try {

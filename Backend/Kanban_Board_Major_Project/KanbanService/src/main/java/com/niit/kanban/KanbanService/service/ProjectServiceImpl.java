@@ -6,10 +6,7 @@ import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -40,6 +37,28 @@ public class ProjectServiceImpl implements ProjectService {
         projectRepository.delete(project);
         return true;
 
+    }
+
+    @Override
+    public Project updateProject(Project project) throws ProjectNotFoundException {
+        Optional<Project> optional = projectRepository.findById(project.getProjectId());
+        if (optional.isEmpty()) {
+            throw new ProjectNotFoundException();
+        }
+        Project existingProject = optional.get();
+        if (existingProject.getTitle() != null) {
+            existingProject.setTitle(project.getTitle());
+        }
+        if (existingProject.getDescription() != null) {
+            existingProject.setDescription(project.getDescription());
+        }
+        if (existingProject.getDueDate() != null) {
+            existingProject.setDueDate(project.getDueDate());
+        }
+        if (existingProject.getPriority() != null) {
+            existingProject.setPriority(project.getPriority());
+        }
+        return projectRepository.save(existingProject);
     }
 
     @Override

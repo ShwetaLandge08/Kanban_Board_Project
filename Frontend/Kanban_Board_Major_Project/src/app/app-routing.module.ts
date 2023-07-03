@@ -23,7 +23,7 @@ const routes: Routes = [
   //{ path: 'task/:taskId', component: TaskDetailsComponent, canDeactivate: [AuthCanDeactiveGuard] },
   { path: 'update', component: UpdateUserComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
-  { path: 'dashboard/:id', component: BoardComponent },
+  { path: 'dashboard/:id', component: BoardComponent, canDeactivate: [AuthCanDeactiveGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 

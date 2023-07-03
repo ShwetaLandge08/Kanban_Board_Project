@@ -102,6 +102,7 @@ export class DialogAddProjectComponent {
         this.snackBar.open("Project added successfully", "Added", {
           duration: 5000
         });
+        window.location.reload();
       },
       error: err => {
         console.log(err);

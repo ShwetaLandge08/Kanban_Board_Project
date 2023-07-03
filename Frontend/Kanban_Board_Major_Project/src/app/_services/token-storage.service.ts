@@ -18,6 +18,10 @@ export class TokenStorageService {
     this.router.navigateByUrl('/home');
   }
 
+  isLoggedIn() {
+    return !!window.sessionStorage.getItem(TOKEN_KEY);
+  }
+
   public saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
@@ -35,7 +39,7 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(PROJECT_VALUE);
     window.sessionStorage.setItem(PROJECT_VALUE, JSON.stringify(project));
   }
-  public getProject():any{
+  public getProject(): any {
     const project = window.sessionStorage.getItem(PROJECT_VALUE);
     if (project) {
       //console.log(project);

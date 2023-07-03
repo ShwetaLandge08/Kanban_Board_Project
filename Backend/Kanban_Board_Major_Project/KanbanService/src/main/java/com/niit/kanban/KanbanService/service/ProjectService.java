@@ -9,6 +9,7 @@ public interface ProjectService {
     Project addProject(Project project) throws ProjectAlreadyExistsException;
 
     boolean removeProject(Project project) throws ProjectNotFoundException;
+    Project updateProject(Project project) throws ProjectNotFoundException;
 
     List<Project> getAllProjects() throws ProjectNotFoundException;
 

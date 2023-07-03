@@ -11,6 +11,7 @@ import { DialogAddTaskComponent } from '../dialog-add-task/dialog-add-task.compo
 import { TokenStorageService } from '../_services/token-storage.service';
 import { DialogAddStageComponent } from '../dialog-add-stage/dialog-add-stage.component';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-board',
@@ -20,7 +21,7 @@ import { TaskDetailsComponent } from '../task-details/task-details.component';
 export class BoardComponent {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
     private dialog: MatDialog, private activatedRoute: ActivatedRoute,
-    private tokenStorage: TokenStorageService) { }
+    private tokenStorage: TokenStorageService,private auth:AuthService) { }
 
   selectedProject: Project | null = null;
   // isProjectname = localStorage.getItem("projectName");
@@ -28,6 +29,7 @@ export class BoardComponent {
   project: Project = {};
   stages: Stage[] = [];
   tasks: Task[] = [];
+  myProject = this.tokenStorage.getProject();
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') ?? 0;
@@ -38,6 +40,7 @@ export class BoardComponent {
         this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
+          console.log(this.stages)
       });
 
       this.kanbanService.getAllProjectTask(id).subscribe(
@@ -67,6 +70,22 @@ export class BoardComponent {
         event.currentIndex,
       );
     }
+  }
+  onTaskDropped(event: CdkDragDrop<any[]>) {
+    // const task = event.item.data;
+    // console.log(task);
+    // const previousColumnIndex = this.stages.indexOf(task.status);
+    // console.log(previousColumnIndex);
+    // const newColumnIndex = event.currentIndex;
+    // console.log(newColumnIndex);
+    // const newColumnName = this.stages[newColumnIndex];
+    // console.log(newColumnName);
+    // // Change the status of the task to the new column name
+    // task.status = newColumnName;
+
+    // // Move the task from the previous column to the new column
+    // // this.tasks = this.tasks.filter(t => t !== task);  // Remove task from the tasks array
+    //  this.tasks.splice(newColumnIndex, 0, task);      // Insert task into the new position
   }
 
   openAddTaskDialog(): void {

@@ -6,6 +6,8 @@ import { DialogProjectViewComponent } from '../dialog-project-view/dialog-projec
 import { Router } from '@angular/router';
 import { KanbanService } from '../_services/kanban.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TokenStorageService } from '../_services/token-storage.service';
+import { User } from '../_models/user';
 
 @Component({
   selector: 'app-project',
@@ -13,24 +15,31 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  constructor(private dialog: MatDialog, private router: Router,
-    private kanban: KanbanService, private snackBar: MatSnackBar) { }
+  constructor(private dialog: MatDialog, private kanban: KanbanService,
+    private snackBar: MatSnackBar, private tokenStorage: TokenStorageService) { }
 
   @Input()
   project: Project = {};
   // color: string = 'primary';
+  //myProject: Project = this.tokenStorage.getProject();
+  user: User = this.tokenStorage.getUser();
+  isLoggedInUser = false;
+
 
   ngOnInit(): void {
-    switch (this.project.priority) {
-      case "High":
-        // this.color = "warn"
-        break;
-      case "Medium":
-        // this.color = "accent"
-        break;
-      case "Low":
-        // this.color = "primary"
-        break;
+    // switch (this.project.priority) {
+    //   case "High":
+    //     // this.color = "warn"
+    //     break;
+    //   case "Medium":
+    //     // this.color = "accent"
+    //     break;
+    //   case "Low":
+    //     // this.color = "primary"
+    //     break;
+    // }
+    if (this.project?.admin?.email == this.user.email) {
+      this.isLoggedInUser = true;
     }
   }
 
@@ -40,36 +49,10 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  // Role: string = this.tokenStorage.getUser().role;
 
-  // drop(event: CdkDragDrop<any[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex,
-  //     );
-  //   }
-  // }
-
-  // openAddTaskDialog(): void {
-  //   this.dialog.open(DialogAddTaskComponent, {
-  //     // data: vehicle
-  //   });
-  // }
-
-  openAddProjectDialog(): void {
-    this.dialog.open(DialogAddProjectComponent, {
-      // data: vehicle
-    });
-  }
-
-  deleteProject(project: Project) {
+  deleteProject() {
     if (confirm("Are you sure to Delete your account")) {
-      this.kanban.deleteProject(project).subscribe({
+      this.kanban.deleteProject().subscribe({
         next: data => {
           console.log(data);
 

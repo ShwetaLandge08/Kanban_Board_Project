@@ -58,7 +58,7 @@ export class DashboardComponent {
   openTaskDetailsDialogBox(task: Task): void {
     this.dialog.open(TaskDetailsComponent, {
       width: "50%",
-      height: "max-content",
+      height: "min-content",
       data: task
     })
   }
