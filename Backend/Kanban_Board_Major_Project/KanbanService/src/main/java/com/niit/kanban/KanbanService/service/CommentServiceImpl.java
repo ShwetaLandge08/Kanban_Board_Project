@@ -55,18 +55,16 @@ public class CommentServiceImpl implements CommentService {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
-        List<Project> getAllProject = projectRepository.findAll();
+        Project project = projectRepository.findByProjectId(projectId);
         List<Comment> myComments = new ArrayList<>();
-        for (Project project : getAllProject) {
-            List<Stage> stages = project.getStages();
-            for (Stage stage : stages) {
-                List<Task> tasks = stage.getTasks();
-                if (tasks == null)
-                    break;
-                for (Task task : tasks) {
-                    if (task.getId() == taskId) {
-                        myComments = task.getComments();
-                    }
+        List<Stage> stages = project.getStages();
+        for (Stage stage : stages) {
+            List<Task> tasks = stage.getTasks();
+            if (tasks == null)
+                break;
+            for (Task task : tasks) {
+                if (task.getId() == taskId) {
+                    myComments = task.getComments();
                 }
             }
         }

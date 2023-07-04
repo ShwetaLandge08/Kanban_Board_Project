@@ -50,9 +50,9 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  deleteProject() {
+  deleteProject(id:any) {
     if (confirm("Are you sure to Delete your account")) {
-      this.kanban.deleteProject().subscribe({
+      this.kanban.deleteProject(id).subscribe({
         next: data => {
           console.log(data);
 

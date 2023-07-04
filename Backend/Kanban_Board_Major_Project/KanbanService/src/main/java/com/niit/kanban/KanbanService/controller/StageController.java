@@ -24,6 +24,7 @@ public class StageController {
     public ResponseEntity<?> addStageForGivenProject(@RequestBody Stage stage, @PathVariable int projectId) {
         try {
             System.out.println(stage);
+
             responseEntity = new ResponseEntity<>(stageService.addStage(projectId,stage), HttpStatus.CREATED);
         } catch (ProjectNotFoundException | StageAlreadyExistsException ex) {
             throw new RuntimeException(ex);

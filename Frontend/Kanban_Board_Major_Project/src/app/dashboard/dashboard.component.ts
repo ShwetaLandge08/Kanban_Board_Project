@@ -5,6 +5,7 @@ import { Project } from '../_models/project';
 import { Task } from '../_models/task';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DataStorageService } from '../_services/data-storage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,12 +14,34 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DashboardComponent {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private dataStorage: DataStorageService) { }
 
   projects: Project[] = [];
   tasks: Task[] = [];
   userProjects: Project[] = [];
+
   ngOnInit(): void {
+
+    this.dataStorage.refreshNeeded.subscribe(
+      () => {
+        this.getAdminProjects();
+      }
+    );
+
+    this.getAdminProjects();
+    this.getAllUsertaskFromProject();
+    this.getProjectOfUser();
+  }
+
+  openTaskDetailsDialogBox(task: Task): void {
+    this.dialog.open(TaskDetailsComponent, {
+      width: "50%",
+      height: "min-content",
+      data: task
+    })
+  }
+
+  getAdminProjects() {
     this.kanbanService.getAdminProjects().subscribe({
       next: data => {
         console.log(data);
@@ -31,8 +54,24 @@ export class DashboardComponent {
         });
       }
     });
+  }
 
+  getAllUsertaskFromProject() {
+    // this.kanbanService.getAllUsertaskFromProject().subscribe((data) => {
+    //   console.log(data);
+    //   this.tasks = data;
+    // },
+    //   err => {
+    //     console.log(err);
+    //     this.snackBar.open(err.error.message, "Failed", {
+    //       duration: 5000
+    //     });
+    //   });
+    // this.tasks = this.projects.stages.tasks.filter(t:number=>t.id==this.task.id);
+  
+  }
 
+  getProjectOfUser() {
     this.kanbanService.getProjectOfUser().subscribe((data) => {
       console.log(data);
       this.userProjects = data;
@@ -43,23 +82,5 @@ export class DashboardComponent {
           duration: 5000
         });
       });
-
-    this.kanbanService.getAllUsertaskFromProject().subscribe((data) => {
-      console.log(data);
-      this.tasks = data;
-    },
-      err => {
-        console.log(err);
-        this.snackBar.open(err.error.message, "Failed", {
-          duration: 5000
-        });
-      });
-  }
-  openTaskDetailsDialogBox(task: Task): void {
-    this.dialog.open(TaskDetailsComponent, {
-      width: "50%",
-      height: "min-content",
-      data: task
-    })
   }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProjectService {
     Project addProject(Project project) throws ProjectAlreadyExistsException;
 
-    boolean removeProject(Project project) throws ProjectNotFoundException;
+    boolean removeProject(int projectId) throws ProjectNotFoundException;
     Project updateProject(Project project) throws ProjectNotFoundException;
 
     List<Project> getAllProjects() throws ProjectNotFoundException;

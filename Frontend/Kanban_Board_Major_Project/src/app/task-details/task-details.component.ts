@@ -7,6 +7,7 @@ import { KanbanService } from '../_services/kanban.service';
 import { Task } from '../_models/task';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Comment } from '../_models/comment';
+import { DataStorageService } from '../_services/data-storage.service';
 
 
 @Component({
@@ -19,21 +20,18 @@ export class TaskDetailsComponent {
   comments: Comment[] = [];
   role = this.tokenStorage.getUser();
   project = this.tokenStorage.getProject();
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute,
+  constructor(private fb: FormBuilder, private dataStorage: DataStorageService,
     private tokenStorage: TokenStorageService, private kanbanService: KanbanService
     , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: Task) { }
   ngOnInit() {
     this.task = this.data;
-    //console.log(this.task);
-    this.kanbanService.getAllCommentOnTask(this.task.id, this.project.projectId).subscribe(data => {
-      console.log(data);
-      this.comments = data;
-    },
-      err => {
-        console.log(err);
-        this.snackBar.open(err.error.message, "Failed");
+    //console.log(this.task)
+    this.dataStorage.refreshNeeded.subscribe(
+      () => {
+        this.getAllComments();
       }
     );
+    this.getAllComments();
   }
 
   formComment = this.fb.group({
@@ -49,7 +47,6 @@ export class TaskDetailsComponent {
   }
 
   addCommentOnTask() {
-
     if (this.formComment.invalid) {
       return;
     };
@@ -57,15 +54,23 @@ export class TaskDetailsComponent {
     myComment.commenter = this.role;
     const taskId = this.task.id;
     const projectId = this.project.projectId;
-    console.log(myComment);
-    console.log(taskId);
-    console.log(projectId);
+    //console.log(myComment);
+    //console.log(taskId);
+    //console.log(projectId);
 
-
-    this.kanbanService.addCommentOnTask(myComment, taskId,projectId).subscribe(data => {
+    this.kanbanService.addCommentOnTask(myComment, taskId, projectId).subscribe(data => {
       console.log(data);
-      //formComment.reset();
-      //window.location.reload();
+    },
+      err => {
+        console.log(err);
+        this.snackBar.open(err.error.message, "Failed");
+      }
+    );
+  }
+  getAllComments() {
+    this.kanbanService.getAllCommentOnTask(this.task.id, this.project.projectId).subscribe(data => {
+      console.log(data);
+      this.comments = data;
     },
       err => {
         console.log(err);

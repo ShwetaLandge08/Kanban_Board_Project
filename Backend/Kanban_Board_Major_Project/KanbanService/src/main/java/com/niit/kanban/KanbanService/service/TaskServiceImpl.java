@@ -29,11 +29,9 @@ public class TaskServiceImpl implements TaskService {
         Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
         Stage stage = project.getStages().stream().filter(s -> s.getName().equals(stageName)).findFirst().orElseThrow(StageNotFoundException::new);
         List<Task> tasks = stage.getTasks();
-        if (tasks == null)
-            tasks = new ArrayList<>();
+        if (tasks == null) tasks = new ArrayList<>();
         int lastId = 0;
-        if (!tasks.isEmpty())
-            lastId = ((Task) tasks.toArray()[tasks.size() - 1]).getId();
+        if (!tasks.isEmpty()) lastId = ((Task) tasks.toArray()[tasks.size() - 1]).getId();
         task.setId(lastId + 1);
         tasks.add(task);
         stage.setTasks(tasks);
@@ -49,8 +47,7 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = new ArrayList<>();
         for (Stage stage : stages) {
             List<Task> tasks1 = stage.getTasks();
-            if (tasks1 == null)
-                tasks1 = new ArrayList<>();
+            if (tasks1 == null) tasks1 = new ArrayList<>();
             tasks.addAll(tasks1);
         }
         return tasks;
@@ -65,8 +62,7 @@ public class TaskServiceImpl implements TaskService {
             List<Stage> stages = project.getStages();
             for (Stage stage : stages) {
                 List<Task> tasks = stage.getTasks();
-                if (tasks == null)
-                    break;
+                if (tasks == null) break;
                 for (Task task : tasks) {
                     if (task.getAssignee().getEmail().equals(email)) {
                         myTask.add(task);
@@ -87,19 +83,19 @@ public class TaskServiceImpl implements TaskService {
             int count = 0;
             for (Stage stage : stages) {
                 List<Task> tasks = stage.getTasks();
-                if (tasks == null)
-                    break;
+                //System.out.println(count);
+                if (tasks == null) break;
                 else {
                     for (Task task : tasks) {
                         if ((task.getAssignee().getEmail()).equals(email)) {
-                            System.out.println(project);
+                            //System.out.println(project);
                             count++;
                         }
                     }
-                    if (count > 0) {
-                        userProject.add(project);
-                    }
                 }
+            }
+            if (count > 0) {
+                userProject.add(project);
             }
         }
         return userProject;

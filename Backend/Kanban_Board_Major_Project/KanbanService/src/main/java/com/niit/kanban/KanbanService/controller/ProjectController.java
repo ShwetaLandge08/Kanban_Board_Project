@@ -60,10 +60,10 @@ public class ProjectController {
         }
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteProject(@RequestBody Project project) {
+    @DeleteMapping("/delete/{projectId}")
+    public ResponseEntity<?> deleteProject(@PathVariable int projectId) {
         try {
-            return new ResponseEntity<>(projectService.removeProject(project), HttpStatus.OK);
+            return new ResponseEntity<>(projectService.removeProject(projectId), HttpStatus.OK);
         } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -30,9 +30,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public boolean removeProject(Project project) throws ProjectNotFoundException {
-        if (!projectRepository.existsById(project.getProjectId())) throw new ProjectNotFoundException();
-        projectRepository.delete(project);
+    public boolean removeProject(int projectId) throws ProjectNotFoundException {
+        if (!projectRepository.existsById(projectId)) throw new ProjectNotFoundException();
+        projectRepository.deleteById(projectId);
         return true;
 
     }

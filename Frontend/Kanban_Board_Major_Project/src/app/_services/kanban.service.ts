@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Stage } from '../_models/stage';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Project } from '../_models/project';
 import { Task } from '../_models/task';
 import { TokenStorageService } from './token-storage.service';
 import { Comment } from '../_models/comment';
 import { StageComponent } from '../stage/stage.component';
+import { DataStorageService } from './data-storage.service';
 
 const STAGE_API = 'http://localhost:9000/api/kanban/stage/';
 const TASK_API = 'http://localhost:9000/api/kanban/task/';
@@ -23,16 +24,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class KanbanService {
-  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) { }
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService,
+    private dataStorage: DataStorageService) { }
   role = this.tokenStorage.getUser();
   project = this.tokenStorage.getProject().projectId;
 
   addProject(project: Project): Observable<any> {
-    return this.http.post(PROJECT_API + "add", project, httpOptions);
+    return this.http.post(PROJECT_API + "add", project, httpOptions).pipe(
+      tap(() => {
+        this.dataStorage.refreshNeeded.next();
+      })
+    );
   }
 
-  deleteProject(): Observable<any> {
-    return this.http.delete(PROJECT_API + "delete", httpOptions);
+  deleteProject(id: any): Observable<any> {
+    return this.http.delete(PROJECT_API + "delete" + "/" + id, httpOptions).pipe(
+      tap(() => {
+        this.dataStorage.refreshNeeded.next();
+      })
+    );
   }
 
   updateProject(project: Project): Observable<any> {
@@ -54,7 +64,11 @@ export class KanbanService {
   // =========================================================================
 
   addTask(projectId: number, stageName: string, task: Task): Observable<any> {
-    return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions);
+    return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions).pipe(
+      tap(() => {
+        this.dataStorage.refreshNeeded.next();
+      })
+    );
   }
 
 
@@ -74,7 +88,11 @@ export class KanbanService {
   //=======================================================================
 
   addStage(stage: Stage): Observable<any | null> {
-    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions);
+    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions).pipe(
+      tap(() => {
+        this.dataStorage.refreshNeeded.next();
+      })
+    );
   }
 
   //add for delete stage
@@ -82,7 +100,12 @@ export class KanbanService {
 
   addCommentOnTask(comment: Comment, taskId: any, projectId: any): Observable<any> {
 
-    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId, comment, httpOptions);
+    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId, comment, httpOptions).
+      pipe(
+        tap(() => {
+          this.dataStorage.refreshNeeded.next();
+        })
+      );
   }
 
   getAllCommentOnTask(taskId: number, projectId: any): Observable<any | null> {

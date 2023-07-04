@@ -18,8 +18,7 @@ export class DialogAddProjectComponent {
   users: User[] = [];
 
   constructor(private fb: FormBuilder, private kanbanService: KanbanService,
-    private snackBar: MatSnackBar, private authService: AuthService,
-    private dataStorage: DataStorageService) {
+    private snackBar: MatSnackBar, private authService: AuthService) {
     this.currentDate = new Date();
     this.currentDate.setHours(0, 0, 0, 0);
     this.addDefaultStages();
