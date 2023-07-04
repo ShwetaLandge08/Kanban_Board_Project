@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ import { User } from '../_models/user';
 })
 export class SignUpComponent {
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar, 
-    private authService: AuthService) { }
+    private authService: AuthService, private router: Router) { }
 
   isSuccessful = false;
   isSignUpFailed = false;
@@ -62,8 +63,9 @@ export class SignUpComponent {
           console.log(data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          this.router.navigate(['/login']);
           this.snackBar.open("Congrats!!! You are registered with us.", "success", {
-            duration: 5000,
+            duration: 1000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });
           this.resetForm();

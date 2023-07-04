@@ -1,7 +1,8 @@
+import { Task } from "./task";
 
 export type Stage = {
-     name?: string;
-     wipLimit?: number;
-     //tasks?: Task[];
- };
- 
+    // id?: number;
+    name?: string;
+    wipLimit?: number;
+    tasks?: Task[];
+};

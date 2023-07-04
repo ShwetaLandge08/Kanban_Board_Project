@@ -1,7 +1,8 @@
 <!-- <div cdkDropListGroup class="board-container">
-     <app-stage cdkDropList *ngFor="let stage of stages" [stage]="stage" class="stage-container"></app-stage>
- </div> -->
-<div class="root">
+    <app-stage *ngFor="let stage of project.stages" [stage]="stage" [project]="project" class="stage-container"></app-stage>
+</div> -->
+
+ <div class="root">
     <div class="board">
         <div class="board-bar">
             <p class="boardName"> {{myProject.title}}</p>

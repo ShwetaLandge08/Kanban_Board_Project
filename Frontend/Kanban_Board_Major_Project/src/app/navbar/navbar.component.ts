@@ -65,20 +65,20 @@ export class NavbarComponent {
     this.router.navigateByUrl('/home');
   }
 
-  delete(): void {
-    if (confirm("Are you sure to Delete your account")) {
-      this.authService.delete().subscribe(
-        () => {
-          console.log("account deleted.");
-          this.tokenStorage.signOut();
-          this.dataSharingService.isLoggedIn.next(false);
-          this.router.navigateByUrl('/register');
-        }, (error) => {
-          console.log(error);
-        }
-      )
-    }
-  }
+  // delete(): void {
+  //   if (confirm("Are you sure to Delete your account")) {
+  //     this.authService.delete().subscribe(
+  //       () => {
+  //         console.log("account deleted.");
+  //         this.tokenStorage.signOut();
+  //         this.dataSharingService.isLoggedIn.next(false);
+  //         this.router.navigateByUrl('/register');
+  //       }, (error) => {
+  //         console.log(error);
+  //       }
+  //     )
+  //   }
+  // }
 
   openChangePasswordDialog() {
     this.dialog.open(ChangePasswordComponent, {

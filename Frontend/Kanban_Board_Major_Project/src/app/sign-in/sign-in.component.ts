@@ -56,7 +56,7 @@ export class SignInComponent implements OnInit {
 
           this.router.navigate(['/dashboard']);
           this.snackBar.open("You are Looged In", 'OK', {
-            duration: 5000,
+            duration: 1000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });
         },

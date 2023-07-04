@@ -7,7 +7,7 @@ export type Project = {
      title?: string;
      description?: string;
      admin?: User;
-     tasks?: Task[];
+     //tasks?: Task[];
      startDate?: Date;
      dueDate?: Date;
      priority?: string;

@@ -6,13 +6,13 @@ import { Project } from '../_models/project';
 import { Task } from '../_models/task';
 import { TokenStorageService } from './token-storage.service';
 import { Comment } from '../_models/comment';
+import { StageComponent } from '../stage/stage.component';
 
-//const STAGE_API = 'http://localhost:9000/api/kanban/project/addStage';
-//const TASK_API = 'http://localhost:9000/api/kanban/task/';
+const STAGE_API = 'http://localhost:9000/api/kanban/stage/';
+const TASK_API = 'http://localhost:9000/api/kanban/task/';
 const PROJECT_API = 'http://localhost:9000/api/kanban/project/';
-const DELETE_PROJECT_API = 'http://localhost:9000/api/kanban/project/delete';
+const COMMENT_API = 'http://localhost:9000/api/kanban/comment/';
 
-const GET_TASK_COMMENT = "http://localhost:9000/api/kanban/project/comments";
 
 
 const httpOptions = {
@@ -30,55 +30,64 @@ export class KanbanService {
   addProject(project: Project): Observable<any> {
     return this.http.post(PROJECT_API + "add", project, httpOptions);
   }
+
   deleteProject(): Observable<any> {
-    return this.http.delete(DELETE_PROJECT_API, httpOptions);
-  }
-  updateProject(project: Project): Observable<any> {
-    return this.http.put(PROJECT_API + "update", project, httpOptions);
+    return this.http.delete(PROJECT_API + "delete", httpOptions);
   }
 
-  getAdminProjects(): Observable<any> {
-    return this.http.get(PROJECT_API + "admin", httpOptions);
+  updateProject(project: Project): Observable<any> {
+    return this.http.put(PROJECT_API + "update", project, httpOptions);
   }
 
   getProjectById(id: number): Observable<any> {
     return this.http.get(PROJECT_API + id, httpOptions);
   }
 
-  addtask(task?: Task): Observable<any | null> {
-    return this.http.post(PROJECT_API + 'addTask/' + this.project, task, httpOptions);
-  }
-
-  getProjectOfUser(): Observable<any | null> {
-    return this.http.get(PROJECT_API + "user", httpOptions);
-  }//using
-
-  getAllProjectTask(id: any): Observable<any | null> {
-    return this.http.get(PROJECT_API + "getAllTask/" + id, httpOptions);
+  getAdminProjects(): Observable<any> {
+    return this.http.get(PROJECT_API + "admin", httpOptions);
   }
 
   getAllMembersForGivenProject(id: any): Observable<any | null> {
     return this.http.get(PROJECT_API + "getMember/" + id, httpOptions);
   }
 
-  addStage(stage: Stage): Observable<any | null> {
-    return this.http.post(PROJECT_API + '/addStage/' + this.project, stage, httpOptions);
-  }
-  getAllUsertaskFromProject(): Observable<any | null> {
-    return this.http.get(PROJECT_API + "userTask", httpOptions);
+  // =========================================================================
+
+  addTask(projectId: number, stageName: string, task: Task): Observable<any> {
+    return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions);
   }
 
+
+  getAllProjectTask(id: any): Observable<any | null> {
+    return this.http.get(TASK_API + "getAllTask/" + id, httpOptions);
+  }
+
+  getAllUsertaskFromProject(): Observable<any | null> {
+    return this.http.get(TASK_API + "userTask", httpOptions);
+  }
+
+  getProjectOfUser(): Observable<any | null> {
+    return this.http.get(TASK_API + "user", httpOptions);
+  }
+
+  // add fordelete task
+  //=======================================================================
+
+  addStage(stage: Stage): Observable<any | null> {
+    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions);
+  }
+
+  //add for delete stage
+  //=====================================================================
 
   addCommentOnTask(comment: Comment, taskId: any, projectId: any): Observable<any> {
-    // const body = {
-    //   comment,
-    //   taskId,
-    //   projectId
-    // };
-    return this.http.post(PROJECT_API + "addComment/" + taskId + '/' + projectId, comment, httpOptions);
-  }//using
+
+    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId, comment, httpOptions);
+  }
 
   getAllCommentOnTask(taskId: number, projectId: any): Observable<any | null> {
-    return this.http.get(GET_TASK_COMMENT + '/' + taskId + '/' + projectId);
+    return this.http.get(COMMENT_API + 'comments/' + taskId + '/' + projectId);
   }
+
+  //=======================================================================
 }

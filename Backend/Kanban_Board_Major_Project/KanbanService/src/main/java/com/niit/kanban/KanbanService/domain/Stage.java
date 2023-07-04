@@ -7,6 +7,8 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -16,4 +18,5 @@ public class Stage {
     @Id
     private String name;
     private int wipLimit;
+    private List<Task> tasks;
 }

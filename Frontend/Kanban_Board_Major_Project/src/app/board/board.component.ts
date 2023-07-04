@@ -21,26 +21,27 @@ import { AuthService } from '../_services/auth.service';
 export class BoardComponent {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
     private dialog: MatDialog, private activatedRoute: ActivatedRoute,
-    private tokenStorage: TokenStorageService,private auth:AuthService) { }
+    private tokenStorage: TokenStorageService, private auth: AuthService) { }
 
   selectedProject: Project | null = null;
-  // isProjectname = localStorage.getItem("projectName");
+  isProjectname = localStorage.getItem("projectName");
 
   project: Project = {};
   stages: Stage[] = [];
   tasks: Task[] = [];
   myProject = this.tokenStorage.getProject();
+
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') ?? 0;
       this.kanbanService.getProjectById(+id).subscribe(data => {
         console.log(data);
         this.project = data;
-        console.log(this.project.projectId);
+        //console.log(this.project.projectId);
         this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
-          console.log(this.stages)
+        console.log(this.stages)
       });
 
       this.kanbanService.getAllProjectTask(id).subscribe(
@@ -54,12 +55,24 @@ export class BoardComponent {
             duration: 5000
           });
         });
-        
+
     }
     )
   }
 
-  drop(event: CdkDragDrop<Task[]>) {
+  // drop(event: CdkDragDrop<Task[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  //   } else {
+  //     transferArrayItem(
+  //       event.previousContainer.data as Task[],
+  //       event.container.data as Task[],
+  //       event.previousIndex,
+  //       event.currentIndex,
+  //     );
+  //   }
+  // }
+  onTaskDropped(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -71,22 +84,6 @@ export class BoardComponent {
       );
     }
   }
-  onTaskDropped(event: CdkDragDrop<any[]>) {
-    // const task = event.item.data;
-    // console.log(task);
-    // const previousColumnIndex = this.stages.indexOf(task.status);
-    // console.log(previousColumnIndex);
-    // const newColumnIndex = event.currentIndex;
-    // console.log(newColumnIndex);
-    // const newColumnName = this.stages[newColumnIndex];
-    // console.log(newColumnName);
-    // // Change the status of the task to the new column name
-    // task.status = newColumnName;
-
-    // // Move the task from the previous column to the new column
-    // // this.tasks = this.tasks.filter(t => t !== task);  // Remove task from the tasks array
-    //  this.tasks.splice(newColumnIndex, 0, task);      // Insert task into the new position
-  }
 
   openAddTaskDialog(): void {
     this.dialog.open(DialogAddTaskComponent, {
@@ -97,11 +94,20 @@ export class BoardComponent {
     this.dialog.open(DialogAddStageComponent, {
     });
   }
-  openTaskDetailsDialogBox(task:Task): void {
+  openTaskDetailsDialogBox(task: Task): void {
     this.dialog.open(TaskDetailsComponent, {
-      width: "50%", 
+      width: "50%",
       height: "max-content",
-      data:task
+      data: task
     })
   }
+  // ngOnInit(): void {
+  //   this.activatedRoute.paramMap.subscribe(params => {
+  //     const id = params.get('id') ?? 0;
+  //     this.kanbanService.getProjectById(+id).subscribe(data => {
+  //       this.project = data;
+  //     });
+  //   });
+  // }
+
 }

@@ -4,6 +4,7 @@ import { KanbanService } from '../_services/kanban.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../_models/user';
 import { AuthService } from '../_services/auth.service';
+import { DataStorageService } from '../_services/data-storage.service';
 
 @Component({
   selector: 'app-dialog-add-project',
@@ -17,7 +18,8 @@ export class DialogAddProjectComponent {
   users: User[] = [];
 
   constructor(private fb: FormBuilder, private kanbanService: KanbanService,
-     private snackBar: MatSnackBar, private authService:AuthService) {
+    private snackBar: MatSnackBar, private authService: AuthService,
+    private dataStorage: DataStorageService) {
     this.currentDate = new Date();
     this.currentDate.setHours(0, 0, 0, 0);
     this.addDefaultStages();
@@ -102,7 +104,6 @@ export class DialogAddProjectComponent {
         this.snackBar.open("Project added successfully", "Added", {
           duration: 5000
         });
-        window.location.reload();
       },
       error: err => {
         console.log(err);

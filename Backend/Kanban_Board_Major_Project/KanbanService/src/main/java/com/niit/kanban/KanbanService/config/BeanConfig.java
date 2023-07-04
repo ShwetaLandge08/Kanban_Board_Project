@@ -11,9 +11,9 @@ public class BeanConfig {
     public FilterRegistrationBean<JWTFilter> jwtFilterBean() {
         FilterRegistrationBean<JWTFilter> filterRegistrationBean = new FilterRegistrationBean<>();
         filterRegistrationBean.setFilter(new JWTFilter());
-        //filterRegistrationBean.addUrlPatterns("/api/kanban/comment/*");
-        //filterRegistrationBean.addUrlPatterns("/api/kanban/stage/*");
-        //filterRegistrationBean.addUrlPatterns("/api/kanban/task/*");
+        filterRegistrationBean.addUrlPatterns("/api/kanban/comment/*");
+        filterRegistrationBean.addUrlPatterns("/api/kanban/stage/*");
+        filterRegistrationBean.addUrlPatterns("/api/kanban/task/*");
         filterRegistrationBean.addUrlPatterns("/api/kanban/project/*");
         //filterRegistrationBean.addUrlPatterns("/api/kanban/team/*");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/all");

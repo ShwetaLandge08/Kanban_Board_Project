@@ -23,8 +23,7 @@ public class Project {
     private Date dueDate;
     private String priority;
     private double completion;
-    private List<Task> tasks;
+    //private List<Task> tasks;
     private List<Stage> stages;
     private List<User> members;
 }
-

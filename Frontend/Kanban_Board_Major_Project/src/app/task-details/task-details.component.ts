@@ -48,7 +48,7 @@ export class TaskDetailsComponent {
     return this.formComment.get("commenter");
   }
 
-  addCommentOnTask(formComment: FormGroup) {
+  addCommentOnTask() {
 
     if (this.formComment.invalid) {
       return;

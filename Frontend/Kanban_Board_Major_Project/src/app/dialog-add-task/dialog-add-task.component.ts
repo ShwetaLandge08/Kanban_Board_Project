@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogConfirmStageComponent } from '../dialog-confirm-stage/dialog-confirm-stage.component';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { KanbanService } from '../_services/kanban.service';
 import { Task } from '../_models/task';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { AuthService } from '../_services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../_models/user';
 import { Stage } from '../_models/stage';
-import { ActivatedRoute } from '@angular/router';
 import { Project } from '../_models/project';
 
 @Component({
@@ -18,12 +15,13 @@ import { Project } from '../_models/project';
   styleUrls: ['./dialog-add-task.component.css']
 })
 export class DialogAddTaskComponent {
+ 
   constructor(private fb: FormBuilder, private tokenStorage: TokenStorageService,
-    private authService: AuthService, private kanbanService: KanbanService,
-    private snackBar: MatSnackBar) { }
+    private kanbanService: KanbanService, private snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   users: User[] = [];
-  //selectedUsers: Role[] = [];
+
   project: Project = {};
   stages: Stage[] = [];
   tasks: Task[] = [];
@@ -63,6 +61,7 @@ export class DialogAddTaskComponent {
   ngOnInit(): void {
     //this.users.filter(user => user.email != this.myProject.admin.email);
     //console.log(this.users);
+    //console.log(this.data.project.projectId);
     this.kanbanService.getAllMembersForGivenProject(this.myProject.projectId).subscribe({
       next: data => {
         this.users = data;
@@ -80,20 +79,22 @@ export class DialogAddTaskComponent {
 
 
   addTask(taskForm: FormGroup) {
-    var task: Task = taskForm.value;
-    // task.id = this.tasks.length + 1;
-    console.log(task);
-    // console.log(this.tasks.length + 1);
-    //console.log(taskForm.value);
-    this.kanbanService.addtask(task).subscribe({
+    //console.log(this.data.stage);
+
+    console.log(taskForm.value);
+    var stageName = taskForm.value.status;
+    this.kanbanService.addTask(this.myProject.projectId, stageName, taskForm.value).subscribe({
       next: data => {
         console.log(data);
-        this.snackBar.open("Task added successfully", "Done");
-        window.location.reload();
+        this.snackBar.open("Task added successfully", "Added", {
+          duration: 7000
+        });
       },
       error: err => {
         console.log(err);
-        this.snackBar.open(err.error.message, "Failed");
+        this.snackBar.open(err.error.message, "Failed", {
+          duration: 7000
+        });
       }
     });
   }

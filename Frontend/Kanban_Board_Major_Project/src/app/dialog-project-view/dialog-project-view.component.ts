@@ -47,7 +47,7 @@ export class DialogProjectViewComponent {
       (res) => {
         //this.tokenStorage.saveUser(this.roleToUpdate);
         console.log(res);
-        this.router.navigate(['/dashboard']);
+        window.location.reload();
       }),
       (err: any) => {
         alert(err);

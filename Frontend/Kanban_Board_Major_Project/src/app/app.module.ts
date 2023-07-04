@@ -100,7 +100,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     MatDialogModule,
     MatProgressBarModule
   ],
-  providers: [{ provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+  providers: [
+    // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     authInterceptorProviders],
   bootstrap: [AppComponent]
 })
