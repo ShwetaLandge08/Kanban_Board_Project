@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class StageServiceImpl implements StageService {
 
@@ -37,13 +38,21 @@ public class StageServiceImpl implements StageService {
     }
 
     @Override
-    public Project deleteStage(Stage stage, int projectId) throws ProjectNotFoundException, StageNotFoundException {
+    public Project deleteStage(String stageName, int projectId) throws ProjectNotFoundException, StageNotFoundException {
         Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
         List<Stage> stages = project.getStages();
-        if (stages.stream().noneMatch(s -> s.getName().equalsIgnoreCase(stage.getName())))
+        if (stages.stream().noneMatch(s -> s.getName().equalsIgnoreCase(stageName)))
             throw new StageNotFoundException();
-        stages.remove(stage);
+        stages.removeIf(s -> s.getName().equals(stageName));
         project.setStages(stages);
         return projectRepository.save(project);
     }
+
+    @Override
+    public Project updateStages(int projectId, List<Stage> stages) throws ProjectNotFoundException {
+        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
+        project.setStages(stages);
+        return projectRepository.save(project);
+    }
+
 }

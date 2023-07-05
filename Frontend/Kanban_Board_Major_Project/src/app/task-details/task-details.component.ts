@@ -54,11 +54,13 @@ export class TaskDetailsComponent {
     myComment.commenter = this.role;
     const taskId = this.task.id;
     const projectId = this.project.projectId;
-    //console.log(myComment);
-    //console.log(taskId);
-    //console.log(projectId);
+    const stageName = this.task.status;
+    console.log(myComment);
+    console.log(taskId);
+    console.log(projectId);
+    console.log(stageName);
 
-    this.kanbanService.addCommentOnTask(myComment, taskId, projectId).subscribe(data => {
+    this.kanbanService.addCommentOnTask(myComment, taskId, projectId, stageName).subscribe(data => {
       console.log(data);
     },
       err => {
@@ -68,7 +70,10 @@ export class TaskDetailsComponent {
     );
   }
   getAllComments() {
-    this.kanbanService.getAllCommentOnTask(this.task.id, this.project.projectId).subscribe(data => {
+    const taskId = this.task.id;
+    const projectId = this.project.projectId;
+    const stageName = this.task.status;
+    this.kanbanService.getAllCommentOnTask(taskId, projectId, stageName).subscribe(data => {
       console.log(data);
       this.comments = data;
     },

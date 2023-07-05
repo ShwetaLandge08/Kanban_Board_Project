@@ -71,7 +71,7 @@ export class DialogAddProjectComponent {
   addDefaultStages() {
     const defaultStages = [
       { name: 'To-Do' },
-      { name: 'In-Progress', wipLimit: 5 },
+      { name: 'In-Progress'},
       { name: 'Done' }
     ];
     defaultStages.forEach(stage => {

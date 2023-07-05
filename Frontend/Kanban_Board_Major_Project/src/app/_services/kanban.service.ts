@@ -46,7 +46,11 @@ export class KanbanService {
   }
 
   updateProject(project: Project): Observable<any> {
-    return this.http.put(PROJECT_API + "update", project, httpOptions);
+    return this.http.put(PROJECT_API + "update", project, httpOptions).pipe(
+      tap(() => {
+        this.dataStorage.refreshNeeded.next();
+      })
+    );
   }
 
   getProjectById(id: number): Observable<any> {
@@ -64,11 +68,7 @@ export class KanbanService {
   // =========================================================================
 
   addTask(projectId: number, stageName: string, task: Task): Observable<any> {
-    return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions).pipe(
-      tap(() => {
-        this.dataStorage.refreshNeeded.next();
-      })
-    );
+    return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions);
   }
 
 
@@ -88,19 +88,23 @@ export class KanbanService {
   //=======================================================================
 
   addStage(stage: Stage): Observable<any | null> {
-    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions).pipe(
-      tap(() => {
-        this.dataStorage.refreshNeeded.next();
-      })
-    );
+    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions);
   }
 
   //add for delete stage
+  deleteStage(projectId: any, stageName: any): Observable<any> {
+    return this.http.put(STAGE_API + "deleteStage/" + projectId + '/' + stageName, httpOptions);
+  }
+
+  updateStages(id: number, stages: Stage[]): Observable<any> {
+    return this.http.put(`${STAGE_API}update/${id}`, stages, httpOptions);
+  }
+
   //=====================================================================
 
-  addCommentOnTask(comment: Comment, taskId: any, projectId: any): Observable<any> {
+  addCommentOnTask(comment: Comment, taskId: any, projectId: any, stageName: any): Observable<any> {
 
-    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId, comment, httpOptions).
+    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId + '/' + stageName, comment, httpOptions).
       pipe(
         tap(() => {
           this.dataStorage.refreshNeeded.next();
@@ -108,8 +112,8 @@ export class KanbanService {
       );
   }
 
-  getAllCommentOnTask(taskId: number, projectId: any): Observable<any | null> {
-    return this.http.get(COMMENT_API + 'comments/' + taskId + '/' + projectId);
+  getAllCommentOnTask(taskId: number, projectId: any, stageName: any): Observable<any | null> {
+    return this.http.get(COMMENT_API + 'comments/' + taskId + '/' + projectId + '/' + stageName);
   }
 
   //=======================================================================

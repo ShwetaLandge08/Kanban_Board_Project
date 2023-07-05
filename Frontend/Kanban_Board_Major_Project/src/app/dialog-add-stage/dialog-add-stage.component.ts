@@ -12,16 +12,15 @@ export class DialogAddStageComponent {
   constructor(private dialog: MatDialog, private fb: FormBuilder) { }
 
   stageForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-    wipLimit: [''],
+     name: ['', [Validators.required, Validators.minLength(3)]]
   });
 
   get name() {
     return this.stageForm.get("name");
   }
-  get wipLimit() {
-    return this.stageForm.get("wipLimit");
-  }
+  // get wipLimit() {
+  //   return this.stageForm.get("wipLimit");
+  // }
 
   addStage() {
     this.dialog.open(DialogConfirmStageComponent, {

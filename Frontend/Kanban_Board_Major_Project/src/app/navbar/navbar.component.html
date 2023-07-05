@@ -22,8 +22,6 @@
                                 routerLinkActive="active">Login</button>
                         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
                                 routerLinkActive="active">Register</button>
-                        <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;"
-                                (click)="openAddProjectDialog()">Add Project</a>
                         <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;">{{ username }}</a>
 
                         <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">

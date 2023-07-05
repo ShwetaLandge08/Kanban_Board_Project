@@ -20,23 +20,25 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/comments/{taskId}/{projectId}")
-    public ResponseEntity<?> getAllCommentsOnTask(@PathVariable int taskId, @PathVariable int projectId) {
+    @GetMapping("/comments/{taskId}/{projectId}/{stageName}")
+    public ResponseEntity<?> getAllCommentsOnTask(@PathVariable int taskId, @PathVariable int projectId,
+                                                  @PathVariable String stageName) {
         try {
-            return new ResponseEntity<>(commentService.getAllCommentOnTask(taskId, projectId), HttpStatus.OK);
+            return new ResponseEntity<>(commentService.getAllCommentOnTask(taskId, projectId, stageName), HttpStatus.OK);
         } catch (ProjectNotFoundException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @PutMapping("/addComment/{taskId}/{projectId}")
+    @PutMapping("/addComment/{taskId}/{projectId}/{stageName}")
     public ResponseEntity<?> createTask(@RequestBody Comment comment, @PathVariable int taskId,
-                                        @PathVariable int projectId) {
+                                        @PathVariable int projectId, @PathVariable String stageName) {
         try {
 //            System.out.println(comment);
 //            System.out.println(taskId);
 //            System.out.println(projectId);
-            return new ResponseEntity<>(commentService.addCommentOnTask(comment, taskId, projectId), HttpStatus.CREATED);
+//            System.out.println(stageName);
+            return new ResponseEntity<>(commentService.addCommentOnTask(comment, taskId, projectId, stageName), HttpStatus.CREATED);
         } catch (ProjectNotFoundException | CommentAlreadyExistsException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -1,3 +1,4 @@
+<button mat-stroked-button (click)="openAddProjectDialog()">Add Project</button>
 <div class="container">
     <h1>My Projects</h1>
     <app-project *ngFor="let project of projects" [project]="project"></app-project>

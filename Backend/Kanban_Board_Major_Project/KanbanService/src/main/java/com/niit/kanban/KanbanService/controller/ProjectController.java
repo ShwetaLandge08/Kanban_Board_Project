@@ -12,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/kanban/project")
@@ -33,6 +35,9 @@ public class ProjectController {
         String email = claims.getSubject();
         try {
             User user = userService.getUser(email);
+            List<Stage> stages = project.getStages();
+            stages.forEach(t -> t.setTasks(new ArrayList<>()));
+            project.setStages(stages);
             project.setAdmin(user);
             project.setStartDate(new Date());
             System.out.println("project after= " + project);

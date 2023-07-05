@@ -6,6 +6,7 @@ import { Task } from '../_models/task';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DataStorageService } from '../_services/data-storage.service';
+import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-project.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,7 +30,7 @@ export class DashboardComponent {
     );
 
     this.getAdminProjects();
-    this.getAllUsertaskFromProject();
+    //this.getAllUsertaskFromProject();
     this.getProjectOfUser();
   }
 
@@ -56,19 +57,8 @@ export class DashboardComponent {
     });
   }
 
-  getAllUsertaskFromProject() {
-    // this.kanbanService.getAllUsertaskFromProject().subscribe((data) => {
-    //   console.log(data);
-    //   this.tasks = data;
-    // },
-    //   err => {
-    //     console.log(err);
-    //     this.snackBar.open(err.error.message, "Failed", {
-    //       duration: 5000
-    //     });
-    //   });
-    // this.tasks = this.projects.stages.tasks.filter(t:number=>t.id==this.task.id);
-  
+  openAddProjectDialog(): void {
+    this.dialog.open(DialogAddProjectComponent);
   }
 
   getProjectOfUser() {

@@ -25,33 +25,37 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Project addCommentOnTask(Comment comment, int taskId, int projectId) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
+    public Project addCommentOnTask(Comment comment, int taskId, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
         Project project = projectRepository.findByProjectId(projectId);
         List<Stage> stages = project.getStages();
         for (Stage stage : stages) {
-            List<Task> getAllTask = stage.getTasks();
-            if (getAllTask == null)
-                break;
-            for (Task task1 : getAllTask) {
-                List<Comment> comments = task1.getComments();
-                if (comments == null)
-                    comments = new ArrayList<>();
-                int lastId = 0;
-                if (!comments.isEmpty())
-                    lastId = ((Comment) comments.toArray()[comments.size() - 1]).getId();
-                comment.setId(lastId + 1);
-                comments.add(comment);
-                task1.setComments(comments);
+            if (stage.getName().equals(stageName)) {
+                List<Task> getAllTask = stage.getTasks();
+                if (getAllTask == null)
+                    break;
+                for (Task task1 : getAllTask) {
+                    if (task1.getId() == taskId) {
+                        List<Comment> comments = task1.getComments();
+                        if (comments == null)
+                            comments = new ArrayList<>();
+                        int lastId = 0;
+                        if (!comments.isEmpty())
+                            lastId = ((Comment) comments.toArray()[comments.size() - 1]).getId();
+                        comment.setId(lastId + 1);
+                        comments.add(comment);
+                        task1.setComments(comments);
+                    }
+                }
             }
         }
         return projectRepository.save(project);
     }
 
     @Override
-    public List<Comment> getAllCommentOnTask(int taskId, int projectId) throws ProjectNotFoundException, TaskNotFoundException {
+    public List<Comment> getAllCommentOnTask(int taskId, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
@@ -59,12 +63,14 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> myComments = new ArrayList<>();
         List<Stage> stages = project.getStages();
         for (Stage stage : stages) {
-            List<Task> tasks = stage.getTasks();
-            if (tasks == null)
-                break;
-            for (Task task : tasks) {
-                if (task.getId() == taskId) {
-                    myComments = task.getComments();
+            if (stage.getName().equals(stageName)) {
+                List<Task> tasks = stage.getTasks();
+                if (tasks == null)
+                    break;
+                for (Task task : tasks) {
+                    if (task.getId() == taskId) {
+                        myComments = task.getComments();
+                    }
                 }
             }
         }

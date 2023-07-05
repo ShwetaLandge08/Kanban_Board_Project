@@ -27,17 +27,6 @@ export class ProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // switch (this.project.priority) {
-    //   case "High":
-    //     // this.color = "warn"
-    //     break;
-    //   case "Medium":
-    //     // this.color = "accent"
-    //     break;
-    //   case "Low":
-    //     // this.color = "primary"
-    //     break;
-    // }
     if (this.project?.admin?.email == this.user.email) {
       this.isLoggedInUser = true;
     }
@@ -51,12 +40,12 @@ export class ProjectComponent implements OnInit {
 
 
   deleteProject(id:any) {
-    if (confirm("Are you sure to Delete your account")) {
+    if (confirm("Are you sure to Delete your Project")) {
       this.kanban.deleteProject(id).subscribe({
         next: data => {
           console.log(data);
 
-          this.snackBar.open("Projected Deleted Successfully.", "success", {
+          this.snackBar.open("Project Deleted Successfully.", "success", {
             duration: 5000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });

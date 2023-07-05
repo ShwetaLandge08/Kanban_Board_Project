@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/kanban/stage")
 public class StageController {
@@ -24,7 +28,7 @@ public class StageController {
     public ResponseEntity<?> addStageForGivenProject(@RequestBody Stage stage, @PathVariable int projectId) {
         try {
             System.out.println(stage);
-
+            stage.setTasks(new ArrayList<>());
             responseEntity = new ResponseEntity<>(stageService.addStage(projectId,stage), HttpStatus.CREATED);
         } catch (ProjectNotFoundException | StageAlreadyExistsException ex) {
             throw new RuntimeException(ex);
@@ -32,12 +36,21 @@ public class StageController {
         return responseEntity;
     }
 
-    @PutMapping("/deleteStage/{projectId}")
-    public ResponseEntity<?> deleteStageForGivenProject(@RequestBody Stage stage, @PathVariable int projectId) {
+    @PutMapping("/deleteStage/{projectId}/{stageName}")
+    public ResponseEntity<?> deleteStageForGivenProject(@PathVariable String stageName, @PathVariable int projectId) {
         try {
-            System.out.println(stage);
-            return new ResponseEntity<>(stageService.deleteStage(stage, projectId), HttpStatus.OK);
+            System.out.println(stageName);
+            return new ResponseEntity<>(stageService.deleteStage(stageName, projectId), HttpStatus.OK);
         } catch (ProjectNotFoundException | StageNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateStages(@PathVariable int id, @RequestBody List<Stage> stages) {
+        try {
+            return new ResponseEntity<>(stageService.updateStages(id, stages), HttpStatus.OK);
+        } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

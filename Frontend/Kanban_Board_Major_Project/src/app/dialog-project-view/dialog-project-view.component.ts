@@ -45,9 +45,7 @@ export class DialogProjectViewComponent {
     myProject.projectId = this.project.projectId;
     this.kanbanService.updateProject(myProject).subscribe(
       (res) => {
-        //this.tokenStorage.saveUser(this.roleToUpdate);
         console.log(res);
-        window.location.reload();
       }),
       (err: any) => {
         alert(err);

@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface StageService {
     Project addStage(int projectId, Stage stage) throws ProjectNotFoundException, StageAlreadyExistsException;
-    Project deleteStage(Stage stage, int projectId) throws ProjectNotFoundException, StageNotFoundException;
-    //List<Stage> getAllStages(int projectId) throws ProjectNotFoundException;
+    Project deleteStage(String stageName, int projectId) throws ProjectNotFoundException, StageNotFoundException;
+    Project updateStages(int projectId, List<Stage> stages) throws ProjectNotFoundException;
 }

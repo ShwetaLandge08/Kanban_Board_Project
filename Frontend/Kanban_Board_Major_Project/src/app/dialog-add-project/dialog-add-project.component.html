@@ -34,7 +34,10 @@
           </mat-form-field>
           <br><br>
           <div formArrayName="stages">
-               <strong>Stages:</strong><br><br>
+               <strong>Stages: </strong>
+               <mat-error *ngIf="stages.errors?.['minimumStage']">At least 2 stages are required</mat-error>
+               <br><br>
+
                <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i">
                     <mat-form-field appearance="outline">
                          <mat-label>Name</mat-label>
@@ -45,12 +48,12 @@
                               Name should have minimum of {{control?.errors?.['minlength']?.requiredLength}} characters
                          </mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" class="limit-width">
+                    <!-- <mat-form-field appearance="outline" class="limit-width">
                          <mat-label>Limit</mat-label>
                          <input matInput formControlName="wipLimit" placeholder="Work in Progress Limit">
                          <mat-icon matSuffix>production_quantity_limits</mat-icon>
-                    </mat-form-field>
-                    <button type="button" mat-mini-fab color="warn" (click)="removeStage(i)">
+                    </mat-form-field> -->
+                    <button class="btn" type="button" mat-mini-fab color="warn" (click)="removeStage(i)">
                          <mat-icon>close</mat-icon></button>
                </div>
                <button type="button" mat-raised-button color="primary" (click)="addStage()">

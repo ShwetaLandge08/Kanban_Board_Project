@@ -83,12 +83,13 @@ export class DialogAddTaskComponent {
 
     console.log(taskForm.value);
     var stageName = taskForm.value.status;
-    this.kanbanService.addTask(this.myProject.projectId, stageName, taskForm.value).subscribe({
+    this.kanbanService.addTask(this.myProject.projectId, this.data.stage.name, taskForm.value).subscribe({
       next: data => {
         console.log(data);
         this.snackBar.open("Task added successfully", "Added", {
           duration: 7000
         });
+        location.reload();
       },
       error: err => {
         console.log(err);

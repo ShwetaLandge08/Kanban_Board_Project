@@ -116,13 +116,18 @@ button {
   /* font-family: lato; */
   text-transform: uppercase;
   margin-bottom: 20px;
+  display: flex;
+}
+
+#menu {
+  justify-self: flex-end;
 }
 
 .board-column {
   display: flex;
   flex-direction: column;
   flex-basis: 0;
-  background-color: aqua;
+  background-color: gainsboro;
   min-width: 300px;
   margin: 20px;
   padding: 25px;
@@ -138,12 +143,9 @@ button {
 }
 
 .task {
-  display: flex;
-  padding: 15px 12px;
+  padding-bottom: 5px;
+  font-weight: medium;
   border-bottom: solid 1px white;
-  background: rgb(224, 203, 224);
   border-radius: 4px;
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
-    0 3px 14px 2px rgba(0, 0, 0, 0.05);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
