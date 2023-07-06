@@ -1,5 +1,6 @@
 package com.niit.kanban.KanbanService.controller;
 
+import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.domain.User;
 import com.niit.kanban.KanbanService.exception.*;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/kanban/task")
@@ -70,6 +73,17 @@ public class TaskController {
 
             return new ResponseEntity<>(taskService.deleteTaskFromProjectTaskList(task, projectId), HttpStatus.OK);
         } catch (ProjectNotFoundException | TaskNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @PutMapping("/update/{projectId}/{stageName}/{taskId}")
+    public ResponseEntity<?> updateStatusOfTask(@PathVariable int projectId, @PathVariable int taskId,
+                                          @PathVariable String stageName, @RequestBody String status) {
+        try {
+            System.out.println("projectid => " + projectId +"taskId=> " +taskId + "stagename=>" +stageName
+            + "status=> "+status);
+            return new ResponseEntity<>(taskService.updateStatusOfTask(taskId,projectId,stageName,status), HttpStatus.OK);
+        } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

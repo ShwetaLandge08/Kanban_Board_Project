@@ -32,15 +32,17 @@ export class DashboardComponent {
     this.getAdminProjects();
     //this.getAllUsertaskFromProject();
     this.getProjectOfUser();
+    this.getAllUserTask();
+
   }
 
-  openTaskDetailsDialogBox(task: Task): void {
-    this.dialog.open(TaskDetailsComponent, {
-      width: "50%",
-      height: "min-content",
-      data: task
-    })
-  }
+  // openTaskDetailsDialogBox(task: Task): void {
+  //   this.dialog.open(TaskDetailsComponent, {
+  //     width: "50%",
+  //     height: "min-content",
+  //     data: task
+  //   })
+  // }
 
   getAdminProjects() {
     this.kanbanService.getAdminProjects().subscribe({
@@ -72,5 +74,14 @@ export class DashboardComponent {
           duration: 5000
         });
       });
+  }
+  getAllUserTask() {
+    this.kanbanService.getAllUsertaskFromProject().subscribe((data) => {
+      console.log(data);
+      this.tasks = data;
+    },
+      err => {
+        console.log(err);
+      })
   }
 }

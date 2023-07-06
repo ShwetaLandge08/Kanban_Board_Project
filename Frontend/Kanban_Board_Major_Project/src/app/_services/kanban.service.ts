@@ -83,6 +83,10 @@ export class KanbanService {
   getProjectOfUser(): Observable<any | null> {
     return this.http.get(TASK_API + "user", httpOptions);
   }
+  
+  updateStatusOftask(projectId: number, taskId: number, stageName: string, status: string): Observable<any> {
+    return this.http.put(`${TASK_API}update/${projectId}/${stageName}/${taskId}`, status, httpOptions);
+  }
 
   // add fordelete task
   //=======================================================================

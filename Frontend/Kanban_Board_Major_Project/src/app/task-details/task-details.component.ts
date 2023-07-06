@@ -22,10 +22,10 @@ export class TaskDetailsComponent {
   project = this.tokenStorage.getProject();
   constructor(private fb: FormBuilder, private dataStorage: DataStorageService,
     private tokenStorage: TokenStorageService, private kanbanService: KanbanService
-    , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: Task) { }
+    , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any) { }
+
   ngOnInit() {
-    this.task = this.data;
-    //console.log(this.task)
+    this.task = this.data.task;
     this.dataStorage.refreshNeeded.subscribe(
       () => {
         this.getAllComments();
@@ -52,13 +52,9 @@ export class TaskDetailsComponent {
     };
     var myComment: any = this.formComment.value;
     myComment.commenter = this.role;
-    const taskId = this.task.id;
-    const projectId = this.project.projectId;
-    const stageName = this.task.status;
-    console.log(myComment);
-    console.log(taskId);
-    console.log(projectId);
-    console.log(stageName);
+    const taskId = this.data.task.id;
+    const projectId = this.data.project.projectId;
+    const stageName = this.data.task.status;
 
     this.kanbanService.addCommentOnTask(myComment, taskId, projectId, stageName).subscribe(data => {
       console.log(data);
@@ -70,9 +66,9 @@ export class TaskDetailsComponent {
     );
   }
   getAllComments() {
-    const taskId = this.task.id;
-    const projectId = this.project.projectId;
-    const stageName = this.task.status;
+    const taskId = this.data.task.id;
+    const projectId = this.data.project.projectId;
+    const stageName = this.data.task.status;
     this.kanbanService.getAllCommentOnTask(taskId, projectId, stageName).subscribe(data => {
       console.log(data);
       this.comments = data;

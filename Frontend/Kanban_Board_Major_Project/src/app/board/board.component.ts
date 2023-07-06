@@ -20,22 +20,25 @@ import { DataStorageService } from '../_services/data-storage.service';
 })
 export class BoardComponent {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
-    private dialog: MatDialog, private activatedRoute: ActivatedRoute) {
+    private dialog: MatDialog, private activatedRoute: ActivatedRoute,
+    private tokenStorage: TokenStorageService) {
   }
 
   project: Project = {};
   stages: Stage[] = [];
+  updatedtask: Task | undefined;
+  stage: Stage | undefined;
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') ?? 0;
       this.kanbanService.getProjectById(+id).subscribe(data => {
-        console.log(data);
+       // console.log(data);
         this.project = data;
-        //this.tokenStorage.saveProject(this.project);
+        this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
-        console.log(this.stages)
+        //console.log(this.stages)
       });
     });
   }
@@ -51,17 +54,45 @@ export class BoardComponent {
         event.currentIndex,
       );
     }
-    console.log(...this.project.stages!);
+    //for getting stagename
+    const stageId = event.container.id;
+    var newStr = stageId.replace(/-/g, "");
+    var getIndex = newStr.charAt(newStr.length - 1);
+    var getNum = parseInt(getIndex);
+    this.stage = this.project.stages?.at(getNum);
+    console.log(this.stage?.name);//status for task
+
+    // for getting taskId
+    var update = event.container.data.map((task, index) => ({
+      ...task,
+      position: index + 1
+    }));
+    console.log(update.at(0));// got task array
+    this.updatedtask = update.at(0);
+
+
+    console.log(this.project.stages!);
+
+    this.kanbanService.updateStatusOftask(this.project.projectId!, this.updatedtask?.id!,
+      this.updatedtask?.status!, this.stage?.name!).subscribe(
+        (data) => {
+          console.log(data.stages);
+        },
+        error => {
+          console.log(error)
+        }
+      );
+
     this.kanbanService.updateStages(this.project.projectId!, this.project.stages!).subscribe({
       next: data => {
         console.log(data);
-        this.snackBar.open("Chages saved", "Saved", {
+        this.snackBar.open("Task moved Successfully", "Saved", {
           duration: 3000
         });
       },
       error: err => {
         console.log(err);
-        this.snackBar.open(err.error.message, "Not Saved", {
+        this.snackBar.open(err.error.message, "Task does not Move, Try Again!", {
           duration: 3000
         });
       }
@@ -81,11 +112,11 @@ export class BoardComponent {
     });
   }
 
-  openTaskDetailsDialogBox(task: Task): void {
+  openTaskDetailsDialogBox(project: Project, task: Task): void {
     this.dialog.open(TaskDetailsComponent, {
       width: "50%",
       height: "max-content",
-      data: task
+      data: { project, task }
     })
   }
 

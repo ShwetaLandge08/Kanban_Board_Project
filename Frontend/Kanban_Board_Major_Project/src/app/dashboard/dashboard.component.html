@@ -10,6 +10,7 @@
     <mat-divider></mat-divider>
     <h1>My Tasks</h1>
     <div *ngFor="let task of tasks">
-        <h3 (click)="openTaskDetailsDialogBox(task)">{{task.title}}</h3>
+        <h3>{{task.title}}</h3>
+        <!-- (click)="openTaskDetailsDialogBox(task)" -->
     </div>
 </div>

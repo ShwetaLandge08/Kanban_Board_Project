@@ -114,4 +114,25 @@ public class TaskServiceImpl implements TaskService {
         project.setStages(stages);
         return projectRepository.save(project);
     }
+
+    @Override
+    public Project updateStatusOfTask(int taskId, int projectId, String stageName, String status) throws ProjectNotFoundException {
+        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
+        List<Stage> stages = project.getStages();
+        for (Stage stage : stages) {
+            if (stage.getName().equals(stageName)) {
+                List<Task> tasks = stage.getTasks();
+                for (Task task : tasks) {
+                    if (task.getId() == taskId) {
+                        task.setStatus(status);
+                    }
+                }
+                stage.setTasks(tasks);
+
+            }
+            //project.setStages(stages);
+        }
+        return project;
+    }
+
 }
