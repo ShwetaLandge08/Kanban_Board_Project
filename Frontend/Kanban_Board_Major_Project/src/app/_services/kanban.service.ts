@@ -71,11 +71,6 @@ export class KanbanService {
     return this.http.put(`${TASK_API}${projectId}/${stageName}/add`, task, httpOptions);
   }
 
-
-  getAllProjectTask(id: any): Observable<any | null> {
-    return this.http.get(TASK_API + "getAllTask/" + id, httpOptions);
-  }
-
   getAllUsertaskFromProject(): Observable<any | null> {
     return this.http.get(TASK_API + "userTask", httpOptions);
   }
@@ -83,12 +78,16 @@ export class KanbanService {
   getProjectOfUser(): Observable<any | null> {
     return this.http.get(TASK_API + "user", httpOptions);
   }
-  
+
   updateStatusOftask(projectId: number, taskId: number, stageName: string, status: string): Observable<any> {
     return this.http.put(`${TASK_API}update/${projectId}/${stageName}/${taskId}`, status, httpOptions);
   }
 
-  // add fordelete task
+  // add for delete task
+  deleteTask(projectId: number, taskId: number, stageName: string): Observable<any> {
+    return this.http.put(`${TASK_API}deleteTask/${projectId}/${stageName}/${taskId}`, httpOptions);
+  }  
+  
   //=======================================================================
 
   addStage(stage: Stage): Observable<any | null> {

@@ -15,7 +15,5 @@ public interface TaskService {
 
     List<Project> getProjectsOfUsersWhichContainTaskForThatUser(String email) throws UserNotFoundException;
 
-    Project deleteTaskFromProjectTaskList(Task task, int projectId) throws ProjectNotFoundException, TaskNotFoundException;
-
-    Project updateStatusOfTask(int taskId, int projectId, String stageName, String status) throws ProjectNotFoundException;
+    Project deleteTask(int taskId, String stageName, int projectId) throws ProjectNotFoundException, TaskNotFoundException;
 }

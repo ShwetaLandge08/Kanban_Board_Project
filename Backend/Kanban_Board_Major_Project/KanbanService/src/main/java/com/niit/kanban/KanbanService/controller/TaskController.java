@@ -66,24 +66,14 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/deleteTask/{projectId}")
-    public ResponseEntity<?> deleteTaskFromProjectAndStage(@RequestBody Task task, @PathVariable int projectId) {
+    @PutMapping("/deleteTask/{projectId}/{stageName}/{taskId}")
+    public ResponseEntity<?> deleteTask(@PathVariable int taskId, @PathVariable int projectId,
+                                        @PathVariable String stageName) {
         try {
-            System.out.println(task);
+            System.out.println(taskId);
 
-            return new ResponseEntity<>(taskService.deleteTaskFromProjectTaskList(task, projectId), HttpStatus.OK);
+            return new ResponseEntity<>(taskService.deleteTask(taskId, stageName, projectId), HttpStatus.OK);
         } catch (ProjectNotFoundException | TaskNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    @PutMapping("/update/{projectId}/{stageName}/{taskId}")
-    public ResponseEntity<?> updateStatusOfTask(@PathVariable int projectId, @PathVariable int taskId,
-                                          @PathVariable String stageName, @RequestBody String status) {
-        try {
-            System.out.println("projectid => " + projectId +"taskId=> " +taskId + "stagename=>" +stageName
-            + "status=> "+status);
-            return new ResponseEntity<>(taskService.updateStatusOfTask(taskId,projectId,stageName,status), HttpStatus.OK);
-        } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

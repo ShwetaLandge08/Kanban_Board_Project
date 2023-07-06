@@ -30,6 +30,7 @@ export class ProjectComponent implements OnInit {
     if (this.project?.admin?.email == this.user.email) {
       this.isLoggedInUser = true;
     }
+    //this.project.startDate = this.project.startDate?;
   }
 
   openProjectViewDialog(): void {
@@ -39,7 +40,7 @@ export class ProjectComponent implements OnInit {
   }
 
 
-  deleteProject(id:any) {
+  deleteProject(id: any) {
     if (confirm("Are you sure to Delete your Project")) {
       this.kanban.deleteProject(id).subscribe({
         next: data => {

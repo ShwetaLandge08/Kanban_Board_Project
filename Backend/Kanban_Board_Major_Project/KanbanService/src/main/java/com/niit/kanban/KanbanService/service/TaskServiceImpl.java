@@ -102,37 +102,18 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Project deleteTaskFromProjectTaskList(Task task, int projectId) throws ProjectNotFoundException, TaskNotFoundException {
+    public Project deleteTask(int taskId, String stageName, int projectId) throws ProjectNotFoundException, TaskNotFoundException {
         Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
         List<Stage> stages = project.getStages();
         for (Stage stage : stages) {
-            List<Task> tasks = stage.getTasks();
-            if (tasks.stream().noneMatch(s -> s.getId() == task.getId())) throw new TaskNotFoundException();
-            tasks.remove(task);
-            stage.setTasks(tasks);
+            if(stage.getName().equals(stageName)){
+                List<Task> tasks = stage.getTasks();
+                if (tasks.stream().noneMatch(s -> s.getId() == taskId)) throw new TaskNotFoundException();
+                tasks.removeIf(s -> s.getId() == taskId);
+                stage.setTasks(tasks);
+            }
         }
         project.setStages(stages);
         return projectRepository.save(project);
     }
-
-    @Override
-    public Project updateStatusOfTask(int taskId, int projectId, String stageName, String status) throws ProjectNotFoundException {
-        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
-        List<Stage> stages = project.getStages();
-        for (Stage stage : stages) {
-            if (stage.getName().equals(stageName)) {
-                List<Task> tasks = stage.getTasks();
-                for (Task task : tasks) {
-                    if (task.getId() == taskId) {
-                        task.setStatus(status);
-                    }
-                }
-                stage.setTasks(tasks);
-
-            }
-            //project.setStages(stages);
-        }
-        return project;
-    }
-
 }

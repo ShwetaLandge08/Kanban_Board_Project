@@ -46,7 +46,9 @@ button {
   min-width: 300px;
   margin: 20px;
   padding: 25px;
-  border-radius: 4px;
+  border-radius: 10px;
+  /* overflow-y: scroll;
+  height: 500px; */
 
   &:not(:first-child) {
     margin-left: 0;
@@ -64,6 +66,15 @@ button {
   border-radius: 4px;
   margin-bottom: 10px;
 }
-/* .hamburgerBtn{ 
-  border-radius: 50%;
-}*/
+
+.btn1 {
+  background-color: gainsboro;
+  color: black;
+  padding: 10px 32px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+}

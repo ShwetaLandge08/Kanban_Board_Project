@@ -12,6 +12,8 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { DialogAddStageComponent } from '../dialog-add-stage/dialog-add-stage.component';
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { DataStorageService } from '../_services/data-storage.service';
+import { User } from '../_models/user';
+import { isEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -28,12 +30,12 @@ export class BoardComponent {
   stages: Stage[] = [];
   updatedtask: Task | undefined;
   stage: Stage | undefined;
-
+  user: User = this.tokenStorage.getUser();
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') ?? 0;
       this.kanbanService.getProjectById(+id).subscribe(data => {
-       // console.log(data);
+        // console.log(data);
         this.project = data;
         this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
@@ -44,6 +46,12 @@ export class BoardComponent {
   }
 
   drop(event: CdkDragDrop<Task[]>) {
+    //console.log(event.container.data[event.currentIndex]?.assignee?.email);
+    //console.log(this.user.email);
+    const assignedUser = event.container.data[event.currentIndex]?.assignee?.email;
+    const loggedInUser = this.user?.email;
+    console.log(assignedUser === loggedInUser);
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -53,35 +61,16 @@ export class BoardComponent {
         event.previousIndex,
         event.currentIndex,
       );
+      //for getting stagename
+      const index = event.container.id.substring(14);
+      this.stage = this.project.stages?.at(+index);
+      console.log(this.stage)
+
+      // for updating task status
+      console.log(event.container.data[event.currentIndex].status = this.stage?.name);
     }
-    //for getting stagename
-    const stageId = event.container.id;
-    var newStr = stageId.replace(/-/g, "");
-    var getIndex = newStr.charAt(newStr.length - 1);
-    var getNum = parseInt(getIndex);
-    this.stage = this.project.stages?.at(getNum);
-    console.log(this.stage?.name);//status for task
-
-    // for getting taskId
-    var update = event.container.data.map((task, index) => ({
-      ...task,
-      position: index + 1
-    }));
-    console.log(update.at(0));// got task array
-    this.updatedtask = update.at(0);
-
 
     console.log(this.project.stages!);
-
-    this.kanbanService.updateStatusOftask(this.project.projectId!, this.updatedtask?.id!,
-      this.updatedtask?.status!, this.stage?.name!).subscribe(
-        (data) => {
-          console.log(data.stages);
-        },
-        error => {
-          console.log(error)
-        }
-      );
 
     this.kanbanService.updateStages(this.project.projectId!, this.project.stages!).subscribe({
       next: data => {
@@ -97,8 +86,10 @@ export class BoardComponent {
         });
       }
     });
-
   }
+  // else {
+  //   alert('Only assigned user can move their Task!');
+  // }
 
 
   openAddTaskDialog(project: Project, stage: Stage): void {

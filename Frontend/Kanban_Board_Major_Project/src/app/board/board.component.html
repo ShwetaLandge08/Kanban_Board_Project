@@ -10,11 +10,11 @@
                 (cdkDropListDropped)="drop($event)">
                 <div class="board-column">
                     <div class="column-title">
-                            <h2>{{stage.name}}</h2>
-                            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu"
-                                style="position: relative;top: -7px;">
-                                <mat-icon>more_vert</mat-icon>
-                            </button>
+                        <h2>{{stage.name}}</h2>
+                        <button id="menu" mat-icon-button [matMenuTriggerFor]="menu"
+                            style="position: relative;top: -7px;">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
                         <mat-menu #menu="matMenu">
                             <button class="hamburgerBtn" mat-menu-item (click)="openAddTaskDialog(project,stage)">
                                 <mat-icon>add_circle</mat-icon>Add Task
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="board-column">
-                <button mat-button (click)="openAddStageDialog()">Add Stage</button>
+                <button class="btn1" (click)="openAddStageDialog()">Add Stage</button>
             </div>
         </div>
     </div>

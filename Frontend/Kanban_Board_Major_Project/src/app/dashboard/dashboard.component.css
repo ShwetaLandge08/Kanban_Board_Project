@@ -1,6 +1,6 @@
 .container {
     padding: 15px;
-    background-color: lightgray;
+    background-color: gainsboro;
 }
 
 h1 {
@@ -15,4 +15,7 @@ button {
     padding: 15px;
     /* margin-left: 105px; */
     margin: 10px 105px;
+    background-color: gainsboro;
+    text-transform: uppercase;
+
 }
