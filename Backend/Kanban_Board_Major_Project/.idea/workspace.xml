@@ -5,12 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5398faf9-45ee-4b80-a2f6-410a69192503" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/data-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/data-storage.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-stage/dialog-confirm-stage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-stage/dialog-confirm-stage.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,8 +141,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KanbanServiceApplication" />
         <item itemvalue="Application.UserAuthenticationApplication" />
+        <item itemvalue="Application.KanbanServiceApplication" />
         <item itemvalue="Application.NotificationServiceApplication" />
         <item itemvalue="Application.EurekaServiceApplication" />
         <item itemvalue="Application.ApiGatewayServiceApplication" />

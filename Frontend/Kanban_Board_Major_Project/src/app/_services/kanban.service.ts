@@ -86,8 +86,8 @@ export class KanbanService {
   // add for delete task
   deleteTask(projectId: number, taskId: number, stageName: string): Observable<any> {
     return this.http.put(`${TASK_API}deleteTask/${projectId}/${stageName}/${taskId}`, httpOptions);
-  }  
-  
+  }
+
   //=======================================================================
 
   addStage(stage: Stage): Observable<any | null> {

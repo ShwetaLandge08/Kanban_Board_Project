@@ -20,17 +20,14 @@ export class ProjectComponent implements OnInit {
 
   @Input()
   project: Project = {};
-  // color: string = 'primary';
-  //myProject: Project = this.tokenStorage.getProject();
   user: User = this.tokenStorage.getUser();
-  isLoggedInUser = false;
+  isAdmin = false;
 
 
   ngOnInit(): void {
     if (this.project?.admin?.email == this.user.email) {
-      this.isLoggedInUser = true;
+      this.isAdmin = true;
     }
-    //this.project.startDate = this.project.startDate?;
   }
 
   openProjectViewDialog(): void {
@@ -38,7 +35,6 @@ export class ProjectComponent implements OnInit {
       data: this.project
     });
   }
-
 
   deleteProject(id: any) {
     if (confirm("Are you sure to Delete your Project")) {

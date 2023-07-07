@@ -1,7 +1,6 @@
 <!-- <div cdkDropListGroup class="board-container">
     <app-stage *ngFor="let stage of project.stages" [stage]="stage" [project]="project" class="stage-container"></app-stage>
 </div> -->
-
 <div class="root">
     <div class="board">
 
@@ -12,7 +11,7 @@
                     <div class="column-title">
                         <h2>{{stage.name}}</h2>
                         <button id="menu" mat-icon-button [matMenuTriggerFor]="menu"
-                            style="position: relative;top: -7px;">
+                            style="position: relative;top: -7px;" *ngIf="isAdmin">
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
@@ -25,6 +24,7 @@
                             </button>
                         </mat-menu>
                     </div>
+                    <app-search-task (searchTaskChanged)="onSearchTaskChanged($event)"></app-search-task>
                     <div class="task-container" *ngFor="let task of stage.tasks" cdkDrag [cdkDragData]="task">
                         <mat-card (click)="openTaskDetailsDialogBox(project,task)" class="task">
                             <mat-card-header>
@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <div class="board-column">
+            <div class="board-column" *ngIf="isAdmin">
                 <button class="btn1" (click)="openAddStageDialog()">Add Stage</button>
             </div>
         </div>

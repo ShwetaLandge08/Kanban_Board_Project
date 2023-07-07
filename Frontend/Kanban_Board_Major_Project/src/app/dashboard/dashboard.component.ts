@@ -20,7 +20,7 @@ export class DashboardComponent {
   projects: Project[] = [];
   tasks: Task[] = [];
   userProjects: Project[] = [];
-
+  allProjects: Project[] = [];
   ngOnInit(): void {
 
     this.dataStorage.refreshNeeded.subscribe(
@@ -30,19 +30,23 @@ export class DashboardComponent {
     );
 
     this.getAdminProjects();
-    //this.getAllUsertaskFromProject();
     this.getProjectOfUser();
     this.getAllUserTask();
 
   }
 
-  // openTaskDetailsDialogBox(task: Task): void {
-  //   this.dialog.open(TaskDetailsComponent, {
-  //     width: "50%",
-  //     height: "min-content",
-  //     data: task
-  //   })
-  // }
+  onProjectSearched(event: string) {
+    if (event == '') {
+      this.getAdminProjects();
+      this.getProjectOfUser();
+      console.log("not searched")
+    }
+    else {
+      this.userProjects = this.userProjects.filter((project) => project.title?.includes(event));
+      this.projects = this.projects.filter(project => project.title?.includes(event));
+      console.log("project searched");
+    }
+  }
 
   getAdminProjects() {
     this.kanbanService.getAdminProjects().subscribe({

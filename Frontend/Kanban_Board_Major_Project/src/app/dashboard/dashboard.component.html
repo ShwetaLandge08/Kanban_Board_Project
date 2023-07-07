@@ -1,16 +1,41 @@
-<button mat-stroked-button (click)="openAddProjectDialog()">Add Project</button>
+<div>
+    <button mat-stroked-button (click)="openAddProjectDialog()">Add Project</button>
+    <app-search-project (searchProjectChanged)="onProjectSearched($event)">
+    </app-search-project>
+</div>
 <div class="container">
     <h1>My Projects</h1>
     <app-project *ngFor="let project of projects" [project]="project"></app-project>
     <br><br>
     <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
     <h1>Assigned Projects</h1>
     <app-project *ngFor="let project of userProjects" [project]="project"></app-project>
     <br><br>
     <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+    <!-- <mat-list> -->
     <h1>My Tasks</h1>
-    <div *ngFor="let task of tasks">
-        <h3>{{task.title}}</h3>
-        <!-- (click)="openTaskDetailsDialogBox(task)" -->
-    </div>
+    <!-- <mat-list-item *ngFor="let task of tasks" style="margin-left: 10px;">
+            <h2 matListItemTitle>{{task.title}}</h2>
+            <h3 matListItemLine>{{task.status}} || {{task.priority}}</h3>
+        </mat-list-item>
+    </mat-list> -->
+    <table class="table table-hover table-light">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of tasks">
+                <td>{{task.title}}</td>
+                <td>{{task.status}}</td>
+                <td>{{task.priority}}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

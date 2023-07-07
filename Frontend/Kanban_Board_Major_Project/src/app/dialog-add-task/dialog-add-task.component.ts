@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../_models/user';
 import { Stage } from '../_models/stage';
 import { Project } from '../_models/project';
+import { DataStorageService } from '../_services/data-storage.service';
 
 @Component({
   selector: 'app-dialog-add-task',
@@ -15,10 +16,10 @@ import { Project } from '../_models/project';
   styleUrls: ['./dialog-add-task.component.css']
 })
 export class DialogAddTaskComponent {
- 
+
   constructor(private fb: FormBuilder, private tokenStorage: TokenStorageService,
     private kanbanService: KanbanService, private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) private data: any) { }
+    @Inject(MAT_DIALOG_DATA) private data: any, private dataStorage: DataStorageService) { }
 
   users: User[] = [];
 
@@ -36,7 +37,7 @@ export class DialogAddTaskComponent {
     description: ['', [Validators.required, Validators.minLength(10)]],
     assignee: ['', [Validators.required]],
     priority: ['', [Validators.required]],
-    status: ['', [Validators.required]]
+    status: ['']
   });
 
   // get id() {
@@ -80,16 +81,18 @@ export class DialogAddTaskComponent {
 
   addTask(taskForm: FormGroup) {
     //console.log(this.data.stage);
-
+    taskForm.value.status = this.data.stage.name;
     console.log(taskForm.value);
-    var stageName = taskForm.value.status;
     this.kanbanService.addTask(this.myProject.projectId, this.data.stage.name, taskForm.value).subscribe({
       next: data => {
         console.log(data);
+        console.log(typeof(data));
+        this.dataStorage.isUpdate.next(data);
         this.snackBar.open("Task added successfully", "Added", {
           duration: 7000
         });
-        location.reload();
+        // location.reload();
+        
       },
       error: err => {
         console.log(err);

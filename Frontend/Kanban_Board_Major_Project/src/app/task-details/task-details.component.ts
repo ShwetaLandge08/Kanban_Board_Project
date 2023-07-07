@@ -95,6 +95,7 @@ export class TaskDetailsComponent {
             panelClass: ['mat-toolbar', 'mat-primary']
           });
           //location.reload();
+          this.dataStorage.isUpdate.next(data);
         },
         error: err => {
           this.snackBar.open(err.errorMessage, "\nFailed", {

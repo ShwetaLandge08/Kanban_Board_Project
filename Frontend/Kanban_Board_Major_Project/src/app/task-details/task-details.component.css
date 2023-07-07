@@ -14,10 +14,11 @@ form {
 
 .title {
      height: min-content;
-     padding-top: 5px;
-     text-align: center;
+     padding-left: 20px;
+     padding-top: 3px;
+     /* text-align: center; */
      background-color: rgb(231, 217, 241);
-     border-radius: 10px;
+     border-radius: 10px;  
 }
 
 span {

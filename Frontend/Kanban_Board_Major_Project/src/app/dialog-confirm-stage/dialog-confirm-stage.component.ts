@@ -27,7 +27,8 @@ export class DialogConfirmStageComponent {
         this.snackBar.open("Stage added successfully", "Success", {
           duration: 5000
         });
-        location.reload();
+        //location.reload();
+        this.dataSharingService.isUpdate.next(data);
       },
       error: err => {
         console.log(err);

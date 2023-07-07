@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { KanbanService } from '../_services/kanban.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,36 +13,51 @@ import { DialogAddStageComponent } from '../dialog-add-stage/dialog-add-stage.co
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { DataStorageService } from '../_services/data-storage.service';
 import { User } from '../_models/user';
-import { isEmpty } from 'rxjs';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
     private dialog: MatDialog, private activatedRoute: ActivatedRoute,
-    private tokenStorage: TokenStorageService) {
+    private tokenStorage: TokenStorageService, private dataStorage: DataStorageService) {
+    this.dataStorage.isUpdate.subscribe(value => {
+      this.project = value;
+      //if (this.project.stages)
+      this.stages = this.project.stages!;
+      console.log(this.project);
+    });
   }
 
   project: Project = {};
   stages: Stage[] = [];
-  updatedtask: Task | undefined;
   stage: Stage | undefined;
   user: User = this.tokenStorage.getUser();
+  isAdmin = false;
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') ?? 0;
       this.kanbanService.getProjectById(+id).subscribe(data => {
-        // console.log(data);
         this.project = data;
+        console.log(this.project);
         this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
+        if (this.project.admin?.email == this.user.email)
+          this.isAdmin = true;
         //console.log(this.stages)
       });
     });
+  }
+
+  onSearchTaskChanged(event: string) {
+    if (event == '') {
+      this.stages = this.project.stages!;
+    }
+    else
+      this.stages = this.stages.filter((stage: any) => stage.tasks.filter((task:any) => task.title.includes(event)));
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -68,6 +83,8 @@ export class BoardComponent {
 
       // for updating task status
       console.log(event.container.data[event.currentIndex].status = this.stage?.name);
+      event.container.data[event.currentIndex].status = this.stage?.name;
+      console.log(event.container.data[event.currentIndex]);
     }
 
     console.log(this.project.stages!);
@@ -78,6 +95,7 @@ export class BoardComponent {
         this.snackBar.open("Task moved Successfully", "Saved", {
           duration: 3000
         });
+        event.container.exited;
       },
       error: err => {
         console.log(err);
@@ -122,7 +140,8 @@ export class BoardComponent {
             duration: 5000,
             panelClass: ['mat-toolbar', 'mat-primary']
           });
-          location.reload();
+          //location.reload();
+          this.dataStorage.isUpdate.next(data);
         },
         error: err => {
           this.snackBar.open(err.errorMessage, "\nFailed", {

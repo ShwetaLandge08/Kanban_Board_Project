@@ -41,12 +41,14 @@ import { ProjectComponent } from './project/project.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { StageComponent } from './stage/stage.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
 import { TaskComponent } from './task/task.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { SearchProjectComponent } from './search-project/search-project.component';
+import { SearchTaskComponent } from './search-task/search-task.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     TaskDetailsComponent,
     DashboardComponent,
     BoardComponent,
-    TaskComponent
+    TaskComponent,
+    SearchProjectComponent,
+    SearchTaskComponent
   ],
   imports: [
     BrowserModule,
