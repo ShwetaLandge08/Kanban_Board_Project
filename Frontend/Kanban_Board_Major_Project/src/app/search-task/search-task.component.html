@@ -1,5 +1,7 @@
 <mat-form-field appearance="fill">
-     <!-- <mat-label>Search</mat-label> -->
-     <input matInput [(ngModel)]="searchTask" placeholder="Search Task" />
-     <mat-icon class='search-icon' color="primary" matPrefix (click)="searchTaskFromTasks()">search</mat-icon>
- </mat-form-field>
+    <!-- <mat-label>Search</mat-label> -->
+    <input matInput [(ngModel)]="taskSearch" placeholder="Search Task" />
+    <button mat-icon-button aria-label="Search icon button" matSuffix (click)="searchTask()">
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-form-field>

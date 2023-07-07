@@ -7,7 +7,7 @@ import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DataStorageService } from '../_services/data-storage.service';
 import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-project.component';
-
+import { Stage } from '../_models/stage';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,38 +16,52 @@ import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-proj
 export class DashboardComponent {
   constructor(private kanbanService: KanbanService, private snackBar: MatSnackBar,
     private dialog: MatDialog, private dataStorage: DataStorageService) { }
-
   projects: Project[] = [];
   tasks: Task[] = [];
   userProjects: Project[] = [];
-  allProjects: Project[] = [];
+  // allProjects: Project[] = [];
   ngOnInit(): void {
-
     this.dataStorage.refreshNeeded.subscribe(
       () => {
         this.getAdminProjects();
       }
     );
-
     this.getAdminProjects();
     this.getProjectOfUser();
     this.getAllUserTask();
-
   }
-
-  onProjectSearched(event: string) {
-    if (event == '') {
-      this.getAdminProjects();
-      this.getProjectOfUser();
-      console.log("not searched")
-    }
-    else {
-      this.userProjects = this.userProjects.filter((project) => project.title?.includes(event));
-      this.projects = this.projects.filter(project => project.title?.includes(event));
-      console.log("project searched");
-    }
+  onSearchTextChanged(searchText: string) {
+    this.kanbanService.getAdminProjects().subscribe({
+      next: data => {
+        this.projects = data.filter((obj: Project) => obj.title?.toLowerCase().includes(searchText.toLowerCase()));
+      },
+      error: err => {
+        this.snackBar.open(err.error.status + ": Can't search projects of admin at the moment", "Failed", {
+          duration: 5000
+        });
+      }
+    });
+    this.kanbanService.getProjectOfUser().subscribe({
+      next: data => {
+        this.userProjects = data.filter((obj: Project) => obj.title?.toLowerCase().includes(searchText.toLowerCase()));
+      },
+      error: err => {
+        this.snackBar.open(err.error.status + ": Can't search assigned projects at the moment", "Failed", {
+          duration: 5000
+        });
+      }
+    });
+    this.kanbanService.getAllUsertaskFromProject().subscribe({
+      next: data => {
+        this.tasks = data.filter((obj: Task) => obj.title?.toLowerCase().includes(searchText.toLowerCase()));
+      },
+      error: err => {
+        this.snackBar.open(err.error.status + ": Can't search user tasks at the moment", "Failed", {
+          duration: 5000
+        });
+      }
+    });
   }
-
   getAdminProjects() {
     this.kanbanService.getAdminProjects().subscribe({
       next: data => {
@@ -62,11 +76,9 @@ export class DashboardComponent {
       }
     });
   }
-
   openAddProjectDialog(): void {
     this.dialog.open(DialogAddProjectComponent);
   }
-
   getProjectOfUser() {
     this.kanbanService.getProjectOfUser().subscribe((data) => {
       console.log(data);

@@ -13,6 +13,7 @@ import { DialogAddStageComponent } from '../dialog-add-stage/dialog-add-stage.co
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { DataStorageService } from '../_services/data-storage.service';
 import { User } from '../_models/user';
+import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
 
 @Component({
   selector: 'app-board',
@@ -57,7 +58,7 @@ export class BoardComponent implements OnInit {
       this.stages = this.project.stages!;
     }
     else
-      this.stages = this.stages.filter((stage: any) => stage.tasks.filter((task:any) => task.title.includes(event)));
+      this.project.stages = this.stages.filter((stage: any) => stage.tasks.filter((task:any) => task.title.includes(event)));
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -65,7 +66,7 @@ export class BoardComponent implements OnInit {
     //console.log(this.user.email);
     const assignedUser = event.container.data[event.currentIndex]?.assignee?.email;
     const loggedInUser = this.user?.email;
-    console.log(assignedUser === loggedInUser);
+    console.log(assignedUser == loggedInUser);
 
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -128,27 +129,10 @@ export class BoardComponent implements OnInit {
       data: { project, task }
     })
   }
-
-  deleteStage(stageName: any) {
-    //console.log(this.projectId + "   " + stageName)
-    if (confirm("Are you sure to Delete your Stage")) {
-      this.kanbanService.deleteStage(this.project.projectId, stageName).subscribe({
-        next: data => {
-          console.log(data);
-
-          this.snackBar.open("Stage Deleted Successfully.", "success", {
-            duration: 5000,
-            panelClass: ['mat-toolbar', 'mat-primary']
-          });
-          //location.reload();
-          this.dataStorage.isUpdate.next(data);
-        },
-        error: err => {
-          this.snackBar.open(err.errorMessage, "\nFailed", {
-            panelClass: ['mat-toolbar', 'mat-primary']
-          });
-        }
-      });
-    }
+  openConfirmDeleteDialog(stageName:any): void {
+    this.dialog.open(DialogConfirmDeleteComponent, {
+      data: { stage: `${this.project.projectId}/${stageName}` }
+    });
   }
+
 }

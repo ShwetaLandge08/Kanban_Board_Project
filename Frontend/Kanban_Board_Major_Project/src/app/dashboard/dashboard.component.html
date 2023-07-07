@@ -1,6 +1,6 @@
 <div>
     <button mat-stroked-button (click)="openAddProjectDialog()">Add Project</button>
-    <app-search-project (searchProjectChanged)="onProjectSearched($event)">
+    <app-search-project (searchTextChanged)="onSearchTextChanged($event)">
     </app-search-project>
 </div>
 <div class="container">

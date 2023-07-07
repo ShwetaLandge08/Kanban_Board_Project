@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import { Component, Inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TokenStorageService } from '../_services/token-storage.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { KanbanService } from '../_services/kanban.service';
+import { DataStorageService } from '../_services/data-storage.service';
 
 @Component({
   selector: 'app-dialog-confirm-delete',
@@ -9,22 +10,78 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./dialog-confirm-delete.component.css']
 })
 export class DialogConfirmDeleteComponent {
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private tokenStorageService: TokenStorageService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) private data: any, private snackBar: MatSnackBar,
+    private kanbanService: KanbanService, private dataSharingService: DataStorageService
+  ) { }
+
+  key: string = Object.keys(this.data)[0];
+  value: any = Object.values(this.data)[0];
+
   onClickYes(): void {
-    console.log("Deleting");
-    this.authService.delete().subscribe({
-      next: data => {
-        console.log(data);
-        this.snackBar.open("User account deleted", "Deleted", {
-          duration: 5000
+    switch (this.key) {
+
+      case "project":
+        console.log("CASE: project");
+        this.kanbanService.deleteProject(this.value).subscribe({
+          next: data => {
+            console.log(data);
+            this.snackBar.open("Project Deleted", "Deleted", {
+              duration: 5000
+            });
+          },
+          error: err => {
+            console.log(err);
+            this.snackBar.open(err.error.message, "Failed", {
+              duration: 7000
+            });
+          }
         });
-        this.tokenStorageService.signOut();
-        // this.dataSharingService.isLoggedIn.next(false);
-      },
-      error: err => {
-        console.log(err);
-        this.snackBar.open(err.error.message, "Failed");
-      }
-    });
+
+        break;
+
+      case "task":
+        console.log("CASE: task");
+        this.kanbanService.deleteTask(this.value).subscribe({
+          next: data => {
+            console.log(data);
+            this.dataSharingService.isUpdate.next(data);
+            this.snackBar.open("Task Deleted", "Deleted", {
+              duration: 5000
+            });
+          },
+          error: err => {
+            console.log(err);
+            this.snackBar.open(err.error.message, "Failed", {
+              duration: 7000
+            });
+          }
+        });
+        break;
+
+      case "stage":
+        console.log("CASE: stage");
+        this.kanbanService.deleteStage(this.value).subscribe({
+          next: data => {
+            console.log(data);
+            this.dataSharingService.isUpdate.next(data);
+            this.snackBar.open("Stage Deleted", "Deleted", {
+              duration: 5000
+            });
+          },
+          error: err => {
+            console.log(err);
+            this.snackBar.open(err.error.message, "Failed", {
+              duration: 7000
+            });
+          }
+        });
+        break;
+
+      default:
+        this.snackBar.open("Check object transfered to DialogConfirmDeleteComponent", "Error", {
+          duration: 7000
+        });
+        break;
+    }
   }
 }

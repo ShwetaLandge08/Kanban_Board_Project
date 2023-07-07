@@ -49,6 +49,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SearchProjectComponent } from './search-project/search-project.component';
 import { SearchTaskComponent } from './search-task/search-task.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,7 @@ import { SearchTaskComponent } from './search-task/search-task.component';
   ],
   providers: [
     // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
-    authInterceptorProviders],
+    authInterceptorProviders, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

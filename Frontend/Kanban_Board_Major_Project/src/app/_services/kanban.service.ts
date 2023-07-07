@@ -84,8 +84,8 @@ export class KanbanService {
   }
 
   // add for delete task
-  deleteTask(projectId: number, taskId: number, stageName: string): Observable<any> {
-    return this.http.put(`${TASK_API}deleteTask/${projectId}/${stageName}/${taskId}`, httpOptions);
+  deleteTask(endPoint: string): Observable<any> {
+    return this.http.put(`${TASK_API}deleteTask/${endPoint}`, httpOptions);
   }
 
   //=======================================================================
@@ -95,8 +95,8 @@ export class KanbanService {
   }
 
   //add for delete stage
-  deleteStage(projectId: any, stageName: any): Observable<any> {
-    return this.http.put(STAGE_API + "deleteStage/" + projectId + '/' + stageName, httpOptions);
+  deleteStage(endPoint: string): Observable<any> {
+    return this.http.put(`${STAGE_API}deleteStage/${endPoint}`, httpOptions);
   }
 
   updateStages(id: number, stages: Stage[]): Observable<any> {

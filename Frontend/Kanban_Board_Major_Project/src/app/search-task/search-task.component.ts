@@ -6,10 +6,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search-task.component.css']
 })
 export class SearchTaskComponent {
-  searchTask: any;
+  taskSearch: any;
   @Output()
   searchTaskChanged: EventEmitter<string> = new EventEmitter();
-  searchTaskFromTasks() {
-    this.searchTaskChanged.emit(this.searchTask);
+  searchTask() {
+    this.searchTaskChanged.emit(this.taskSearch);
   }
 }

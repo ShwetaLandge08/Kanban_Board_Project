@@ -1,5 +1,6 @@
-<mat-form-field appearance="fill">
-     <!-- <mat-label>Search</mat-label> -->
-     <input matInput [(ngModel)]="searchproject" placeholder="Search Project" />
-     <mat-icon class='search-icon' color="primary" matPrefix (click)="searchProject()">search</mat-icon>
- </mat-form-field>
+<mat-form-field>
+    <input matInput placeholder="Search Projects & Tasks" [(ngModel)]="searchText" (keyup)="search()">
+    <button mat-icon-button aria-label="Search icon button" matSuffix (click)="search()">
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-form-field>

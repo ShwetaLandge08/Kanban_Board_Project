@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent {
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, 
-    private authService: AuthService, private router: Router) { }
+export class SignUpComponent implements OnInit {
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar,
+    private authService: AuthService, private router: Router,
+    private tokenStorage:TokenStorageService) { }
+
+  ngOnInit(): void {
+    if (this.tokenStorage.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   isSuccessful = false;
   isSignUpFailed = false;
@@ -57,7 +65,7 @@ export class SignUpComponent {
   onSubmit(registrationForm: FormGroup): void {
     if (registrationForm.valid) {
       const user: User = registrationForm.value;
-      
+
       this.authService.register(user).subscribe({
         next: data => {
           console.log(data);

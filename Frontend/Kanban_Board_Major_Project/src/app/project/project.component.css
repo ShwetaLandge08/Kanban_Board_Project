@@ -3,4 +3,7 @@
      width: 200px;
      margin: 20px;
  }
+ .flexcontent{
+    display: flex;
+ }
  

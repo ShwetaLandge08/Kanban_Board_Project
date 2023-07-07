@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../_models/user';
 import { AuthService } from '../_services/auth.service';
 import { DataStorageService } from '../_services/data-storage.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-dialog-add-project',
@@ -14,11 +15,12 @@ import { DataStorageService } from '../_services/data-storage.service';
 export class DialogAddProjectComponent {
 
   currentDate: Date;
-  selectedUsers: User[] = [];
   users: User[] = [];
+  role = this.tokenSorage.getUser();
 
   constructor(private fb: FormBuilder, private kanbanService: KanbanService,
-    private snackBar: MatSnackBar, private authService: AuthService) {
+    private snackBar: MatSnackBar, private authService: AuthService,
+    private tokenSorage: TokenStorageService) {
     this.currentDate = new Date();
     this.currentDate.setHours(0, 0, 0, 0);
     this.addDefaultStages();
@@ -28,6 +30,9 @@ export class DialogAddProjectComponent {
     this.authService.getAllUsers().subscribe({
       next: data => {
         this.users = data;
+        const filtereduser = this.users.filter((user: any) => user.email !== this.role.email);
+        // console.log(filtereduser);
+        this.users = filtereduser;
         console.log(this.users);
       },
       error: err => {
@@ -43,7 +48,7 @@ export class DialogAddProjectComponent {
     dueDate: ['', [Validators.required, this.pastDateValidator()]],
     priority: ['', Validators.required],
     stages: this.fb.array([], { validators: [this.minimumStageValidator(2)] }),
-    members: [this.selectedUsers, [Validators.required, this.minimumMembersValidator(2)]],
+    members: [this.users, [Validators.required, this.minimumMembersValidator(2)]],
 
   });
 
@@ -71,7 +76,7 @@ export class DialogAddProjectComponent {
   addDefaultStages() {
     const defaultStages = [
       { name: 'To-Do' },
-      { name: 'In-Progress'},
+      { name: 'In-Progress' },
       { name: 'Done' }
     ];
     defaultStages.forEach(stage => {

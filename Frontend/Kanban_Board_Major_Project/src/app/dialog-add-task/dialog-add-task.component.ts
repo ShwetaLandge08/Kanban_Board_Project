@@ -60,14 +60,11 @@ export class DialogAddTaskComponent {
   }
 
   ngOnInit(): void {
-    //this.users.filter(user => user.email != this.myProject.admin.email);
-    //console.log(this.users);
-    //console.log(this.data.project.projectId);
     this.kanbanService.getAllMembersForGivenProject(this.myProject.projectId).subscribe({
       next: data => {
         this.users = data;
-        console.log(this.myProject.projectId);
-        console.log(this.users);
+        // console.log(this.myProject.projectId);
+        // console.log(this.users);
       },
       error: err => {
         console.log(err);

@@ -5,9 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { KanbanService } from '../_services/kanban.service';
 import { Task } from '../_models/task';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Comment } from '../_models/comment';
 import { DataStorageService } from '../_services/data-storage.service';
+import { Stage } from '../_models/stage';
+import { Project } from '../_models/project';
+import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
 
 
 @Component({
@@ -19,10 +22,13 @@ export class TaskDetailsComponent {
   task: any;
   comments: Comment[] = [];
   role = this.tokenStorage.getUser();
-  project = this.tokenStorage.getProject();
+  //project = this.tokenStorage.getProject();
+  isAdmin = false;
   constructor(private fb: FormBuilder, private dataStorage: DataStorageService,
     private tokenStorage: TokenStorageService, private kanbanService: KanbanService
-    , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any) { }
+    , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any,
+    private dialog: MatDialog) { }
+
 
   ngOnInit() {
     this.task = this.data.task;
@@ -32,6 +38,8 @@ export class TaskDetailsComponent {
       }
     );
     this.getAllComments();
+    if (this.data.project.admin.email == this.role.email)
+    this.isAdmin = true;
   }
 
   formComment = this.fb.group({
@@ -84,25 +92,30 @@ export class TaskDetailsComponent {
     return name.charAt(0);
   }
 
-  deleteTask() {
-    if (confirm("Are you sure to Delete your Task")) {
-      this.kanbanService.deleteTask(this.project.projectId!, this.task.id!, this.task.status!).subscribe({
-        next: data => {
-          console.log(data);
+  // deleteTask() {
+  //   if (confirm("Are you sure to Delete your Task")) {
+  //     this.kanbanService.deleteTask(this.project.projectId!, this.task.id!, this.task.status!).subscribe({
+  //       next: data => {
+  //         console.log(data);
 
-          this.snackBar.open("Task Deleted Successfully.", "success", {
-            duration: 5000,
-            panelClass: ['mat-toolbar', 'mat-primary']
-          });
-          //location.reload();
-          this.dataStorage.isUpdate.next(data);
-        },
-        error: err => {
-          this.snackBar.open(err.errorMessage, "\nFailed", {
-            panelClass: ['mat-toolbar', 'mat-primary']
-          });
-        }
-      });
-    }
+  //         this.snackBar.open("Task Deleted Successfully.", "success", {
+  //           duration: 5000,
+  //           panelClass: ['mat-toolbar', 'mat-primary']
+  //         });
+  //         //location.reload();
+  //         this.dataStorage.isUpdate.next(data);
+  //       },
+  //       error: err => {
+  //         this.snackBar.open(err.errorMessage, "\nFailed", {
+  //           panelClass: ['mat-toolbar', 'mat-primary']
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
+  openConfirmDeleteDialog(): void {
+    this.dialog.open(DialogConfirmDeleteComponent, {
+      data: { task: `${this.data.project.projectId}/${this.task.status}/${this.task.id}` }
+    });
   }
 }

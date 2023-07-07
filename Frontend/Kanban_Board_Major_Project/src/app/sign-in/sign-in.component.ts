@@ -39,6 +39,9 @@ export class SignInComponent implements OnInit {
       this.isLoggedIn = true;
       this.role = this.tokenStorage.getUser().role;
     }
+    if(this.tokenStorage.isLoggedIn()){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   onSubmit(loginForm: FormGroup): void {

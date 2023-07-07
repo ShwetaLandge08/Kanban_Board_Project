@@ -47,8 +47,8 @@ button {
   margin: 20px;
   padding: 25px;
   border-radius: 10px;
-  /* overflow-y: scroll;
-  height: 500px; */
+  /* overflow-y: scroll; */
+  height: fit-content;
 
   &:not(:first-child) {
     margin-left: 0;

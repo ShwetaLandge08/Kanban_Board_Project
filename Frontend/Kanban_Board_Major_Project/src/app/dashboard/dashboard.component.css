@@ -15,11 +15,10 @@ h3 {
 
 button {
     padding: 15px;
-    /* margin-left: 105px; */
-    margin: 10px 105px;
+    float: right;
+    margin: 20px 105px;
     background-color: gainsboro;
     text-transform: uppercase;
-
 }
 
 .demo-table {

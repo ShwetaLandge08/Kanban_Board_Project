@@ -5,11 +5,31 @@
             <mat-card-title>{{project.title}}</mat-card-title>
             <mat-card-subtitle>{{project.admin?.name}}</mat-card-subtitle>
         </mat-card-header>
+        <br>
         <mat-card-content>
-            <strong>Start Date: </strong> {{project.startDate | date}}<br>
-            <strong>Due Date: </strong> {{project.dueDate | date}}
-            <strong>Description: </strong>
-            <p>{{project.description}}</p>
+            <span class="flexcontent">
+                <strong>Start Date: </strong>
+                <p>&nbsp;{{project.startDate | date}}</p>
+            </span>
+            <span class="flexcontent">
+                <strong>Due Date: </strong>
+                <p>&nbsp;{{project.dueDate | date}}</p>
+            </span>
+
+            <span>
+                <strong *ngIf="isDateLessThanToday" style="color: red;">Project is Overdued.
+                    <br><br>
+                </strong>
+                <strong *ngIf="isDateIsSameAsTodayDate" style="color: red;"> Project Due Today. Please complete
+                    Tasks.
+                    <br><br>
+                </strong>
+            </span>
+
+            <span>
+                <strong>Description: </strong>
+                <p>{{project.description}}</p>
+            </span>
             <!-- <mat-option *ngFor="let task of project.tasks">{{task}}</mat-option> -->
             <h3 style="font-weight: bold;" *ngIf="project.priority == 'High' || project.priority == 'critical'">
                 Priority:
@@ -27,6 +47,7 @@
     </div>
     <mat-card-actions *ngIf="isAdmin">
         <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon>Edit</button>
-        <button mat-button (click)="deleteProject(project.projectId)"><mat-icon>delete</mat-icon>Delete</button>
+        <button mat-button
+            (click)="openConfirmDeleteDialog(project.projectId)"><mat-icon>delete</mat-icon>Delete</button>
     </mat-card-actions>
 </mat-card>
