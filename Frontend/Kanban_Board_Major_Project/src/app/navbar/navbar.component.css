@@ -29,10 +29,13 @@ img {
 }
 
 mat-toolbar {
-    /* overflow: hidden;
-    position: fixed;
+    /* overflow: hidden; */
+    /* position: fixed;
     top: 0;
     width: 100%; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
     background-color: rgb(149, 76, 218);
 }
 

@@ -28,7 +28,7 @@ export class BoardComponent implements OnInit {
       this.project = value;
       //if (this.project.stages)
       this.stages = this.project.stages!;
-      console.log(this.project);
+      //console.log(this.project);
     });
   }
 
@@ -48,7 +48,6 @@ export class BoardComponent implements OnInit {
           this.stages = this.project.stages;
         if (this.project.admin?.email == this.user.email)
           this.isAdmin = true;
-        //console.log(this.stages)
       });
     });
   }
@@ -58,7 +57,7 @@ export class BoardComponent implements OnInit {
       this.stages = this.project.stages!;
     }
     else
-      this.project.stages = this.stages.filter((stage: any) => stage.tasks.filter((task:any) => task.title.includes(event)));
+      this.project.stages = this.stages.filter((stage: any) => stage.tasks.filter((task: any) => task.title.includes(event)));
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -78,14 +77,14 @@ export class BoardComponent implements OnInit {
         event.currentIndex,
       );
       //for getting stagename
-      const index = event.container.id.substring(14);
-      this.stage = this.project.stages?.at(+index);
-      console.log(this.stage)
+      // const index = event.container.id.substring(14);
+      // this.stage = this.project.stages?.at(+index);
+      // console.log(this.stage);
 
-      // for updating task status
-      console.log(event.container.data[event.currentIndex].status = this.stage?.name);
-      event.container.data[event.currentIndex].status = this.stage?.name;
-      console.log(event.container.data[event.currentIndex]);
+      // // for updating task status
+      // console.log(event.container.data[event.currentIndex].status = this.stage?.name);
+      // event.container.data[event.currentIndex].status = this.stage?.name;
+      // console.log(event.container.data[event.currentIndex]);
     }
 
     console.log(this.project.stages!);
@@ -96,7 +95,8 @@ export class BoardComponent implements OnInit {
         this.snackBar.open("Task moved Successfully", "Saved", {
           duration: 3000
         });
-        event.container.exited;
+        //event.container.exited;
+        this.dataStorage.isUpdate.next(data);
       },
       error: err => {
         console.log(err);
@@ -117,8 +117,9 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  openAddStageDialog(): void {
+  openAddStageDialog(id: any): void {
     this.dialog.open(DialogAddStageComponent, {
+      data: { id }
     });
   }
 
@@ -129,7 +130,7 @@ export class BoardComponent implements OnInit {
       data: { project, task }
     })
   }
-  openConfirmDeleteDialog(stageName:any): void {
+  openConfirmDeleteDialog(stageName: any): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
       data: { stage: `${this.project.projectId}/${stageName}` }
     });

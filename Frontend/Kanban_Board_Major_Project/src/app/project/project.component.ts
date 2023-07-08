@@ -42,29 +42,14 @@ export class ProjectComponent implements OnInit {
     });
   }
 
-  // deleteProject(id: any) {
-  //   if (confirm("Are you sure to Delete your Project")) {
-  //     this.kanban.deleteProject(id).subscribe({
-  //       next: data => {
-  //         console.log(data);
-
-  //         this.snackBar.open("Project Deleted Successfully.", "success", {
-  //           duration: 5000,
-  //           panelClass: ['mat-toolbar', 'mat-primary']
-  //         });
-  //       },
-  //       error: err => {
-  //         this.snackBar.open(err.errorMessage, "\nFailed", {
-  //           panelClass: ['mat-toolbar', 'mat-primary']
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
   openConfirmDeleteDialog(id: any): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
       data: { project: id }
     });
   }
-
+  // openProjectCardView(project: Project) {
+  //   this.dialog.open(ProjectCardViewComponent, {
+  //     data: project
+  //   });
+  // }
 }

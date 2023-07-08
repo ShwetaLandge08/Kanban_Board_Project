@@ -1,9 +1,16 @@
+/* .project-card {
+   display: inline-flex;
+   width: max-content;
+   margin: 20px;
+   height: 100px;
+} */
 .project-card {
-     display: inline-flex;
-     width: 200px;
-     margin: 20px;
- }
- .flexcontent{
-    display: flex;
- }
- 
+   display: inline-flex;
+   width: max-content;
+   margin: 20px;
+   height: min-content;
+
+}
+.flexcontent{
+  display: flex;
+}

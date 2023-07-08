@@ -1,16 +1,24 @@
 <mat-toolbar>
-        <img src="../assets/images.png" alt="logo" routerLink="/dashboard">
-        <span><a routerLink="/home">Kanban Board</a></span>
+        <img src="../assets/images.png" alt="logo">
+        <span><a style="color: white;">Kanban Board</a></span>
         <span class="spacer"></span>
-        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
-                routerLinkActive="active">Login</button>
-        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
-                routerLinkActive="active">Register</button>
-        <a *ngIf="isLoggedIn" style="color: white;font-weight: bold;">{{ username }}</a>
-
-        <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn">
-                <mat-icon>more_vert</mat-icon>
+        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login
         </button>
+        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
+                routerLinkActive="active">Register
+        </button>
+
+        <mat-icon *ngIf="isLoggedIn" routerLink="/home" style="color: white;">home</mat-icon>
+        &nbsp;&nbsp;
+
+        <mat-icon *ngIf="isLoggedIn" routerLink="/dashboard" style="color: white;">dashboard</mat-icon>
+        &nbsp;&nbsp;
+
+        <button mat-button id="menu" *ngIf="isLoggedIn" style="color: white;font-weight: bold;font-size: large;
+        border-radius: 10px;padding: 5px;"
+                [matMenuTriggerFor]="menu">{{ username}}
+        </button>
+
         <mat-menu #menu="matMenu">
                 <button mat-menu-item mat-dialog-close (click)="openChangePasswordDialog()">
                         <mat-icon>remove_red_eye</mat-icon>
@@ -26,5 +34,3 @@
                 </button>
         </mat-menu>
 </mat-toolbar>
-<!-- Add Content Here -->
-<router-outlet></router-outlet>

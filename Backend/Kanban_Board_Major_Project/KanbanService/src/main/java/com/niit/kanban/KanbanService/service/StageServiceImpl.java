@@ -51,7 +51,9 @@ public class StageServiceImpl implements StageService {
     @Override
     public Project updateStages(int projectId, List<Stage> stages) throws ProjectNotFoundException {
         Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
+        stages.forEach(stage -> stage.getTasks().forEach(task -> task.setStatus(stage.getName())));
         project.setStages(stages);
+        System.out.println("project = " + project);
         return projectRepository.save(project);
     }
 

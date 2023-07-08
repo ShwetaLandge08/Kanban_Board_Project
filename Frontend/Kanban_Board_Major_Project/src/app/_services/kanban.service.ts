@@ -27,7 +27,7 @@ export class KanbanService {
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService,
     private dataStorage: DataStorageService) { }
   role = this.tokenStorage.getUser();
-  project = this.tokenStorage.getProject().projectId;
+  // project = this.tokenStorage.getProject().projectId;
 
   addProject(project: Project): Observable<any> {
     return this.http.post(PROJECT_API + "add", project, httpOptions).pipe(
@@ -90,8 +90,8 @@ export class KanbanService {
 
   //=======================================================================
 
-  addStage(stage: Stage): Observable<any | null> {
-    return this.http.put(STAGE_API + '/addStage/' + this.project, stage, httpOptions);
+  addStage(stage: Stage, projectId: any): Observable<any | null> {
+    return this.http.put(STAGE_API + '/addStage/' + projectId, stage, httpOptions);
   }
 
   //add for delete stage

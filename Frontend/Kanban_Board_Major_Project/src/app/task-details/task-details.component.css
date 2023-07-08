@@ -18,7 +18,7 @@ form {
      padding-top: 3px;
      /* text-align: center; */
      background-color: rgb(231, 217, 241);
-     border-radius: 10px;  
+     border-radius: 10px;
 }
 
 span {
@@ -30,9 +30,12 @@ mat-form-field {
 }
 
 .button {
-     margin-left: 490px;
-     padding: 5px;
-     border-radius: 20px;
+     float: right;
+     padding: 7px;
+}
+
+button {
+     border-radius: 10px;
 }
 
 .mycard {
@@ -66,7 +69,8 @@ mat-form-field {
      margin-top: -30px;
      /* margin-bottom: -10px; */
 }
-.close{
+
+.close {
      display: flex;
-     align-self:self-end;
+     align-self: self-end;
 }

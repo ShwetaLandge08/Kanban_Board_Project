@@ -12,16 +12,14 @@ import { DataStorageService } from '../_services/data-storage.service';
   styleUrls: ['./dialog-confirm-stage.component.css']
 })
 export class DialogConfirmStageComponent {
-  constructor(private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: Stage, 
-  private dataSharingService: DataStorageService,
+  constructor(private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any,
+    private dataSharingService: DataStorageService,
     private kanbanService: KanbanService) { }
 
-    stage: Stage = this.data;
-
   onClickYes(): void {
-    console.log(this.stage);
+    console.log(this.data);
     // if (this.stage) {
-    this.kanbanService.addStage(this.stage).subscribe({
+    this.kanbanService.addStage(this.data.stageForm, this.data.projectId).subscribe({
       next: data => {
         console.log(data);
         this.snackBar.open("Stage added successfully", "Success", {
