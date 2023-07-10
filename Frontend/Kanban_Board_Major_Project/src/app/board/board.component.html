@@ -6,6 +6,10 @@
                 (cdkDropListDropped)="drop($event)">
                 <div class="board-column">
                     <div class="column-title">
+                        <h1><span style="float: right;"><mat-icon
+                                    style="position: relative;top: 4px;">hourglass_top</mat-icon>
+                                {{stage?.tasks?.length}}</span>
+                        </h1>
                         <h2>{{stage.name}}</h2>
                         <button id="menu" mat-icon-button [matMenuTriggerFor]="menu"
                             style="position: relative;top: -7px;" *ngIf="isAdmin">
@@ -21,10 +25,6 @@
                             </button>
                         </mat-menu>
                     </div>
-                    <h1 style="position: relative;top: -63px;left: 7px;"><span style="float: right;"><mat-icon
-                                style="position: relative;top: 4px;">hourglass_top</mat-icon>
-                            {{stage?.tasks?.length}}</span>
-                    </h1>
                     <div class="task-main">
                         <!-- <app-search-task (searchTaskChanged)="onSearchTaskChanged($event)"></app-search-task> -->
                         <div class="task-container" *ngFor="let task of stage.tasks" cdkDrag [cdkDragData]="task">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div *ngIf="isAdmin">
-                <button class="btn1" (click)="openAddStageDialog(project.projectId)">Add Stage</button>
+                <button class="btn1" (click)="openAddStageDialog()">Add Stage</button>
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@ export class BoardComponent implements OnInit {
       this.kanbanService.getProjectById(+id).subscribe(data => {
         this.project = data;
         console.log(this.project);
-        this.tokenStorage.saveProject(this.project);
+        // this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
         if (this.project.admin?.email == this.user.email)
@@ -117,9 +117,9 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  openAddStageDialog(id: any): void {
+  openAddStageDialog(): void {
     this.dialog.open(DialogAddStageComponent, {
-      data: { id }
+      data: this.project.projectId
     });
   }
 

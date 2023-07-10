@@ -2,6 +2,9 @@
     <form (ngSubmit)="onSubmit(registrationForm)" [formGroup]="registrationForm">
         <h1>Register Here</h1>
 
+        <!-- <input type="file" (change)="onFileSelected($event)" formControlName="photo">
+        <button (click)="onUpload()">Upload</button> -->
+        
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" placeholder="Full Name">

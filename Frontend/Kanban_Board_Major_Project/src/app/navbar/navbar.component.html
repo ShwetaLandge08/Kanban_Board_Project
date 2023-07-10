@@ -13,10 +13,9 @@
 
         <mat-icon *ngIf="isLoggedIn" routerLink="/dashboard" style="color: white;">dashboard</mat-icon>
         &nbsp;&nbsp;
-
+        <!-- <img [src]="profilePhoto" *ngIf="isLoggedIn"> -->
         <button mat-button id="menu" *ngIf="isLoggedIn" style="color: white;font-weight: bold;font-size: large;
-        border-radius: 10px;padding: 5px;"
-                [matMenuTriggerFor]="menu">{{ username}}
+        border-radius: 10px;padding: 5px;" [matMenuTriggerFor]="menu"><mat-icon>account_circle </mat-icon>{{ username}}
         </button>
 
         <mat-menu #menu="matMenu">

@@ -8,7 +8,8 @@
    display: inline-flex;
    width: max-content;
    margin: 20px;
-   height: min-content;
+   max-height: 300px;
+   overflow: auto;
 
 }
 .flexcontent{

@@ -34,17 +34,17 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteUser(HttpServletRequest servletRequest) {
-        System.out.println("servletRequest = " + servletRequest);
-        Claims claims = (Claims) servletRequest.getAttribute("claims");
-        String email = claims.getSubject();
-        System.out.println("email = " + email);
-        try {
-            return new ResponseEntity<>(userService.deleteUser(email),HttpStatus.OK);
-        } catch (UserNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    @DeleteMapping("/delete")
+//    public ResponseEntity<?> deleteUser(HttpServletRequest servletRequest) {
+//        System.out.println("servletRequest = " + servletRequest);
+//        Claims claims = (Claims) servletRequest.getAttribute("claims");
+//        String email = claims.getSubject();
+//        System.out.println("email = " + email);
+//        try {
+//            return new ResponseEntity<>(userService.deleteUser(email),HttpStatus.OK);
+//        } catch (UserNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 }

@@ -9,6 +9,7 @@ import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class StageServiceImpl implements StageService {
 //        if (!stages.isEmpty())
 //            lastId = ((Stage) stages.toArray()[stages.size() - 1]).getId();
 //        stage.setId(lastId + 1);
+        stage.setTasks(new ArrayList<>());
         stages.add(stage);
         project.setStages(stages);
         return projectRepository.save(project);

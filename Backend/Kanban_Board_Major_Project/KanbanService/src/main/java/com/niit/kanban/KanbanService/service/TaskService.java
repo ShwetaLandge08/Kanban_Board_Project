@@ -2,6 +2,7 @@ package com.niit.kanban.KanbanService.service;
 
 import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.Task;
+import com.niit.kanban.KanbanService.domain.User;
 import com.niit.kanban.KanbanService.exception.*;
 
 import java.util.List;

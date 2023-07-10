@@ -5,6 +5,8 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,9 +14,10 @@ import { TokenStorageService } from '../_services/token-storage.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+  imgsrc = 'https://c.staticblitz.com/assets/client/components/SideMenu/blitz_logo-11cebad97cad4b50bc955cf72f532d1b.png';
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar,
     private authService: AuthService, private router: Router,
-    private tokenStorage:TokenStorageService) { }
+    private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.isLoggedIn()) {
@@ -31,7 +34,8 @@ export class SignUpComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]],
     confirmPassword: ['', [Validators.required]],
-    phoneNo: ['', [Validators.required, Validators.pattern(/^[789]\d{9,9}$/)]]
+    phoneNo: ['', [Validators.required, Validators.pattern(/^[789]\d{9,9}$/)]],
+    photo: []
   }, { validators: this.mustMatchValidator });
 
   get name() {
@@ -49,11 +53,14 @@ export class SignUpComponent implements OnInit {
   get phoneNo() {
     return this.registrationForm.get("phoneNo");
   }
+  get photo() {
+    return this.registrationForm.get("photo");
+  }
 
   mustMatchValidator(fg: AbstractControl): { [key: string]: boolean } | null {
     const passwordValue = fg.get("password")?.value;
     const confirmPasswordValue = fg.get("confirmPassword")?.value;
-    console.log(passwordValue + '\n' + confirmPasswordValue);
+    // console.log(passwordValue + '\n' + confirmPasswordValue);
     if (passwordValue !== confirmPasswordValue) {
       console.log("mustMatch true");
       fg.get('confirmPassword')?.setErrors({ mustMatch: true });
@@ -95,5 +102,14 @@ export class SignUpComponent implements OnInit {
       this.registrationForm.get(key)?.setErrors(null);
     });
   }
+  // selectedFile: File | undefined;
+  // onFileSelected(event: any) {
+  //   this.selectedFile = event.target.files[0];
+  // }
 
+  // onUpload() {
+  //   const formData = new FormData();
+  //   formData.append('profilePicture', this.selectedFile!, this.selectedFile?.name!);
+  //   console.log(this.selectedFile);
+  // }
 }

@@ -6,5 +6,6 @@ export type User = {
      //url?: string;
      phoneNo?: number;
      currentPassword?:string;
+    //  photo?: File;
  };
  

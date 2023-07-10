@@ -30,7 +30,7 @@ export class DialogAddProjectComponent {
     this.authService.getAllUsers().subscribe({
       next: data => {
         this.users = data;
-        const filtereduser = this.users.filter((user: any) => user.email !== this.role.email);
+        const filtereduser = this.users.filter((user: any) => user.email != this.role.email);
         // console.log(filtereduser);
         this.users = filtereduser;
         console.log(this.users);

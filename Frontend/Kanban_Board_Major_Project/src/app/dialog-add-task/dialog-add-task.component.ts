@@ -28,7 +28,7 @@ export class DialogAddTaskComponent {
   tasks: Task[] = [];
   role = this.tokenStorage.getUser();
 
-  myProject = this.tokenStorage.getProject();
+  // myProject = this.tokenStorage.getProject();
 
 
   taskForm = this.fb.group({
@@ -60,36 +60,35 @@ export class DialogAddTaskComponent {
   }
 
   ngOnInit(): void {
-    this.kanbanService.getAllMembersForGivenProject(this.myProject.projectId).subscribe({
+    this.kanbanService.getAllMembersForGivenProject(this.data.project.projectId).subscribe({
       next: data => {
         this.users = data;
-        // console.log(this.myProject.projectId);
-        // console.log(this.users);
+        // for(let user of this.users){
+        //   if(user.email)
+        // }
       },
       error: err => {
         console.log(err);
         this.snackBar.open(err.error.message, "Failed");
       }
     });
-    this.stages = this.myProject.stages;
-    //console.log(this.stages);
+    this.stages = this.data.project.projectId;
   }
 
 
   addTask(taskForm: FormGroup) {
-    //console.log(this.data.stage);
     taskForm.value.status = this.data.stage.name;
     console.log(taskForm.value);
-    this.kanbanService.addTask(this.myProject.projectId, this.data.stage.name, taskForm.value).subscribe({
+    this.kanbanService.addTask(this.data.project.projectId, this.data.stage.name, taskForm.value).subscribe({
       next: data => {
         console.log(data);
-        console.log(typeof(data));
+        console.log(typeof (data));
         this.dataStorage.isUpdate.next(data);
         this.snackBar.open("Task added successfully", "Added", {
           duration: 7000
         });
         // location.reload();
-        
+
       },
       error: err => {
         console.log(err);

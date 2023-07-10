@@ -1,9 +1,6 @@
 package com.niit.kanban.KanbanService.service;
 
-import com.niit.kanban.KanbanService.domain.Comment;
-import com.niit.kanban.KanbanService.domain.Project;
-import com.niit.kanban.KanbanService.domain.Stage;
-import com.niit.kanban.KanbanService.domain.Task;
+import com.niit.kanban.KanbanService.domain.*;
 import com.niit.kanban.KanbanService.exception.*;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import com.niit.kanban.KanbanService.repository.UserRepository;

@@ -10,7 +10,7 @@ public interface UserService {
     User saveUser(User user) throws UserAlreadyExistsException;
 
     //User updateUser(User user) throws UserNotFoundException;
-    boolean deleteUser(String email) throws UserNotFoundException;
+    //boolean deleteUser(String email) throws UserNotFoundException;
 
     List<User> getAllUser();
 

@@ -22,6 +22,7 @@ export class NavbarComponent {
   isLoggedIn = false;
   username?: string;
   home?: string;
+  profilePhoto?: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -31,9 +32,7 @@ export class NavbarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver,
     private tokenStorage: TokenStorageService,
-    private router: Router, private snackBar: MatSnackBar,
-    private dataSharingService: DataStorageService, private dialog: MatDialog,
-    private kanbanService: KanbanService, private authService: AuthService
+    private router: Router, private dataSharingService: DataStorageService, private dialog: MatDialog
   ) {
     this.dataSharingService.isLoggedIn.subscribe(value => {
       this.isLoggedIn = value;
@@ -43,15 +42,13 @@ export class NavbarComponent {
 
   checkLogin(): void {
     this.isLoggedIn = !!this.tokenStorage.getToken();
-
     if (this.isLoggedIn) {
-      console.log("true");
-
+      //console.log("true");
       const user = this.tokenStorage.getUser();
-      console.log(user);
-
+      //console.log(user);
       this.role = user.role;
       this.username = user.name;
+      this.profilePhoto = user.profilePhoto;
     }
   }
 

@@ -35,11 +35,7 @@ public class ProjectController {
         String email = claims.getSubject();
         try {
             User user = userService.getUser(email);
-            List<Stage> stages = project.getStages();
-            stages.forEach(t -> t.setTasks(new ArrayList<>()));
-            project.setStages(stages);
             project.setAdmin(user);
-            project.setStartDate(new Date());
             System.out.println("project after= " + project);
             return new ResponseEntity<>(projectService.addProject(project), HttpStatus.CREATED);
         } catch (ProjectAlreadyExistsException | UserNotFoundException e) {
@@ -91,8 +87,8 @@ public class ProjectController {
         }
     }
 
-    @GetMapping("/getMember/{projectId}")
-    public ResponseEntity<?> getAllProjectMembers(@PathVariable int projectId) throws ProjectNotFoundException {
-        return new ResponseEntity<>(projectService.getMembersOfProjects(projectId), HttpStatus.OK);
+    @GetMapping("/getActiveUser/{projectId}")
+    public ResponseEntity<?> getActiveUser(@PathVariable int projectId) throws ProjectNotFoundException {
+        return new ResponseEntity<>(projectService.getActiveUserOfProject(projectId), HttpStatus.OK);
     }
 }

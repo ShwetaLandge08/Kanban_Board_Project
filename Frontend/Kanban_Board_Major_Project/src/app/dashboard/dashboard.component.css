@@ -1,12 +1,12 @@
 .container {
-    padding: 15px;
+    padding: 10px;
     background-color: gainsboro;
     border-radius: 10px;
 }
 
 .main-container {
     overflow-y: scroll;
-    height: 80%;
+    height: 85%;
 }
 
 h1 {
@@ -26,18 +26,6 @@ button {
     margin: 20px 105px;
     background-color: gainsboro;
     text-transform: uppercase;
-}
-
-.demo-table {
-    width: 100%;
-}
-
-.demo-button-container {
-    padding-bottom: 16px;
-}
-
-.demo-button+.demo-button {
-    margin-left: 8px;
 }
 
 .table {

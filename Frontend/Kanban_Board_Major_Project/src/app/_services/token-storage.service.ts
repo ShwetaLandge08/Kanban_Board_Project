@@ -35,19 +35,19 @@ export class TokenStorageService {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
-  public saveProject(project: any): void {
-    window.sessionStorage.removeItem(PROJECT_VALUE);
-    window.sessionStorage.setItem(PROJECT_VALUE, JSON.stringify(project));
-  }
-  public getProject(): any {
-    const project = window.sessionStorage.getItem(PROJECT_VALUE);
-    if (project) {
-      //console.log(project);
+  // public saveProject(project: any): void {
+  //   window.sessionStorage.removeItem(PROJECT_VALUE);
+  //   window.sessionStorage.setItem(PROJECT_VALUE, JSON.stringify(project));
+  // }
+  // public getProject(): any {
+  //   const project = window.sessionStorage.getItem(PROJECT_VALUE);
+  //   if (project) {
+  //     //console.log(project);
 
-      return JSON.parse(project);
-    }
-    return {};
-  }
+  //     return JSON.parse(project);
+  //   }
+  //   return {};
+  // }
 
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);

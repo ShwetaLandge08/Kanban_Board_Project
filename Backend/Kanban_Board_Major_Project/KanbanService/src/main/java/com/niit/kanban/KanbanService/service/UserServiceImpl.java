@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Override
-    public boolean deleteUser(String email) throws UserNotFoundException {
-        User user = userRepository.findById(email).orElseThrow(UserNotFoundException::new);
-        userProxy.deleteUser(email);
-        emailProxy.sendDeletionMail(user);
-        userRepository.deleteById(email);
-        return true;
-    }
+//    @Override
+//    public boolean deleteUser(String email) throws UserNotFoundException {
+//        User user = userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+//        userProxy.deleteUser(email);
+//        emailProxy.sendDeletionMail(user);
+//        userRepository.deleteById(email);
+//        return true;
+//    }
 
     @Override
     public List<User> getAllUser() {

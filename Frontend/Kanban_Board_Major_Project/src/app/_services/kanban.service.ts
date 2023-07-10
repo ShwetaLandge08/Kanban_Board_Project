@@ -62,7 +62,7 @@ export class KanbanService {
   }
 
   getAllMembersForGivenProject(id: any): Observable<any | null> {
-    return this.http.get(PROJECT_API + "getMember/" + id, httpOptions);
+    return this.http.get(PROJECT_API + "getActiveUser/" + id, httpOptions);
   }
 
   // =========================================================================
@@ -90,7 +90,7 @@ export class KanbanService {
 
   //=======================================================================
 
-  addStage(stage: Stage, projectId: any): Observable<any | null> {
+  addStage(stage: Stage, projectId: number): Observable<any | null> {
     return this.http.put(STAGE_API + '/addStage/' + projectId, stage, httpOptions);
   }
 
