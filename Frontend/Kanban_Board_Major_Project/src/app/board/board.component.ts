@@ -26,9 +26,7 @@ export class BoardComponent implements OnInit {
     private tokenStorage: TokenStorageService, private dataStorage: DataStorageService) {
     this.dataStorage.isUpdate.subscribe(value => {
       this.project = value;
-      //if (this.project.stages)
       this.stages = this.project.stages!;
-      //console.log(this.project);
     });
   }
 
@@ -43,21 +41,12 @@ export class BoardComponent implements OnInit {
       this.kanbanService.getProjectById(+id).subscribe(data => {
         this.project = data;
         console.log(this.project);
-        // this.tokenStorage.saveProject(this.project);
         if (this.project.stages)
           this.stages = this.project.stages;
         if (this.project.admin?.email == this.user.email)
           this.isAdmin = true;
       });
     });
-  }
-
-  onSearchTaskChanged(event: string) {
-    if (event == '') {
-      this.stages = this.project.stages!;
-    }
-    else
-      this.project.stages = this.stages.filter((stage: any) => stage.tasks.filter((task: any) => task.title.includes(event)));
   }
 
   drop(event: CdkDragDrop<Task[]>) {
@@ -76,15 +65,6 @@ export class BoardComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-      //for getting stagename
-      // const index = event.container.id.substring(14);
-      // this.stage = this.project.stages?.at(+index);
-      // console.log(this.stage);
-
-      // // for updating task status
-      // console.log(event.container.data[event.currentIndex].status = this.stage?.name);
-      // event.container.data[event.currentIndex].status = this.stage?.name;
-      // console.log(event.container.data[event.currentIndex]);
     }
 
     console.log(this.project.stages!);
@@ -95,7 +75,6 @@ export class BoardComponent implements OnInit {
         this.snackBar.open("Task moved Successfully", "Saved", {
           duration: 3000
         });
-        //event.container.exited;
         this.dataStorage.isUpdate.next(data);
       },
       error: err => {

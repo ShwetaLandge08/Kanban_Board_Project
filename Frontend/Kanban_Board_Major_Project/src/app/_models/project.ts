@@ -1,5 +1,4 @@
 import { Stage } from "./stage";
-import { Task } from "./task";
 import { User } from "./user";
 
 export type Project = {
@@ -7,13 +6,11 @@ export type Project = {
      title?: string;
      description?: string;
      admin?: User;
-     //tasks?: Task[];
      startDate?: Date;
      dueDate?: Date;
      priority?: string;
      completion?: number;
      stages?: Stage[];
      members?:User[];
-     // comments?: Comment[];
  };
  

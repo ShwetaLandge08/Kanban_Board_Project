@@ -65,7 +65,6 @@ export class SignInComponent implements OnInit {
         },
         error: err => {
           this.errorMessage = err.error.message;
-          // console.log(err);
 
           this.isLoginFailed = true;
           this.snackBar.open(this.errorMessage, "Failed", {

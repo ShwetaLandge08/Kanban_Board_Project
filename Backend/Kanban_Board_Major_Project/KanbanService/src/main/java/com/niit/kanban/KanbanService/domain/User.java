@@ -7,7 +7,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.File;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +19,4 @@ public class User {
     private String password;
     private String name;
     private Long phoneNo;
-//    private File photo;
 }
-

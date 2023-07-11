@@ -28,10 +28,6 @@ public class StageServiceImpl implements StageService {
         List<Stage> stages = project.getStages();
         if (stages.stream().anyMatch(s -> s.getName().equalsIgnoreCase(stage.getName())))
             throw new StageAlreadyExistsException();
-//        int lastId = 0;
-//        if (!stages.isEmpty())
-//            lastId = ((Stage) stages.toArray()[stages.size() - 1]).getId();
-//        stage.setId(lastId + 1);
         stage.setTasks(new ArrayList<>());
         stages.add(stage);
         project.setStages(stages);

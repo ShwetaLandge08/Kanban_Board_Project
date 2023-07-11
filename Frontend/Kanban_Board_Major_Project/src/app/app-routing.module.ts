@@ -4,7 +4,6 @@ import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { TaskDetailsComponent } from './task-details/task-details.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'register', component: SignUpComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  //{ path: 'task/:taskId', component: TaskDetailsComponent, canDeactivate: [AuthCanDeactiveGuard] },
   { path: 'update', component: UpdateUserComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'dashboard/:id', component: BoardComponent, canDeactivate: [AuthCanDeactiveGuard] },

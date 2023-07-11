@@ -6,7 +6,6 @@ import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.exception.CommentAlreadyExistsException;
 import com.niit.kanban.KanbanService.exception.ProjectNotFoundException;
-import com.niit.kanban.KanbanService.exception.StageAlreadyExistsException;
 import com.niit.kanban.KanbanService.exception.TaskNotFoundException;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;

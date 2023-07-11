@@ -18,22 +18,6 @@ public class AppConfig {
                         .path("/api/kanban/**") //for Kanban Service user
                         //.uri("http://localhost:8081/"))
                         .uri("lb://kanban-board-service"))
-//                .route(p -> p
-//                        .path("/api/project/**")//for Kanban Service user
-//                        //.uri("http://localhost:8081/"))
-//                        .uri("lb://kanban-board-service"))
-//                .route(p -> p
-//                        .path("/api/team/**")//for Kanban Service team
-//                        .uri("lb://kanban-board-service"))
-//                .route(p -> p
-//                        .path("/api/task/**")//for Kanban Service task
-//                        .uri("lb://kanban-board-service"))
-//                .route(p -> p
-//                        .path("/api/stage/**")//for Kanban Service stage
-//                        .uri("lb://kanban-board-service"))
-//                .route(p -> p
-//                        .path("/api/comment/**")//for Kanban Service comment
-//                        .uri("lb://kanban-board-service"))
                 .build();
     }
 }

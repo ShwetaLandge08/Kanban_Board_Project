@@ -22,17 +22,12 @@ export class DialogAddTaskComponent {
     @Inject(MAT_DIALOG_DATA) private data: any, private dataStorage: DataStorageService) { }
 
   users: User[] = [];
-
   project: Project = {};
   stages: Stage[] = [];
   tasks: Task[] = [];
   role = this.tokenStorage.getUser();
 
-  // myProject = this.tokenStorage.getProject();
-
-
   taskForm = this.fb.group({
-    //id: ['', [Validators.required]],
     title: ['', [Validators.required, Validators.minLength(5)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
     assignee: ['', [Validators.required]],
@@ -40,9 +35,6 @@ export class DialogAddTaskComponent {
     status: ['']
   });
 
-  // get id() {
-  //   return this.taskForm.get("id");
-  // }
   get title() {
     return this.taskForm.get("title");
   }
@@ -63,9 +55,6 @@ export class DialogAddTaskComponent {
     this.kanbanService.getAllMembersForGivenProject(this.data.project.projectId).subscribe({
       next: data => {
         this.users = data;
-        // for(let user of this.users){
-        //   if(user.email)
-        // }
       },
       error: err => {
         console.log(err);
@@ -87,7 +76,6 @@ export class DialogAddTaskComponent {
         this.snackBar.open("Task added successfully", "Added", {
           duration: 7000
         });
-        // location.reload();
 
       },
       error: err => {

@@ -2,20 +2,20 @@
         <img src="../assets/images.png" alt="logo">
         <span><a style="color: white;">Kanban Board</a></span>
         <span class="spacer"></span>
-        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active">Login
+        <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
+                routerLinkActive="active"><mat-icon>login</mat-icon>Login
         </button>
         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/register"
-                routerLinkActive="active">Register
+                routerLinkActive="active"><mat-icon>app_registration</mat-icon>Register
         </button>
 
-        <mat-icon *ngIf="isLoggedIn" routerLink="/home" style="color: white;">home</mat-icon>
+        <button mat-button id="menu" *ngIf="isLoggedIn" routerLink="/home"><mat-icon>home</mat-icon>Home</button>
         &nbsp;&nbsp;
 
-        <mat-icon *ngIf="isLoggedIn" routerLink="/dashboard" style="color: white;">dashboard</mat-icon>
+        <button mat-button id="menu" *ngIf="isLoggedIn" routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</button>
         &nbsp;&nbsp;
-        <!-- <img [src]="profilePhoto" *ngIf="isLoggedIn"> -->
-        <button mat-button id="menu" *ngIf="isLoggedIn" style="color: white;font-weight: bold;font-size: large;
-        border-radius: 10px;padding: 5px;" [matMenuTriggerFor]="menu"><mat-icon>account_circle </mat-icon>{{ username}}
+
+        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu"><mat-icon>account_circle </mat-icon>{{ username}}
         </button>
 
         <mat-menu #menu="matMenu">
@@ -28,7 +28,7 @@
                         <span class="myspan">Update Profile</span>
                 </button>
                 <button mat-menu-item mat-dialog-close (click)="logout()">
-                        <mat-icon>exit_to_app</mat-icon>
+                        <mat-icon>logout</mat-icon>
                         <span class="myspan">Logout</span>
                 </button>
         </mat-menu>

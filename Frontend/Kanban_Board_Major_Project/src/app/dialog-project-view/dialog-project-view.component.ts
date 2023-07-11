@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class DialogProjectViewComponent {
   constructor(@Inject(MAT_DIALOG_DATA) private data: Project,
-    private fb: FormBuilder, private kanbanService: KanbanService, private router: Router) {
+    private fb: FormBuilder, private kanbanService: KanbanService) {
     this.currentDate = new Date();
     this.currentDate.setHours(0, 0, 0, 0);
   }

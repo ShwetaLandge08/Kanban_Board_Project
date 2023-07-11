@@ -9,16 +9,15 @@ import { DataStorageService } from '../_services/data-storage.service';
 })
 export class HomeComponent {
   isLoggedIn = false;
-  private role: string = '';
   constructor(private tokenStorage: TokenStorageService,
     private dataSharingService: DataStorageService) {
     this.dataSharingService.isLoggedIn.subscribe((value) => {
       this.isLoggedIn = value;
       this.checkLogin();
     });
-   }
+  }
 
-   checkLogin(): void {
+  checkLogin(): void {
     this.isLoggedIn = !!this.tokenStorage.getToken();
   }
 

@@ -17,6 +17,5 @@ import java.util.List;
 public class Stage {
     @Id
     private String name;
-    //private int wipLimit;
     private List<Task> tasks;
 }

@@ -3,11 +3,9 @@ import { KanbanService } from '../_services/kanban.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Project } from '../_models/project';
 import { Task } from '../_models/task';
-import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DataStorageService } from '../_services/data-storage.service';
 import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-project.component';
-import { Stage } from '../_models/stage';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -19,7 +17,7 @@ export class DashboardComponent {
   projects: Project[] = [];
   tasks: Task[] = [];
   userProjects: Project[] = [];
-  // allProjects: Project[] = [];
+
   ngOnInit(): void {
     this.dataStorage.refreshNeeded.subscribe(
       () => {
@@ -30,6 +28,7 @@ export class DashboardComponent {
     this.getProjectOfUser();
     this.getAllUserTask();
   }
+
   onSearchTextChanged(searchText: string) {
     this.kanbanService.getAdminProjects().subscribe({
       next: data => {
@@ -62,6 +61,7 @@ export class DashboardComponent {
       }
     });
   }
+
   getAdminProjects() {
     this.kanbanService.getAdminProjects().subscribe({
       next: data => {
@@ -76,9 +76,11 @@ export class DashboardComponent {
       }
     });
   }
+
   openAddProjectDialog(): void {
     this.dialog.open(DialogAddProjectComponent);
   }
+
   getProjectOfUser() {
     this.kanbanService.getProjectOfUser().subscribe((data) => {
       console.log(data);
@@ -91,6 +93,7 @@ export class DashboardComponent {
         });
       });
   }
+
   getAllUserTask() {
     this.kanbanService.getAllUsertaskFromProject().subscribe((data) => {
       console.log(data);

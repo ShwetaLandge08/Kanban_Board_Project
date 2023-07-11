@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { DialogConfirmStageComponent } from '../dialog-confirm-stage/dialog-confirm-stage.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { KanbanService } from '../_services/kanban.service';
 import { DataStorageService } from '../_services/data-storage.service';
@@ -16,7 +15,6 @@ export class DialogAddStageComponent {
     @Inject(MAT_DIALOG_DATA) private data: number, private kanbanService: KanbanService,
     private dataStorage: DataStorageService, private snackBar: MatSnackBar) { }
 
-  // projectId: any = this.data;
   stageForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]]
   });
@@ -24,12 +22,8 @@ export class DialogAddStageComponent {
   get name() {
     return this.stageForm.get("name");
   }
-  // get wipLimit() {
-  //   return this.stageForm.get("wipLimit");
-  // }
 
   addStage(stageForm: FormGroup) {
-    // console.log(stageForm);
     this.kanbanService.addStage(stageForm.value, this.data).subscribe({
       next: data => {
         this.dataStorage.isUpdate.next(data);

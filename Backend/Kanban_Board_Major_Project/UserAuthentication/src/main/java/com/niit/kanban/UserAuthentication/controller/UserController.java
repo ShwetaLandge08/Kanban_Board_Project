@@ -53,15 +53,6 @@ public class UserController {
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
-//    @DeleteMapping("/delete")
-//    public ResponseEntity<?> deleteUser(@RequestBody String email) {
-//        try {
-//            return new ResponseEntity<>(userService.deleteUser(email), HttpStatus.OK);
-//        } catch (UserNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     @PutMapping("/update")
     public ResponseEntity<?> updateUserInfo(@RequestBody User user) {
         try {

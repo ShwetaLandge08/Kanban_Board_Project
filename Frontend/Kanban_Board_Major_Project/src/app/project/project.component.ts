@@ -47,9 +47,4 @@ export class ProjectComponent implements OnInit {
       data: { project: id }
     });
   }
-  // openProjectCardView(project: Project) {
-  //   this.dialog.open(ProjectCardViewComponent, {
-  //     data: project
-  //   });
-  // }
 }

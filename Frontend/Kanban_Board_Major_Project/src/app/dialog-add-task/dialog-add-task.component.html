@@ -1,62 +1,46 @@
 <div class="container">
-    <h1 mat-dialog-title>Create Task</h1>
-    <br>
-    <form mat-dialog-content (ngSubmit)="addTask(taskForm)" [formGroup]="taskForm">
-         <!-- <mat-form-field appearance="outline" class="full_wide">
-              <mat-label>Select Id</mat-label>
-              <mat-select formControlName="id">
-                   <mat-option [value]="this.tasks.length + 1">{{this.tasks.length + 1}}</mat-option>
-              </mat-select>
-         </mat-form-field><br> -->
+     <h1 mat-dialog-title>Create Task</h1>
+     <form mat-dialog-content (ngSubmit)="addTask(taskForm)" [formGroup]="taskForm">
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Title</mat-label>
+               <input matInput formControlName="title" placeholder="Task Title">
+               <mat-icon matSuffix>title</mat-icon>
+               <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
+               <mat-error *ngIf="title?.errors?.['minlength']">
+                    Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field><br>
 
-         <mat-form-field appearance="outline" class="full_wide">
-              <mat-label>Title</mat-label>
-              <input matInput formControlName="title" placeholder="Task Title">
-              <mat-icon matSuffix>view_column</mat-icon>
-              <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
-              <mat-error *ngIf="title?.errors?.['minlength']">
-                   Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
-              </mat-error>
-         </mat-form-field><br>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Description</mat-label>
+               <input matInput formControlName="description" placeholder="Task Description">
+               <mat-icon matSuffix>description</mat-icon>
+               <mat-error *ngIf="description?.errors?.['required']">description is required</mat-error>
+               <mat-error *ngIf="description?.errors?.['minlength']">
+                    description should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field><br>
 
-         <mat-form-field appearance="outline" class="full_wide">
-              <mat-label>Description</mat-label>
-              <input matInput formControlName="description" placeholder="Task Description">
-              <mat-icon matSuffix>view_column</mat-icon>
-              <mat-error *ngIf="description?.errors?.['required']">description is required</mat-error>
-              <mat-error *ngIf="description?.errors?.['minlength']">
-                   description should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
-              </mat-error>
-         </mat-form-field><br>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Select Assignee</mat-label>
+               <mat-select formControlName="assignee">
+                    <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+               </mat-select>
+               <mat-error *ngIf="assignee?.errors?.['required']">Selecting Assignee for task is required</mat-error>
+          </mat-form-field><br>
 
-         <mat-form-field appearance="outline" class="full_wide">
-              <mat-label>Select Assignee</mat-label>
-              <mat-select formControlName="assignee">
-                   <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
-              </mat-select>
-         </mat-form-field><br>
+          <mat-radio-group aria-label="Select an option" formControlName="priority">
+               <label>Priority</label>
+               <mat-radio-button value="High">High</mat-radio-button>
+               <mat-radio-button value="Low">Low</mat-radio-button>
+               <mat-radio-button value="Medium">Medium</mat-radio-button>
+          </mat-radio-group>
+          <br>
 
-         <!-- <mat-form-field appearance="outline" class="full_wide">
-              <mat-label>Select Status</mat-label>
-              <mat-select formControlName="status">
-                   <mat-option *ngFor="let status of stages" [value]="status.name">{{status.name}}</mat-option>
-              </mat-select>
-         </mat-form-field><br> -->
-
-         <mat-radio-group aria-label="Select an option" formControlName="priority">
-              <label>Priority</label>
-              <mat-radio-button value="High">High</mat-radio-button>
-              <mat-radio-button value="Low">Low</mat-radio-button>
-              <mat-radio-button value="Medium">Medium</mat-radio-button>
-         </mat-radio-group>
-         <br>
-
-
-
-         <div mat-dialog-actions class="button">
-              <button mat-button mat-dialog-close>No</button>
-              <button type="submit" mat-raised-button color="primary" mat-dialog-close
-                   [disabled]="taskForm.invalid">Add</button>
-         </div>
-    </form>
+          <div mat-dialog-actions class="button">
+               <button mat-button mat-dialog-close>No</button>
+               <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+                    mat-dialog-close [disabled]=" taskForm.invalid">Add</button>
+          </div>
+     </form>
 </div>

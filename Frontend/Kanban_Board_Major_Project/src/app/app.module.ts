@@ -35,20 +35,16 @@ import { DialogAddProjectComponent } from './dialog-add-project/dialog-add-proje
 import { DialogAddStageComponent } from './dialog-add-stage/dialog-add-stage.component';
 import { DialogAddTaskComponent } from './dialog-add-task/dialog-add-task.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
-import { DialogConfirmStageComponent } from './dialog-confirm-stage/dialog-confirm-stage.component';
 import { DialogProjectViewComponent } from './dialog-project-view/dialog-project-view.component';
 import { ProjectComponent } from './project/project.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { StageComponent } from './stage/stage.component';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
-import { TaskComponent } from './task/task.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SearchProjectComponent } from './search-project/search-project.component';
-import { SearchTaskComponent } from './search-task/search-task.component';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -65,17 +61,13 @@ import { DatePipe } from '@angular/common';
     DialogAddStageComponent,
     DialogAddTaskComponent,
     DialogConfirmDeleteComponent,
-    DialogConfirmStageComponent,
     DialogProjectViewComponent,
     ProjectComponent,
     ResetPasswordComponent,
-    StageComponent,
     TaskDetailsComponent,
     DashboardComponent,
     BoardComponent,
-    TaskComponent,
-    SearchProjectComponent,
-    SearchTaskComponent
+    SearchProjectComponent
   ],
   imports: [
     BrowserModule,

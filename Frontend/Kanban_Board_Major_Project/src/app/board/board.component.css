@@ -1,15 +1,12 @@
 .root {
   display: flex;
   flex-direction: column;
-  height: 85%;
 }
 
 .board {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-width: 0;
-  min-height: 0;
 }
 
 button {
@@ -33,7 +30,6 @@ button {
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 15px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -41,12 +37,17 @@ button {
 .board-column {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   flex-basis: 0;
-  background-color: gainsboro;
-  min-width: 300px;
-  margin: 30px;
+  width: 320px;
+  margin: 20px;
   padding: 25px;
-  border-radius: 10px;
+  border-radius: 4px;
+  background: gainsboro;
+
+  &:not(:first-child) {
+    margin-left: 0;
+  }
 }
 
 .task-container {
@@ -57,8 +58,8 @@ button {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 25px;
-  height: 400px;
-  background-color: rgb(244, 238, 245);
+  height: 380px;
+  background-color: rgb(211, 205, 205);
   border-radius: 10px;
 }
 
@@ -71,15 +72,16 @@ button {
 }
 
 .btn1 {
-  background-color: gainsboro;
-  color: black;
-  padding: 10px 32px;
-  margin-top: 30px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* width: max-content; */
   border: none;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 500;
+  margin-top: 20px;
+  float: right;
+  background-color: gainsboro;
+  font-size: large;
+  font-weight: medium;
   text-transform: uppercase;
   border-radius: 10px;
 }

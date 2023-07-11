@@ -1,10 +1,6 @@
 <div class="form">
      <form (ngSubmit)="updateUser(roleToUpdate)" [formGroup]="roleToUpdate">
-          <!-- <mat-form-field class="form-group">
-               <mat-label for="email">Email</mat-label>
-               <input type="email" matInput formControlName="email" placeholder="Enter your registered email">
-          </mat-form-field> -->
-          
+
           <mat-form-field class="form-group">
                <mat-label for="name">Name</mat-label>
                <input type="text" matInput formControlName="name" placeholder="Name">
@@ -14,9 +10,9 @@
                <mat-label for="phoneNo">Phone Number</mat-label>
                <input matInput type="tel" formControlName="phoneNo" placeholder="10 Digit Long Phone Number">
                <mat-error *ngIf="phoneNo?.errors?.['pattern']">
-                   Valid phone number contains 10 digits and starts with 7/8/9
+                    Valid phone number contains 10 digits and starts with 7/8/9
                </mat-error>
-           </mat-form-field>
+          </mat-form-field>
 
           <div class="form-group mybtn">
                <button mat-stroked-button mat-dialog-close color="primary" style="margin-right: 50px;">Close</button>

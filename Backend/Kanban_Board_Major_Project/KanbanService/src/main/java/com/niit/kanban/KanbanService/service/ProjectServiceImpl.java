@@ -28,7 +28,6 @@ public class ProjectServiceImpl implements ProjectService {
         project.setStartDate(new Date());
         List<Stage> stages = project.getStages();
         stages.forEach(t -> t.setTasks(new ArrayList<>()));
-//        project.setStages(stages);
         return projectRepository.save(project);
 
     }

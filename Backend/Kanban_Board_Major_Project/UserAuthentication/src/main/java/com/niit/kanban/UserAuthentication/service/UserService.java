@@ -9,8 +9,6 @@ public interface UserService {
 
     User findUser(String email, String password) throws UserNotFoundException;
 
-    //boolean deleteUser(String email) throws UserNotFoundException;
-
     User updateUserInfo(User user) throws UserNotFoundException;
 
     User updateUserPassword(String email, String currentPassword, String newPassword) throws UserNotFoundException;

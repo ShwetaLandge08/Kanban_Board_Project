@@ -6,15 +6,12 @@ import { Project } from '../_models/project';
 import { Task } from '../_models/task';
 import { TokenStorageService } from './token-storage.service';
 import { Comment } from '../_models/comment';
-import { StageComponent } from '../stage/stage.component';
 import { DataStorageService } from './data-storage.service';
 
 const STAGE_API = 'http://localhost:9000/api/kanban/stage/';
 const TASK_API = 'http://localhost:9000/api/kanban/task/';
 const PROJECT_API = 'http://localhost:9000/api/kanban/project/';
 const COMMENT_API = 'http://localhost:9000/api/kanban/comment/';
-
-
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,7 +24,6 @@ export class KanbanService {
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService,
     private dataStorage: DataStorageService) { }
   role = this.tokenStorage.getUser();
-  // project = this.tokenStorage.getProject().projectId;
 
   addProject(project: Project): Observable<any> {
     return this.http.post(PROJECT_API + "add", project, httpOptions).pipe(
@@ -79,11 +75,6 @@ export class KanbanService {
     return this.http.get(TASK_API + "user", httpOptions);
   }
 
-  updateStatusOftask(projectId: number, taskId: number, stageName: string, status: string): Observable<any> {
-    return this.http.put(`${TASK_API}update/${projectId}/${stageName}/${taskId}`, status, httpOptions);
-  }
-
-  // add for delete task
   deleteTask(endPoint: string): Observable<any> {
     return this.http.put(`${TASK_API}deleteTask/${endPoint}`, httpOptions);
   }
@@ -94,7 +85,6 @@ export class KanbanService {
     return this.http.put(STAGE_API + '/addStage/' + projectId, stage, httpOptions);
   }
 
-  //add for delete stage
   deleteStage(endPoint: string): Observable<any> {
     return this.http.put(`${STAGE_API}deleteStage/${endPoint}`, httpOptions);
   }

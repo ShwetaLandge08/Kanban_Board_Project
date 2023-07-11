@@ -5,8 +5,6 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../_services/token-storage.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -60,7 +58,6 @@ export class SignUpComponent implements OnInit {
   mustMatchValidator(fg: AbstractControl): { [key: string]: boolean } | null {
     const passwordValue = fg.get("password")?.value;
     const confirmPasswordValue = fg.get("confirmPassword")?.value;
-    // console.log(passwordValue + '\n' + confirmPasswordValue);
     if (passwordValue !== confirmPasswordValue) {
       console.log("mustMatch true");
       fg.get('confirmPassword')?.setErrors({ mustMatch: true });

@@ -3,14 +3,10 @@ import { Component } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataStorageService } from '../_services/data-storage.service';
 import { MatDialog } from '@angular/material/dialog';
-import { KanbanService } from '../_services/kanban.service';
-import { AuthService } from '../_services/auth.service';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
-import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-project.component';
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +14,7 @@ import { DialogAddProjectComponent } from '../dialog-add-project/dialog-add-proj
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  private role: string = '';
+  role: string = '';
   isLoggedIn = false;
   username?: string;
   home?: string;
@@ -43,9 +39,7 @@ export class NavbarComponent {
   checkLogin(): void {
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (this.isLoggedIn) {
-      //console.log("true");
       const user = this.tokenStorage.getUser();
-      //console.log(user);
       this.role = user.role;
       this.username = user.name;
       this.profilePhoto = user.profilePhoto;

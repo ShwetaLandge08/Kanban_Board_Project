@@ -1,6 +1,5 @@
 <div class="container">
      <h1 mat-dialog-title>Create Project</h1>
-     <br>
      <form mat-dialog-content (ngSubmit)="addProject(projectForm)" [formGroup]="projectForm">
 
           <mat-form-field appearance="outline" class="full-width">
@@ -13,6 +12,7 @@
                </mat-error>
           </mat-form-field>
           <br><br>
+
           <mat-form-field appearance="outline" class="full-width">
                <mat-label>Description</mat-label>
                <textarea matInput formControlName="description" rows="3" placeholder="Describe Project"></textarea>
@@ -23,6 +23,7 @@
                </mat-error>
           </mat-form-field>
           <br><br>
+
           <mat-form-field appearance="outline" class="full-width">
                <mat-label>Due Date</mat-label>
                <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" [min]="currentDate"
@@ -33,12 +34,13 @@
                <mat-error *ngIf="dueDate?.errors?.['pastDate']">Due Date can not be past date</mat-error>
           </mat-form-field>
           <br><br>
+
           <div formArrayName="stages">
                <strong>Stages: </strong>
                <mat-error *ngIf="stages.errors?.['minimumStage']">At least 2 stages are required</mat-error>
                <br><br>
-
-               <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i">
+               <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i" style="display: flex;
+               justify-content: space-between;">
                     <mat-form-field appearance="outline">
                          <mat-label>Name</mat-label>
                          <input matInput formControlName="name" placeholder="Stage Name">
@@ -48,21 +50,19 @@
                               Name should have minimum of {{control?.errors?.['minlength']?.requiredLength}} characters
                          </mat-error>
                     </mat-form-field>
-                    <!-- <mat-form-field appearance="outline" class="limit-width">
-                         <mat-label>Limit</mat-label>
-                         <input matInput formControlName="wipLimit" placeholder="Work in Progress Limit">
-                         <mat-icon matSuffix>production_quantity_limits</mat-icon>
-                    </mat-form-field> -->
-                    <button class="btn" type="button" mat-mini-fab color="warn" (click)="removeStage(i)">
+                    <button type="button" mat-mini-fab style="background-color: rgb(149, 76, 218);"
+                         (click)="removeStage(i)">
                          <mat-icon>close</mat-icon></button>
                </div>
-               <button type="button" mat-raised-button color="primary" (click)="addStage()">
+
+               <button type="button" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+                    (click)="addStage()">
                     <mat-icon>add</mat-icon>Add Stage
                </button>
           </div>
           <br><br>
 
-          <mat-form-field appearance="outline" class="full_wide">
+          <mat-form-field appearance="outline" class="full-width">
                <mat-label>Select Members</mat-label>
                <mat-select formControlName="members" multiple>
                     <mat-select-trigger>
@@ -74,6 +74,7 @@
                     </mat-select-trigger>
                     <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
                </mat-select>
+
           </mat-form-field><br>
 
           <mat-radio-group aria-label="Select priority" formControlName="priority">
@@ -85,8 +86,8 @@
           <br><br>
           <div mat-dialog-actions class="button">
                <button mat-button mat-dialog-close>No</button>
-               <button type="submit" mat-raised-button color="primary" mat-dialog-close
-                    [disabled]="projectForm.invalid">Add</button>
+               <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+                    mat-dialog-close [disabled]="projectForm.invalid">Add</button>
           </div>
      </form>
 </div>

@@ -32,7 +32,6 @@ public class TaskServiceImpl implements TaskService {
         task.setId(lastId + 1);
         tasks.add(task);
         stage.setTasks(tasks);
-        //project.setStages();
         System.out.println("project = " + project);
         return projectRepository.save(project);
     }

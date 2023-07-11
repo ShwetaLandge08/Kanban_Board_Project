@@ -4,7 +4,6 @@ import { KanbanService } from '../_services/kanban.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../_models/user';
 import { AuthService } from '../_services/auth.service';
-import { DataStorageService } from '../_services/data-storage.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
@@ -31,7 +30,6 @@ export class DialogAddProjectComponent {
       next: data => {
         this.users = data;
         const filtereduser = this.users.filter((user: any) => user.email != this.role.email);
-        // console.log(filtereduser);
         this.users = filtereduser;
         console.log(this.users);
       },
@@ -145,4 +143,3 @@ export class DialogAddProjectComponent {
     };
   }
 }
-// project.dueDate?.setUTCDate(project.dueDate.getDate());

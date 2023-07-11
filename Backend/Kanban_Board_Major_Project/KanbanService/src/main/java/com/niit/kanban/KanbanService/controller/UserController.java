@@ -2,10 +2,7 @@ package com.niit.kanban.KanbanService.controller;
 
 import com.niit.kanban.KanbanService.domain.User;
 import com.niit.kanban.KanbanService.exception.UserAlreadyExistsException;
-import com.niit.kanban.KanbanService.exception.UserNotFoundException;
 import com.niit.kanban.KanbanService.service.UserService;
-import io.jsonwebtoken.Claims;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,18 +30,4 @@ public class UserController {
     public ResponseEntity<?> getAllUser() {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
-
-//    @DeleteMapping("/delete")
-//    public ResponseEntity<?> deleteUser(HttpServletRequest servletRequest) {
-//        System.out.println("servletRequest = " + servletRequest);
-//        Claims claims = (Claims) servletRequest.getAttribute("claims");
-//        String email = claims.getSubject();
-//        System.out.println("email = " + email);
-//        try {
-//            return new ResponseEntity<>(userService.deleteUser(email),HttpStatus.OK);
-//        } catch (UserNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
 }

@@ -15,7 +15,6 @@ public class BeanConfig {
         filterRegistrationBean.addUrlPatterns("/api/kanban/stage/*");
         filterRegistrationBean.addUrlPatterns("/api/kanban/task/*");
         filterRegistrationBean.addUrlPatterns("/api/kanban/project/*");
-        //filterRegistrationBean.addUrlPatterns("/api/kanban/team/*");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/all");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/email");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/delete");

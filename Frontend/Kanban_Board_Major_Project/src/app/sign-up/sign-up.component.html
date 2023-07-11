@@ -1,10 +1,10 @@
-<div class="form-container">
+<div class="form-container shadow-lg p-3 mb-5 bg-white rounded">
     <form (ngSubmit)="onSubmit(registrationForm)" [formGroup]="registrationForm">
         <h1>Register Here</h1>
 
         <!-- <input type="file" (change)="onFileSelected($event)" formControlName="photo">
         <button (click)="onUpload()">Upload</button> -->
-        
+
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" placeholder="Full Name">
@@ -13,7 +13,7 @@
             <mat-error *ngIf="name?.errors?.['minlength']">
                 Name should have minimum of {{name?.errors?.['minlength']?.requiredLength}} characters
             </mat-error>
-        </mat-form-field><br><br>
+        </mat-form-field><br>
 
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Email</mat-label>
@@ -21,7 +21,7 @@
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
             <mat-error *ngIf="email?.errors?.['email']">Enter valid email address</mat-error>
-        </mat-form-field><br><br>
+        </mat-form-field><br>
 
         <mat-form-field appearance="outline" class="half_wide">
             <mat-label>Password</mat-label>
@@ -31,7 +31,7 @@
             <mat-error *ngIf="password?.errors?.['pattern']">
                 Password must have min 8 characters with at least a symbol, upper and lower case letters and a number
             </mat-error>
-        </mat-form-field> &nbsp; &nbsp;
+        </mat-form-field>&nbsp;&nbsp;
 
         <mat-form-field appearance="outline" class="half_wide">
             <mat-label>Confirm Password</mat-label>
@@ -40,7 +40,7 @@
             <mat-error *ngIf="confirmPassword?.errors?.['mustMatch'] === true">
                 Password and Confirm Password should match.
             </mat-error>
-        </mat-form-field><br><br><br><br>
+        </mat-form-field><br><br>
 
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Phone Number</mat-label>
@@ -50,14 +50,13 @@
             <mat-error *ngIf="phoneNo?.errors?.['pattern']">
                 Valid phone number contains 10 digits and starts with 7/8/9
             </mat-error>
-        </mat-form-field><br><br>
+        </mat-form-field><br>
 
         <div class="button">
-            <button type="submit" mat-raised-button color="primary"
+            <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
                 [disabled]="registrationForm.invalid">Register</button>
         </div>
     </form>
-    <!-- <div class="button">
-         <button mat-raised-button color="primary" routerLink="/login"><a>Login</a></button>
-     </div> -->
+    <p>Have an Account? <span routerLink="/login" class="text-primary" role="button" style="cursor: default;">Sign
+            in</span></p>
 </div>

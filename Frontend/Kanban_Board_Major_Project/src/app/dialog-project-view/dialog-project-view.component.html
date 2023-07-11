@@ -1,50 +1,53 @@
 <div class="container">
-    <h1 mat-dialog-title>Update Project</h1>
-    <br>
-    <form mat-dialog-content (ngSubmit)="updateUser(projectToUpdate)" [formGroup]="projectToUpdate">
+     <h1 mat-dialog-title>Update Project</h1>
+     <br>
+     <form mat-dialog-content (ngSubmit)="updateUser(projectToUpdate)" [formGroup]="projectToUpdate">
 
-         <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Title</mat-label>
-              <input matInput formControlName="title" placeholder="Project Title">
-              <mat-icon matSuffix>title</mat-icon>
-              <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
-              <mat-error *ngIf="title?.errors?.['minlength']">
-                   Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
-              </mat-error>
-         </mat-form-field>
-         <br><br>
-         <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Description</mat-label>
-              <textarea matInput formControlName="description" rows="3" placeholder="Describe Project"></textarea>
-              <mat-icon matSuffix>description</mat-icon>
-              <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
-              <mat-error *ngIf="description?.errors?.['minlength']">
-                   Description should have minimum of {{description?.errors?.['minlength']?.requiredLength}} characters
-              </mat-error>
-         </mat-form-field>
-         <br><br>
-         <mat-form-field appearance="outline" class="full-width">
-              <mat-label>Due Date</mat-label>
-              <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" [min]="currentDate"
-                   placeholder="MM/DD/YYYY" (click)="dueDatePicker.open()">
-              <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
-              <mat-datepicker #dueDatePicker></mat-datepicker>
-              <mat-error *ngIf="dueDate?.errors?.['required']">Due Date is required</mat-error>
-              <mat-error *ngIf="dueDate?.errors?.['pastDate']">Due Date can not be past date</mat-error>
-         </mat-form-field>
-         <br><br>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Title</mat-label>
+               <input matInput formControlName="title" placeholder="Project Title">
+               <mat-icon matSuffix>title</mat-icon>
+               <mat-error *ngIf="title?.errors?.['required']">Title is required</mat-error>
+               <mat-error *ngIf="title?.errors?.['minlength']">
+                    Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field>
+          <br><br>
 
-         <mat-radio-group aria-label="Select priority" formControlName="priority">
-              <label><strong>Priority: </strong> </label>
-              <mat-radio-button value="High">High</mat-radio-button>
-              <mat-radio-button value="Medium">Medium</mat-radio-button>
-              <mat-radio-button value="Low">Low</mat-radio-button>
-         </mat-radio-group>
-         <br><br>
-         <div mat-dialog-actions class="button">
-              <button mat-button mat-dialog-close>No</button>
-              <button type="submit" mat-raised-button color="primary" mat-dialog-close
-                   [disabled]="projectToUpdate.invalid">Update</button>
-         </div>
-    </form>
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Description</mat-label>
+               <textarea matInput formControlName="description" rows="3" placeholder="Describe Project"></textarea>
+               <mat-icon matSuffix>description</mat-icon>
+               <mat-error *ngIf="description?.errors?.['required']">Description is required</mat-error>
+               <mat-error *ngIf="description?.errors?.['minlength']">
+                    Description should have minimum of {{description?.errors?.['minlength']?.requiredLength}} characters
+               </mat-error>
+          </mat-form-field>
+          <br><br>
+
+          <mat-form-field appearance="outline" class="full-width">
+               <mat-label>Due Date</mat-label>
+               <input matInput formControlName="dueDate" [matDatepicker]="dueDatePicker" [min]="currentDate"
+                    placeholder="MM/DD/YYYY" (click)="dueDatePicker.open()">
+               <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+               <mat-datepicker #dueDatePicker></mat-datepicker>
+               <mat-error *ngIf="dueDate?.errors?.['required']">Due Date is required</mat-error>
+               <mat-error *ngIf="dueDate?.errors?.['pastDate']">Due Date can not be past date</mat-error>
+          </mat-form-field>
+          <br><br>
+
+          <mat-radio-group aria-label="Select priority" formControlName="priority">
+               <label><strong>Priority: </strong> </label>
+               <mat-radio-button value="High">High</mat-radio-button>
+               <mat-radio-button value="Medium">Medium</mat-radio-button>
+               <mat-radio-button value="Low">Low</mat-radio-button>
+          </mat-radio-group>
+          <br><br>
+          
+          <div mat-dialog-actions class="button">
+               <button mat-button mat-dialog-close>No</button>
+               <button type="submit" mat-raised-button color="primary" mat-dialog-close
+                    [disabled]="projectToUpdate.invalid">Update</button>
+          </div>
+     </form>
 </div>

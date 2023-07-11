@@ -16,10 +16,7 @@
 .div1 {
      display: grid;
      grid-template-columns: 50% 50%;
-     background-color: rgba(175, 237, 241, 0.062);
      padding: 10px 50px;
-     border-bottom-left-radius: 30px;
-     border-bottom-right-radius: 30px;
 }
 
 .plan {
@@ -43,10 +40,6 @@ p {
      line-height: 20px;
 }
 
-.div3 {
-     background-color: rgba(175, 237, 241, 0.062);
-}
-
 footer {
      text-align: center;
      font-size: large;
@@ -58,13 +51,15 @@ a {
      text-decoration: none;
      color: black;
 }
-.subdiv3{
+
+.subdiv3 {
      align-content: center;
      font-weight: 500;
      line-height: 20px;
      margin-top: 150px;
 }
-.img{
+
+.img {
      margin-top: 30px;
      border-radius: 10px;
      margin-left: 40px;

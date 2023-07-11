@@ -3,20 +3,14 @@ form {
 }
 
 .container {
-     /* border: 1px solid grey; */
-     /* margin-top: 30px; */
      padding: 20px;
      width: 100%;
-     /* border-radius: 20px; */
-     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
-          0 3px 14px 2px rgba(0, 0, 0, 0.05);
 }
 
 .title {
      height: min-content;
      padding-left: 20px;
      padding-top: 3px;
-     /* text-align: center; */
      background-color: rgb(231, 217, 241);
      border-radius: 10px;
 }
@@ -55,7 +49,7 @@ button {
 }
 
 .commentbox {
-     background-color: rgb(238, 236, 236);
+     background-color: gainsboro;
      padding: 5px;
      margin: 5px;
      height: 150px;
@@ -67,7 +61,6 @@ button {
 .com {
      margin-left: 50px;
      margin-top: -30px;
-     /* margin-bottom: -10px; */
 }
 
 .close {

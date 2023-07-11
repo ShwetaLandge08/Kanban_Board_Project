@@ -1,9 +1,7 @@
 .form-container {
-     margin: 1rem auto;
+     margin: 1.5rem auto;
      width: fit-content;
      text-align: center;
-     background-color: rgb(245, 243, 243);
-     border: 1.5px solid grey;
      padding: 15px;
      border-radius: 15px;
  }

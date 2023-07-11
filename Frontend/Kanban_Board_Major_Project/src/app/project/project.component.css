@@ -1,12 +1,6 @@
-/* .project-card {
-   display: inline-flex;
-   width: max-content;
-   margin: 20px;
-   height: 100px;
-} */
 .project-card {
    display: inline-flex;
-   width: max-content;
+   max-width: 250px;
    margin: 20px;
    max-height: 300px;
    overflow: auto;
@@ -14,4 +8,8 @@
 }
 .flexcontent{
   display: flex;
+}
+mat-card-header{
+  display: flex;
+  justify-content: space-between;
 }
