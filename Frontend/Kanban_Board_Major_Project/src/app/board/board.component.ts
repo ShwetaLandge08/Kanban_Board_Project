@@ -50,44 +50,35 @@ export class BoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>) {
-    //console.log(event.container.data[event.currentIndex]?.assignee?.email);
-    //console.log(this.user.email);
-    const assignedUser = event.container.data[event.currentIndex]?.assignee?.email;
-    const loggedInUser = this.user?.email;
-    console.log(assignedUser == loggedInUser);
-
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-
-    console.log(this.project.stages!);
-
-    this.kanbanService.updateStages(this.project.projectId!, this.project.stages!).subscribe({
-      next: data => {
-        console.log(data);
-        this.snackBar.open("Task moved Successfully", "Saved", {
-          duration: 3000
-        });
-        this.dataStorage.isUpdate.next(data);
-      },
-      error: err => {
-        console.log(err);
-        this.snackBar.open(err.error.message, "Task does not Move, Try Again!", {
-          duration: 3000
-        });
+    console.log(event.previousContainer.data[event.currentIndex].assignee?.name);
+    if (this.tokenStorage.getUser().name === event.previousContainer.data[event.previousIndex].assignee?.name ||
+      this.project.admin?.name === this.tokenStorage.getUser().name) {
+      if (event.previousContainer === event.container) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
       }
-    });
+      this.kanbanService.updateStages(this.project.projectId!, this.project.stages!).subscribe({
+        next: data => {
+          this.dataStorage.isUpdate.next(data);
+          this.snackBar.open("Task moved Successfully", "Saved", {
+            duration: 2000,
+          });
+        },
+        error: err => {
+          console.log(err);
+          this.snackBar.open(err.error.message, "Task does not Move, Try Again!", {
+            duration: 5000
+          });
+        }
+      });
+    }
   }
-  // else {
-  //   alert('Only assigned user can move their Task!');
-  // }
 
 
   openAddTaskDialog(project: Project, stage: Stage): void {

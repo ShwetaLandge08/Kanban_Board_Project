@@ -8,29 +8,20 @@
           <h2>{{task?.title}}</h2>
      </div>
      <div>
-          <div>
-               <h3 style="font-weight: bold;">Assignee:
-                    {{task?.assignee?.name}}
-               </h3>
-          </div>
-          <div>
-               <h3 style="font-weight: bold;">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
-               </h3>
-          </div>
-          <div>
-               <h2>Status: <mat-icon *ngIf="task.priority == 'High' || task.priority == 'high'"
-                         style="color: red;position:relative;top:5px">flag</mat-icon>
-                    <mat-icon *ngIf="task.priority == 'Low' || task.priority == 'low'"
-                         style="color: black;position:relative;top:5px">flag</mat-icon>
-                    <mat-icon *ngIf="task.priority == 'Medium' || task.priority == 'medium'"
-                         style="color: blue;position:relative;top:5px">flag</mat-icon>
-               </h2>
-          </div>
-
-          <div>
-               <h3 style="font-weight: bold;">Description:</h3>
-               <h4 style="font-weight: light;">{{task?.description}}</h4>
-          </div>
+          <h3 style="font-weight: bold;">Assignee: {{task?.assignee?.name}}</h3>
+          <h3 style="font-weight: bold;">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
+          </h3>
+          <h3 style="font-weight: bold;">Priority:
+               <mat-icon *ngIf="task.priority == 'High' || task.priority == 'high'"
+                    style="color: red;position:relative;top:5px">flag</mat-icon>
+               <mat-icon *ngIf="task.priority == 'Low' || task.priority == 'low'"
+                    style="color: green;position:relative;top:5px">flag</mat-icon>
+               <mat-icon *ngIf="task.priority == 'Medium' || task.priority == 'medium'"
+                    style="color: yellow;position:relative;top:5px">flag</mat-icon>
+          </h3>
+          <h3><span  style="font-weight: bold;">Description: </span>
+               <span style="font-weight: light;">{{task?.description}}</span>
+          </h3>
      </div>
      <div>
           <form (ngSubmit)="addCommentOnTask()" [formGroup]="formComment">
@@ -39,7 +30,7 @@
                     <mat-label>Add comment here</mat-label>
                     <input matInput formControlName="comment" class="form-control">
                     <button type="submit" class="btn btn-light button">Comment</button>
-                    <mat-error *ngIf="comment?.errors?.['required']">comment is required</mat-error>
+                    <!-- <mat-error *ngIf="comment?.errors?.['required']">comment is required</mat-error> -->
                     <mat-error *ngIf="comment?.errors?.['minlength']">
                          comment should have minimum of {{comment?.errors?.['minlength']?.requiredLength}}
                          characters

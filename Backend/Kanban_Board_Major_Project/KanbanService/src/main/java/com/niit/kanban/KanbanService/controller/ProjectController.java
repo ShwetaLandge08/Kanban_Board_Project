@@ -76,6 +76,7 @@ public class ProjectController {
         String email = claims.getSubject();
         try {
             User user = userService.getUser(email);
+//            System.out.println(user);
             return new ResponseEntity<>(projectService.getProjectsOfAdmin(user), HttpStatus.OK);
         } catch (UserNotFoundException | ProjectNotFoundException e) {
             throw new RuntimeException(e);

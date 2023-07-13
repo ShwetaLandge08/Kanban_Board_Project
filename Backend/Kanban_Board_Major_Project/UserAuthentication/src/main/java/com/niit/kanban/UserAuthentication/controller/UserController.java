@@ -54,9 +54,9 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<?> updateUserInfo(@RequestBody User user) {
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
         try {
-            return new ResponseEntity<>(userService.updateUserInfo(user), HttpStatus.OK);
+            return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
         } catch (UserNotFoundException e) {
             throw new RuntimeException(e);
         }

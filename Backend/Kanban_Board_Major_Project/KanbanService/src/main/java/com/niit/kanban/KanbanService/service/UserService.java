@@ -13,4 +13,6 @@ public interface UserService {
 
     User getUser(String email) throws UserNotFoundException;
 
+    User updateUser(String email, User user) throws UserNotFoundException;
+
 }

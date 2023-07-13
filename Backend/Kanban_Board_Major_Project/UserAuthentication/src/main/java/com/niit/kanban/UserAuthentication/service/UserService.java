@@ -9,7 +9,7 @@ public interface UserService {
 
     User findUser(String email, String password) throws UserNotFoundException;
 
-    User updateUserInfo(User user) throws UserNotFoundException;
+    User updateUser(User user) throws UserNotFoundException;
 
     User updateUserPassword(String email, String currentPassword, String newPassword) throws UserNotFoundException;
 }

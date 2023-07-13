@@ -39,11 +39,11 @@ export class TaskDetailsComponent {
     );
     this.getAllComments();
     if (this.data.project.admin.email == this.role.email)
-    this.isAdmin = true;
+      this.isAdmin = true;
   }
 
   formComment = this.fb.group({
-    comment: ['', [Validators.required, Validators.minLength(5)]],
+    comment: ['', [Validators.minLength(5)]],
     commenter: ['']
   });
 

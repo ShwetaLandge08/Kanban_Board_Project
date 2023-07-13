@@ -14,7 +14,7 @@ import { UpdateUserComponent } from '../update-user/update-user.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  role: string = '';
+  user: string = '';
   isLoggedIn = false;
   username?: string;
   home?: string;
@@ -40,9 +40,9 @@ export class NavbarComponent {
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenStorage.getUser();
-      this.role = user.role;
+      //this.user = user;
       this.username = user.name;
-      this.profilePhoto = user.profilePhoto;
+      //this.profilePhoto = user.profilePhoto;
     }
   }
 
@@ -60,10 +60,10 @@ export class NavbarComponent {
 
   }
 
-  openUpdateUserDialog() {
-    this.dialog.open(UpdateUserComponent, {
-      height: "max-content",
-      width: "max-content"
-    });
-  }
+  // openUpdateUserDialog() {
+  //   this.dialog.open(UpdateUserComponent, {
+  //     height: "max-content",
+  //     width: "max-content"
+  //   });
+  // }
 }

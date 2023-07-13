@@ -44,4 +44,22 @@ public class UserServiceImpl implements UserService {
     public User getUser(String email) throws UserNotFoundException {
         return userRepository.findById(email).orElseThrow(UserNotFoundException::new);
     }
+
+    @Override
+    public User updateUser(String email, User user) throws UserNotFoundException {
+        User existingUser = userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+
+        if (user.getName() != null && !user.getName().isEmpty())
+            existingUser.setName(user.getName());
+
+        if (user.getPhoneNo() != null)
+            existingUser.setPhoneNo(user.getPhoneNo());
+
+        userProxy.updateUser(existingUser);
+        emailProxy.sendUpdateMail(existingUser);
+
+        existingUser.setPhoneNo(null);
+        return userRepository.save(existingUser);
+    }
+
 }

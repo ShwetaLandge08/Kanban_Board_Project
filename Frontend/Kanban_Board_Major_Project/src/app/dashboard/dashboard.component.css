@@ -1,6 +1,7 @@
 .container {
     padding: 10px;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
+    background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
     border-radius: 10px;
 }
 
@@ -18,18 +19,29 @@ h1 {
 }
 
 h3 {
-    padding-left: 10px;
+    padding-left: 30px;
+    font-weight: bold;
+
 }
 
 button {
     padding: 15px;
     float: right;
     margin: 20px 105px;
-    background-color: gainsboro;
+    background-color: rgb(236, 208, 236);
     text-transform: uppercase;
 }
 
 .table {
     width: 50%;
     margin-left: 30px;
+}
+
+.div1 {
+    display: flex;
+}
+
+mat-icon {
+    position: relative;
+    top: 4px;
 }

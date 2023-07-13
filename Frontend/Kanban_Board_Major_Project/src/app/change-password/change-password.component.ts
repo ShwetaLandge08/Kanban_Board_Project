@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { User } from '../_models/user';
+import { DataStorageService } from '../_services/data-storage.service';
 
 @Component({
   selector: 'app-change-password',
@@ -12,7 +13,7 @@ import { User } from '../_models/user';
 })
 export class ChangePasswordComponent {
   constructor(private serviceVar: AuthService, private router: Router,
-    private fb: FormBuilder, private tokenStorage: TokenStorageService) { }
+    private fb: FormBuilder, private tokenStorage: TokenStorageService,private dataSharingStorage:DataStorageService) { }
   role = this.tokenStorage.getUser();
 
   changeP = this.fb.group({
@@ -50,6 +51,8 @@ export class ChangePasswordComponent {
       .subscribe(
         () => {
           alert('Password updated!');
+          this.tokenStorage.signOut();
+          this.dataSharingStorage.isLoggedIn.next(false);
           this.router.navigate(['/login']);
           // this.changeP.reset();
         },

@@ -1,23 +1,32 @@
-<div class="form">
-     <form (ngSubmit)="updateUser(roleToUpdate)" [formGroup]="roleToUpdate">
+<div class="form-container">
+     <form (ngSubmit)="updateUser(updateForm)" [formGroup]="updateForm">
+          <div>
+               <h1>Update User Details</h1>
 
-          <mat-form-field class="form-group">
-               <mat-label for="name">Name</mat-label>
-               <input type="text" matInput formControlName="name" placeholder="Name">
-          </mat-form-field>
+               <mat-form-field appearance="outline" class="full_wide">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name" placeholder="Full Name">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+                    <mat-error *ngIf="name?.errors?.['minlength']">
+                         Name should have minimum of {{name?.errors?.['minlength']?.requiredLength}} characters
+                    </mat-error>
+               </mat-form-field><br><br>
 
-          <mat-form-field class="form-group">
-               <mat-label for="phoneNo">Phone Number</mat-label>
-               <input matInput type="tel" formControlName="phoneNo" placeholder="10 Digit Long Phone Number">
-               <mat-error *ngIf="phoneNo?.errors?.['pattern']">
-                    Valid phone number contains 10 digits and starts with 7/8/9
-               </mat-error>
-          </mat-form-field>
+               <mat-form-field appearance="outline" class="full_wide">
+                    <mat-label>Phone Number</mat-label>
+                    <input matInput type="tel" formControlName="phoneNo" placeholder="10 Digit Long Phone Number">
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngIf="phoneNo?.errors?.['required']">Phone number is required</mat-error>
+                    <mat-error *ngIf="phoneNo?.errors?.['pattern']">
+                         Valid phone number contains 10 digits and starts with 7/8/9
+                    </mat-error>
+               </mat-form-field><br><br>
+          </div>
 
-          <div class="form-group mybtn">
-               <button mat-stroked-button mat-dialog-close color="primary" style="margin-right: 50px;">Close</button>
-               <button mat-stroked-button color="primary" type="submit" class="btn btn-default"
-                    mat-dialog-close>Update</button>
+          <div>
+               <button type="button" mat-raised-button routerLink="/dashboard">Close</button>
+               <button type="submit" class="button" mat-button [disabled]="updateForm.invalid">Update</button>
           </div>
      </form>
 </div>

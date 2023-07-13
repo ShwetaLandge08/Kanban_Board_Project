@@ -1,20 +1,21 @@
-.container {
-     border: 1px solid wheat;
-     background-color: black;
- }
- 
- .form {
-     width: max-content;
-     height: max-content;
-     padding: 30px;
- }
- 
- .form-group {
-     width: 100%;
- }
- 
- 
- .mybtn {
-     display: flex;
-     justify-content: center;
- }
+.form-container {
+    margin: 1.5rem auto;
+    width: fit-content;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
+}
+
+
+.full_wide {
+    width: 100%;
+}
+
+
+.button {
+    color: white;
+    background-color: rgb(149, 76, 218);
+    margin-left: 15px;
+}

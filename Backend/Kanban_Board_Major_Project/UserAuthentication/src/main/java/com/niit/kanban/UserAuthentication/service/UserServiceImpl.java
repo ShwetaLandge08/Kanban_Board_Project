@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUserInfo(User user) throws UserNotFoundException {
+    public User updateUser(User user) throws UserNotFoundException {
         Optional<User> optional = userRepository.findByEmail(user.getEmail());
         if (optional.isEmpty()) {
             throw new UserNotFoundException();

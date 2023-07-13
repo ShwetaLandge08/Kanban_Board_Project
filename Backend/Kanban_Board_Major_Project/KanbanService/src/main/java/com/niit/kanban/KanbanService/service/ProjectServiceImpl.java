@@ -76,6 +76,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> getProjectsOfAdmin(User admin) throws ProjectNotFoundException {
+//        System.out.println(projectRepository.findAllByAdmin(admin));
         return projectRepository.findAllByAdmin(admin).orElseThrow(ProjectNotFoundException::new);
     }
 

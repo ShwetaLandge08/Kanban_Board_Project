@@ -18,6 +18,7 @@ public class BeanConfig {
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/all");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/email");
         filterRegistrationBean.addUrlPatterns("/api/kanban/user/delete");
+        filterRegistrationBean.addUrlPatterns("/api/kanban/user/update");
         return filterRegistrationBean;
     }
 }

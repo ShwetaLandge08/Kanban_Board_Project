@@ -10,6 +10,9 @@ public interface IUserProxy {
     @PostMapping("/api/auth/register")
     ResponseEntity<?> saveUser(@RequestBody User user);
 
+    @PutMapping("/api/auth/update")
+    ResponseEntity<?> updateUser(@RequestBody User user);
+
     @DeleteMapping("/api/auth/delete")
     ResponseEntity<?> deleteUser(@RequestBody String email);
 }

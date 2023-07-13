@@ -43,8 +43,8 @@ button {
   margin: 20px;
   padding: 25px;
   border-radius: 4px;
-  background: gainsboro;
-
+  /* background: gainsboro; */
+  background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
   &:not(:first-child) {
     margin-left: 0;
   }
@@ -59,7 +59,7 @@ button {
   overflow-x: hidden;
   padding: 25px;
   height: 380px;
-  background-color: rgb(211, 205, 205);
+  background-color: rgb(241, 232, 243);
   border-radius: 10px;
 }
 
@@ -79,7 +79,7 @@ button {
   border: none;
   margin-top: 20px;
   float: right;
-  background-color: gainsboro;
+  background-color: rgb(236, 208, 236);
   font-size: large;
   font-weight: medium;
   text-transform: uppercase;

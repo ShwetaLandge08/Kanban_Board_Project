@@ -5,86 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5398faf9-45ee-4b80-a2f6-410a69192503" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/controller/ProjectControllerTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/repository/ProjectRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/service/ProjectServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserAuthentication/src/test/java/com/niit/kanban/UserAuthentication/controller/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UserAuthentication/src/test/java/com/niit/kanban/UserAuthentication/service/UserServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APIGatewayService/src/main/java/com/niit/kanban/APIGatewayService/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/APIGatewayService/src/main/java/com/niit/kanban/APIGatewayService/config/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/config/BeanConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/StageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Stage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/domain/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/proxy/IUserProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/proxy/IUserProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserAuthentication/src/main/java/com/niit/kanban/UserAuthentication/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/project.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/project.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/stage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/stage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_models/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/kanban.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/kanban.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/token-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/token-storage.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/_services/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/change-password/change-password.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/change-password/change-password.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-stage/dialog-add-stage.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-stage/dialog-add-stage.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-stage/dialog-add-stage.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-stage/dialog-add-stage.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-task/dialog-add-task.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-stage/dialog-confirm-stage.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-stage/dialog-confirm-stage.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-stage/dialog-confirm-stage.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/not-found/not-found.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/not-found/not-found.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/not-found/not-found.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/not-found/not-found.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/search-task/search-task.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/search-task/search-task.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/search-task/search-task.component.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-in/sign-in.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/stage/stage.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/stage/stage.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/stage/stage.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task/task.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task/task.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task/task.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/task-details/task-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/index.html" afterDir="false" />
@@ -139,55 +88,35 @@
       <recent name="D:\Backup10_09\Users\shweta y. landge\NIIT\CapstoneProjectKanbanBoardFinal\capstone_kanban_board_project\Backend\Kanban_Board_Major_Project\KanbanService\src\main\java\com\niit\kanban\KanbanService\exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.com.niit.kanban.UserAuthentication in UserAuthentication">
-    <configuration name="ProjectServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KanbanService" />
+  <component name="RunManager" selected="Application.UserAuthenticationApplication">
+    <configuration name="ApiGatewayServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.APIGatewayService.ApiGatewayServiceApplication" />
+      <module name="APIGatewayService" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.niit.kanban.KanbanService.service.*" />
+          <option name="PATTERN" value="com.niit.kanban.APIGatewayService.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.niit.kanban.KanbanService.service" />
-      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.KanbanService.service.ProjectServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectServiceTest.testTaskForSaveProjectSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KanbanService" />
+    <configuration name="EurekaServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.EurekaService.EurekaServiceApplication" />
+      <module name="EurekaService" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.niit.kanban.KanbanService.service.*" />
+          <option name="PATTERN" value="com.niit.kanban.EurekaService.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.niit.kanban.KanbanService.service" />
-      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.KanbanService.service.ProjectServiceTest" />
-      <option name="METHOD_NAME" value="testTaskForSaveProjectSuccess" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StageServiceTest.testTaskForSaveStageSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KanbanService" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.niit.kanban.KanbanService.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.niit.kanban.KanbanService.service" />
-      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.KanbanService.service.StageServiceTest" />
-      <option name="METHOD_NAME" value="testTaskForSaveStageSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="com.niit.kanban.KanbanService in KanbanService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="KanbanServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.KanbanService.KanbanServiceApplication" />
       <module name="KanbanService" />
       <extension name="coverage">
         <pattern>
@@ -195,13 +124,25 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.niit.kanban.KanbanService" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.niit.kanban.UserAuthentication in UserAuthentication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NotificationServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.NotificationService.NotificationServiceApplication" />
+      <module name="NotificationService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.niit.kanban.NotificationService.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserAuthenticationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.niit.kanban.UserAuthentication.UserAuthenticationApplication" />
       <module name="UserAuthentication" />
       <extension name="coverage">
         <pattern>
@@ -209,19 +150,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.niit.kanban.UserAuthentication" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.com.niit.kanban.UserAuthentication in UserAuthentication" />
-        <item itemvalue="JUnit.com.niit.kanban.KanbanService in KanbanService" />
-        <item itemvalue="JUnit.ProjectServiceTest" />
-        <item itemvalue="JUnit.ProjectServiceTest.testTaskForSaveProjectSuccess" />
-        <item itemvalue="JUnit.StageServiceTest.testTaskForSaveStageSuccess" />
+        <item itemvalue="Application.KanbanServiceApplication" />
+        <item itemvalue="Application.UserAuthenticationApplication" />
+        <item itemvalue="Application.NotificationServiceApplication" />
+        <item itemvalue="Application.ApiGatewayServiceApplication" />
+        <item itemvalue="Application.EurekaServiceApplication" />
       </list>
     </recent_temporary>
   </component>
