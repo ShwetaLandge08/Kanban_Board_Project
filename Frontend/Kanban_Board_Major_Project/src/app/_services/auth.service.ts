@@ -5,7 +5,7 @@ import { User } from '../_models/user';
 
 const LOGIN_API = 'http://localhost:9000/api/auth/login';
 const REGISTER_API = 'http://localhost:9000/api/kanban/user/register';
-// const Delete_API = 'http://localhost:9000/api/kanban/user/delete';
+const PROFILE_API = 'http://localhost:9000/api/auth/';
 const ALL_USERS_API = 'http://localhost:9000/api/kanban/user/all';
 const UPDATE_USER = "http://localhost:9000/api/kanban/user/update";
 const UPDATE_PASSWORD_API = "http://localhost:9000/api/auth/updatePassword";
@@ -27,9 +27,9 @@ export class AuthService {
     return this.http.post(REGISTER_API, user, httpOptions);
   }
 
-  // delete(): Observable<any> {
-  //   return this.http.delete(Delete_API, httpOptions);
-  // }
+  getProfile(id: number): Observable<any> {
+    return this.http.get(PROFILE_API + id, httpOptions);
+  }
 
   getAllUsers(): Observable<any | null> {
     return this.http.get(ALL_USERS_API, httpOptions);

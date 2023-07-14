@@ -44,6 +44,19 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
+    public SimpleMailMessage sendTaskAssignMail(User user) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(user.getEmail());
+        mailMessage.setText("Dear " + user.getName() + ",\n\nOne task is Assigned to you.\n" +
+                "Please Login to your Kanban dashboard and check." +
+                "\n\nRegards\nKanban Board Team");
+        mailMessage.setSubject("Task is Assign to You!");
+        javaMailSender.send(mailMessage);
+        return mailMessage;
+    }
+
+    @Override
     public SimpleMailMessage sendDeletionMail(User user) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(sender);

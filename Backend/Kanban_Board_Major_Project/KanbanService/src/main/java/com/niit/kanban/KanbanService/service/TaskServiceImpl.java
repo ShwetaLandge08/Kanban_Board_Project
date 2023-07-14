@@ -2,6 +2,7 @@ package com.niit.kanban.KanbanService.service;
 
 import com.niit.kanban.KanbanService.domain.*;
 import com.niit.kanban.KanbanService.exception.*;
+import com.niit.kanban.KanbanService.proxy.EmailProxy;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import com.niit.kanban.KanbanService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,13 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
+    private final EmailProxy emailProxy;
 
     @Autowired
-    public TaskServiceImpl(ProjectRepository projectRepository, UserRepository userRepository) {
+    public TaskServiceImpl(ProjectRepository projectRepository, UserRepository userRepository, EmailProxy emailProxy) {
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
+        this.emailProxy = emailProxy;
     }
 
     @Override
@@ -32,6 +35,7 @@ public class TaskServiceImpl implements TaskService {
         task.setId(lastId + 1);
         tasks.add(task);
         stage.setTasks(tasks);
+        emailProxy.sendTaskAssignedMail(task.getAssignee());
         System.out.println("project = " + project);
         return projectRepository.save(project);
     }

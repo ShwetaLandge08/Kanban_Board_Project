@@ -7,7 +7,7 @@
             style="color: green;position:relative;top:5px">flag</mat-icon>
         <mat-icon *ngIf="project.priority == 'Medium' || project.priority == 'medium'"
             style="color: yellow;position:relative;top:5px">flag</mat-icon>
-        <!-- <mat-card-subtitle>{{project.admin?.name}}</mat-card-subtitle> -->
+        <mat-card-subtitle *ngIf="!isAdmin"><strong>Admin:</strong>&nbsp;{{project.admin?.name}}</mat-card-subtitle>
     </mat-card-header>
     <br>
     <mat-card-content>
@@ -34,7 +34,7 @@
             <strong>Description: </strong>
             <p>{{project.description}}</p>
         </span>
-        
+
     </mat-card-content>
     <mat-card-actions *ngIf="isAdmin">
         <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon>Edit</button>

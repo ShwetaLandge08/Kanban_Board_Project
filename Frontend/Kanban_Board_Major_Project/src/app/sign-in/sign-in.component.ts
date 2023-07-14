@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  role: string = '';
+ // role: string = '';
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -37,9 +37,9 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.role = this.tokenStorage.getUser().role;
+     // this.role = this.tokenStorage.getUser().role;
     }
-    if(this.tokenStorage.isLoggedIn()){
+    if (this.tokenStorage.isLoggedIn()) {
       this.router.navigate(['/dashboard']);
     }
   }
@@ -50,12 +50,23 @@ export class SignInComponent implements OnInit {
       this.authService.login(user).subscribe({
         next: data => {
           this.tokenStorage.saveToken(data.token);
-          this.tokenStorage.saveUser(data);
+          //this.tokenStorage.saveUser(data);
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.role = this.tokenStorage.getUser().role;
-          this.dataSharingService.isLoggedIn.next(true);
+          //this.role = this.tokenStorage.getUser().role;
+          //this.dataSharingService.isLoggedIn.next(true);
+          this.authService.getProfile(data.id).subscribe({
+            next: response => {
+              console.log(response);
+              this.tokenStorage.saveUser(response);
+              this.dataSharingService.isLoggedIn.next(true);
+            },
+            error: error => {
+              console.log(error);
+              this.dataSharingService.isLoggedIn.next(true);
+            }
+          });
 
           this.router.navigate(['/dashboard']);
           this.snackBar.open("You are Looged In", 'OK', {
@@ -68,7 +79,7 @@ export class SignInComponent implements OnInit {
 
           this.isLoginFailed = true;
           this.snackBar.open(this.errorMessage, "Failed", {
-            duration: 5000,
+            duration: 1000,
           });
         }
       });

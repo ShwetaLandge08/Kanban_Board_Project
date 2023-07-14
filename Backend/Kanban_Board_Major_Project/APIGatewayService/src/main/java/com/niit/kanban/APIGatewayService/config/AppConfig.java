@@ -12,12 +12,12 @@ public class AppConfig {
         return builder.routes()
                 .route(p -> p
                         .path("/api/auth/**")// for user auth service
-                        //.uri("http://localhost:8085/"))
-                        .uri("lb://UserAuthenticationService"))
+                        .uri("http://localhost:8085/"))
+                        //.uri("lb://UserAuthenticationService"))
                 .route(p -> p
                         .path("/api/kanban/**") //for Kanban Service user
-                        //.uri("http://localhost:8081/"))
-                        .uri("lb://kanban-board-service"))
+                        .uri("http://localhost:8081/"))
+                        //.uri("lb://kanban-board-service"))
                 .build();
     }
 }

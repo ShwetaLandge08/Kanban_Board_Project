@@ -14,5 +14,7 @@ public interface EmailProxy {
     ResponseEntity<?> sendUpdateMail(@RequestBody User user);
     @PostMapping("/api/email/delete")
     ResponseEntity<?> sendDeletionMail(@RequestBody User user);
+    @PostMapping("/api/email/task")
+    ResponseEntity<?> sendTaskAssignedMail(@RequestBody User user);
 }
 

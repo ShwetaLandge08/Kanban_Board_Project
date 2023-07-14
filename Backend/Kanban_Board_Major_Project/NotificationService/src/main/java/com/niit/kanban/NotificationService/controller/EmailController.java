@@ -33,5 +33,9 @@ public class EmailController {
     public ResponseEntity<?> sendAccountDeletedMail(@RequestBody User user) {
         return new ResponseEntity<>(emailService.sendDeletionMail(user), HttpStatus.OK);
     }
+    @PostMapping("/task")
+    public ResponseEntity<?> sendTaskAssignedMail(@RequestBody User user) {
+        return new ResponseEntity<>(emailService.sendTaskAssignMail(user), HttpStatus.OK);
+    }
 }
 

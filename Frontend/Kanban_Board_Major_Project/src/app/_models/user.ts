@@ -4,5 +4,6 @@ export type User = {
      password?: string;
      phoneNo?: number;
      currentPassword?:string;
+     image?: File | null | Blob;
  };
  

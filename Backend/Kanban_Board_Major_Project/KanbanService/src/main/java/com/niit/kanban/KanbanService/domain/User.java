@@ -19,4 +19,5 @@ public class User {
     private String password;
     private String name;
     private Long phoneNo;
+    private Byte[] image;
 }

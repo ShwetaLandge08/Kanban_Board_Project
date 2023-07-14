@@ -12,12 +12,14 @@
         <button mat-button id="menu" *ngIf="isLoggedIn" routerLink="/home"><mat-icon>home</mat-icon>Home</button>
         &nbsp;&nbsp;
 
-        <button mat-button id="menu" *ngIf="isLoggedIn" routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</button>
+        <button mat-button id="menu" *ngIf="isLoggedIn"
+                routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</button>
         &nbsp;&nbsp;
-
-        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu"><mat-icon>account_circle </mat-icon>{{ username}}
+        <img *ngIf="isLoggedIn" src="{{profilePic}}" alt="profile-pic">
+        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu">
+                {{ username}}
         </button>
-
+        <!-- <mat-icon>account_circle </mat-icon> -->
         <mat-menu #menu="matMenu">
                 <button mat-menu-item mat-dialog-close (click)="openChangePasswordDialog()">
                         <mat-icon>remove_red_eye</mat-icon>

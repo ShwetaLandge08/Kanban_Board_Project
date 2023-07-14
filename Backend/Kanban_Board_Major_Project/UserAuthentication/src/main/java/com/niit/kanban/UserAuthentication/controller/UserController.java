@@ -52,6 +52,14 @@ public class UserController {
         }
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable int id) {
+        try {
+            return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @PutMapping("/update")
     public ResponseEntity<?> updateUser(@RequestBody User user) {

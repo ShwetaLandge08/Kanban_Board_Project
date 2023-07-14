@@ -55,6 +55,9 @@ public class UserServiceImpl implements UserService {
         if (user.getPhoneNo() != null)
             existingUser.setPhoneNo(user.getPhoneNo());
 
+        if (user.getImage() != null && user.getImage().length > 0)
+            existingUser.setImage(user.getImage());
+
         userProxy.updateUser(existingUser);
         emailProxy.sendUpdateMail(existingUser);
 

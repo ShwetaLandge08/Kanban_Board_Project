@@ -50,7 +50,14 @@ public class UserServiceImpl implements UserService {
         if (existingUser.getPhoneNo() != null) {
             existingUser.setPhoneNo(user.getPhoneNo());
         }
+        if (user.getImage() != null && user.getImage().length > 0)
+            existingUser.setImage(user.getImage().clone());
+
         return userRepository.save(existingUser);
+    }
+    @Override
+    public User getUser(int id) throws UserNotFoundException {
+        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
     @Override

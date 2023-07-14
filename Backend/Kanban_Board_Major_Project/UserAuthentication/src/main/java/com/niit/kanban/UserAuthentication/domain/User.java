@@ -21,4 +21,8 @@ public class User {
     private String name;
     private Long phoneNo;
     private String password;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
+
 }

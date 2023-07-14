@@ -2,6 +2,12 @@
      <form (ngSubmit)="updateUser(updateForm)" [formGroup]="updateForm">
           <div>
                <h1>Update User Details</h1>
+               <img *ngIf="selectedImage" [src]="selectedImage" alt="profile pic">
+               <img *ngIf="user.image" src="data:image/jpeg;base64,{{user.image}}" />
+               <!-- <input type="file" accept="image/*" (change)="onFileChanged($event)"> -->
+
+               <input type="file" accept="image/*" formControlName="image" (change)="onFileChanged($event)">
+
 
                <mat-form-field appearance="outline" class="full_wide">
                     <mat-label>Name</mat-label>

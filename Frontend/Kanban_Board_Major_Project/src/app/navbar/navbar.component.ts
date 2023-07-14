@@ -18,7 +18,7 @@ export class NavbarComponent {
   isLoggedIn = false;
   username?: string;
   home?: string;
-  profilePhoto?: string;
+  profilePic: string = '';
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,19 +32,25 @@ export class NavbarComponent {
   ) {
     this.dataSharingService.isLoggedIn.subscribe(value => {
       this.isLoggedIn = value;
-      this.checkLogin();
+      this.isLoggedIn = !!this.tokenStorage.getToken();
+      const user = this.tokenStorage.getUser();
+      this.username = user.name;
+      if (user.image)
+        this.profilePic = user.image;
+      else
+        this.profilePic = "https://www.citypng.com/public/uploads/preview/download-profile-user-round-purple-icon-symbol-png-11639594314uv1zwqsazt.png";
     });
   }
 
-  checkLogin(): void {
-    this.isLoggedIn = !!this.tokenStorage.getToken();
-    if (this.isLoggedIn) {
-      const user = this.tokenStorage.getUser();
-      //this.user = user;
-      this.username = user.name;
-      //this.profilePhoto = user.profilePhoto;
-    }
-  }
+  // checkLogin(): void {
+  //   this.isLoggedIn = !!this.tokenStorage.getToken();
+  //   if (this.isLoggedIn) {
+  //     const user = this.tokenStorage.getUser();
+  //     //this.user = user;
+  //     this.username = user.name;
+  //     //this.profilePhoto = user.profilePhoto;
+  //   }
+  // }
 
   logout(): void {
     this.tokenStorage.signOut();
