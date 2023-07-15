@@ -2,12 +2,9 @@
      <form (ngSubmit)="updateUser(updateForm)" [formGroup]="updateForm">
           <div>
                <h1>Update User Details</h1>
-               <img *ngIf="selectedImage" [src]="selectedImage" alt="profile pic">
+               <!-- <img *ngIf="selectedImage" [src]="selectedImage" alt="profile pic">
                <img *ngIf="user.image" src="data:image/jpeg;base64,{{user.image}}" />
-               <!-- <input type="file" accept="image/*" (change)="onFileChanged($event)"> -->
-
-               <input type="file" accept="image/*" formControlName="image" (change)="onFileChanged($event)">
-
+               <input type="file" accept="image/*" formControlName="image" (change)="onFileChanged($event)"> -->
 
                <mat-form-field appearance="outline" class="full_wide">
                     <mat-label>Name</mat-label>
@@ -27,10 +24,23 @@
                     <mat-error *ngIf="phoneNo?.errors?.['pattern']">
                          Valid phone number contains 10 digits and starts with 7/8/9
                     </mat-error>
-               </mat-form-field><br><br>
+               </mat-form-field><br>
+
+               <div class="picture">
+                    <div>
+                         <h1>Profile Picture</h1>
+                         <img *ngIf="isDefaultImage()" [src]="user.image" alt="default image">
+                         <img *ngIf="!isDefaultImage()" src="data:image/jpeg;base64,{{user.image}}" alt="user image">
+                    </div>
+                    <input hidden type="file" accept="image/*" formControlName="image" #image
+                         (change)="onFileChanged($event)">
+                    <button type="button" mat-flat-button extended class="edit"
+                         (click)="image.click()"><mat-icon>image</mat-icon> Select Picture
+                    </button>
+               </div>
           </div>
 
-          <div>
+          <div class="submitdiv">
                <button type="button" mat-raised-button routerLink="/dashboard">Close</button>
                <button type="submit" class="button" mat-button [disabled]="updateForm.invalid">Update</button>
           </div>

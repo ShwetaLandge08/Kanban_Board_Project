@@ -1,6 +1,6 @@
 .form-container {
     margin: 1.5rem auto;
-    width: fit-content;
+    width: 500px;
     text-align: center;
     padding: 20px;
     border-radius: 15px;
@@ -23,4 +23,16 @@ img {
     color: white;
     background-color: rgb(149, 76, 218);
     margin-left: 15px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
+.submitdiv {
+    margin-top: 10px;
+}
+.edit{
+    margin-top: 20px;
 }

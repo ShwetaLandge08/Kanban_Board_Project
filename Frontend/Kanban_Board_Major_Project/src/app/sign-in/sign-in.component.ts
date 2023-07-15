@@ -59,7 +59,12 @@ export class SignInComponent implements OnInit {
           this.authService.getProfile(data.id).subscribe({
             next: response => {
               console.log(response);
+              if (!response.image) {
+                // const imaage = "assets/user.png"
+                response.image = "https://www.citypng.com/public/uploads/preview/download-profile-user-round-purple-icon-symbol-png-11639594314uv1zwqsazt.png"
+              }
               this.tokenStorage.saveUser(response);
+              console.log(response);
               this.dataSharingService.isLoggedIn.next(true);
             },
             error: error => {

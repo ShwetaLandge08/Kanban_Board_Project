@@ -1,6 +1,6 @@
 <mat-toolbar>
         <img src="../assets/images.png" alt="logo">
-        <span><a style="color: white;">Kanban Board</a></span>
+        <span><a style="color: white;margin-left: 20px;">Kanban Board</a></span>
         <span class="spacer"></span>
         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
                 routerLinkActive="active"><mat-icon>login</mat-icon>Login
@@ -15,9 +15,14 @@
         <button mat-button id="menu" *ngIf="isLoggedIn"
                 routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</button>
         &nbsp;&nbsp;
-        <img *ngIf="isLoggedIn" src="{{profilePic}}" alt="profile-pic">
-        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu">
-                {{ username}}
+
+        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" class="profile-button">
+                <div class="profile-image">
+                        {{user.name}}
+                        <img *ngIf="isDefaultImage()" src="{{user.image}}" alt="profile_pic">
+                        <img *ngIf="!isDefaultImage()" id="image" src="data:image/jpeg;base64,{{user.image}}"
+                                alt="profile-pic">
+                </div>
         </button>
         <!-- <mat-icon>account_circle </mat-icon> -->
         <mat-menu #menu="matMenu">

@@ -1,47 +1,43 @@
-<div class="root">
-    <div class="board">
+<div cdkDropListGroup class="board-wrapper">
+    <!-- All lists in here will be connected. -->
+    <div cdkDropList [cdkDropListData]="stage.tasks!" *ngFor="let stage of project.stages" class="board-columns"
+        (cdkDropListDropped)="drop($event)">
 
-        <div class="board-wrapper" cdkDropListGroup>
-            <div cdkDropList [cdkDropListData]="stage.tasks!" class="board-columns" *ngFor="let stage of stages"
-                (cdkDropListDropped)="drop($event)">
-                <div class="board-column">
-                    <div class="column-title">
-                        <h1><span style="float: right;"><mat-icon
-                                    style="position: relative;top: 4px;">hourglass_top</mat-icon>
-                                {{stage?.tasks?.length}}</span>
-                        </h1>
-                        <h2>{{stage.name}}</h2>
-                        <button id="menu" mat-icon-button [matMenuTriggerFor]="menu"
-                            style="position: relative;top: -7px;" *ngIf="isAdmin">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                        <mat-menu #menu="matMenu">
-                            <button class="hamburgerBtn" mat-menu-item (click)="openAddTaskDialog(project,stage)">
-                                <mat-icon>add_circle</mat-icon>Add Task
-                            </button>
+        <div class="column-title">
+            <h1><span style="float: right;"><mat-icon style="position: relative;top: 4px;">numbers</mat-icon>
+                    {{stage?.tasks?.length}}</span>
+            </h1>
+            <h2>{{stage.name}}</h2>
+            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" style="position: relative;top: -7px;"
+                *ngIf="isAdmin">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button class="hamburgerBtn" mat-menu-item (click)="openAddTaskDialog(project,stage)">
+                    <mat-icon>add_circle</mat-icon>Add Task
+                </button>
 
-                            <button mat-menu-item (click)="openConfirmDeleteDialog(stage.name)">
-                                <mat-icon>delete</mat-icon>Delete Stage
-                            </button>
-                        </mat-menu>
-                    </div>
-                    <div class="task-main">
-                        <div class="task-container" *ngFor="let task of stage.tasks" cdkDrag [cdkDragData]="task">
-                            <mat-card (click)="openTaskDetailsDialogBox(project,task)" class="task">
-                                <mat-card-header>
-                                    <mat-card-title>{{task.title}}</mat-card-title>
-                                    <mat-card-subtitle><mat-icon
-                                            style="position: relative;top: 7px;right: 5px;">assignment_ind</mat-icon>{{task.assignee?.name}}</mat-card-subtitle>
-                                </mat-card-header>
-                            </mat-card>
-                        </div>
-                        <h3 *ngIf="!stage?.tasks?.length">No tasks found !</h3>
-                    </div>
-                </div>
-            </div>
-            <div *ngIf="isAdmin">
-                <button class="btn1" (click)="openAddStageDialog()" title="Add Stage"><mat-icon style="position: relative;top: 7px;">add</mat-icon>Add Stage</button>
-            </div>
+                <button mat-menu-item (click)="openConfirmDeleteDialog(stage.name)">
+                    <mat-icon>delete</mat-icon>Delete Stage
+                </button>
+            </mat-menu>
         </div>
+
+        <div class="task-main">
+            <div *ngFor="let task of stage.tasks" cdkDrag [cdkDragData]="task" class="task-list">
+                <mat-card (click)="openTaskDetailsDialogBox(project,task)" class="task">
+                    <mat-card-header>
+                        <mat-card-title>{{task.title}}</mat-card-title>
+                        <mat-card-subtitle><mat-icon
+                                style="position: relative;top: 7px;right: 5px;">assignment_ind</mat-icon>{{task.assignee?.name}}</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+            </div>
+            <h3 *ngIf="!stage?.tasks?.length">No tasks found !</h3>
+        </div>
+    </div>
+    <div *ngIf="isAdmin">
+        <button class="btn1" (click)="openAddStageDialog()" title="Add Stage"><mat-icon
+                style="position: relative;top: 7px;">add</mat-icon>Add Stage</button>
     </div>
 </div>

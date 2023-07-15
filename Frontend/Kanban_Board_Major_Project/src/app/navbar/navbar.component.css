@@ -48,5 +48,12 @@ mat-toolbar {
     color: white;
     background-color: rgb(124, 40, 180);
     border-radius: 20px;
-    padding: 5px;
+    /* padding: 5px; */
+}
+
+img {
+    width: 35px;
+    height: 35px;
+    margin-right: -7px;
+    margin-left: -1px;
 }

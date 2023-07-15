@@ -74,14 +74,14 @@ export class DialogAddTaskComponent {
         console.log(typeof (data));
         this.dataStorage.isUpdate.next(data);
         this.snackBar.open("Task added successfully", "Added", {
-          duration: 7000
+          duration: 1000
         });
 
       },
       error: err => {
         console.log(err);
         this.snackBar.open(err.error.message, "Failed", {
-          duration: 7000
+          duration: 1000
         });
       }
     });

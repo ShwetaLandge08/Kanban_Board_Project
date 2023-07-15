@@ -18,7 +18,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
-    private ResponseEntity<?> responseEntity;
     private final UserService userService;
     private final EmailSenderService senderService;
     private final JwtSecurityTokenGenerator jwtSecurityTokenGenerator;
@@ -33,6 +32,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody User user) {
+        ResponseEntity<?> responseEntity;
         try {
             responseEntity = new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
         } catch (UserAlreadyExistException e) {
