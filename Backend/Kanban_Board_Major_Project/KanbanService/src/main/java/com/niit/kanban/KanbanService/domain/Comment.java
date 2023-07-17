@@ -12,8 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @Document
 public class Comment {
-    @Id
-    private int id;
+//    @Id
+//    private int id;
     private String comment;
     @DBRef
     private User commenter;

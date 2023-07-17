@@ -30,9 +30,9 @@ public class TaskServiceImpl implements TaskService {
         Stage stage = project.getStages().stream().filter(s -> s.getName().equals(stageName)).findFirst().orElseThrow(StageNotFoundException::new);
         List<Task> tasks = stage.getTasks();
         if (tasks == null) tasks = new ArrayList<>();
-        int lastId = 0;
-        if (!tasks.isEmpty()) lastId = ((Task) tasks.toArray()[tasks.size() - 1]).getId();
-        task.setId(lastId + 1);
+//        int lastId = 0;
+//        if (!tasks.isEmpty()) lastId = ((Task) tasks.toArray()[tasks.size() - 1]).getId();
+//        task.setId(lastId + 1);
         tasks.add(task);
         stage.setTasks(tasks);
         emailProxy.sendTaskAssignedMail(task.getAssignee());
@@ -102,14 +102,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Project deleteTask(int taskId, String stageName, int projectId) throws ProjectNotFoundException, TaskNotFoundException {
+    public Project deleteTask(Task task, String stageName, int projectId) throws ProjectNotFoundException, TaskNotFoundException {
         Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
         List<Stage> stages = project.getStages();
         for (Stage stage : stages) {
-            if(stage.getName().equals(stageName)){
+            if (stage.getName().equals(stageName)) {
                 List<Task> tasks = stage.getTasks();
-                if (tasks.stream().noneMatch(s -> s.getId() == taskId)) throw new TaskNotFoundException();
-                tasks.removeIf(s -> s.getId() == taskId);
+                if (tasks.stream().noneMatch(s -> s.equals(task))) throw new TaskNotFoundException();
+                tasks.removeIf(s -> s.equals(task));
                 stage.setTasks(tasks);
             }
         }

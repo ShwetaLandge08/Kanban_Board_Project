@@ -16,8 +16,8 @@ import java.util.List;
 @Data
 @Document
 public class Task {
-    @Id
-    private int id;
+//    @Id
+//    private int id;
     private String title;
     private String description;
     @DBRef

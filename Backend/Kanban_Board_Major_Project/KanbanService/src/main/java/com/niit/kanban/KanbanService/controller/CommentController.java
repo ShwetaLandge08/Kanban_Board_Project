@@ -1,10 +1,12 @@
 package com.niit.kanban.KanbanService.controller;
 
 import com.niit.kanban.KanbanService.domain.Comment;
+import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.exception.CommentAlreadyExistsException;
 import com.niit.kanban.KanbanService.exception.ProjectNotFoundException;
 import com.niit.kanban.KanbanService.exception.TaskNotFoundException;
 import com.niit.kanban.KanbanService.service.CommentService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,23 +22,30 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/comments/{taskId}/{projectId}/{stageName}")
-    public ResponseEntity<?> getAllCommentsOnTask(@PathVariable int taskId, @PathVariable int projectId,
+    @GetMapping("/comments/{projectId}/{stageName}")
+    public ResponseEntity<?> getAllCommentsOnTask(@RequestBody Task task, @PathVariable int projectId,
                                                   @PathVariable String stageName) {
         try {
-            return new ResponseEntity<>(commentService.getAllCommentOnTask(taskId, projectId, stageName), HttpStatus.OK);
+            return new ResponseEntity<>(commentService.getAllCommentOnTask(task, projectId, stageName), HttpStatus.OK);
         } catch (ProjectNotFoundException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @PutMapping("/addComment/{taskId}/{projectId}/{stageName}")
-    public ResponseEntity<?> createTask(@RequestBody Comment comment, @PathVariable int taskId,
-                                        @PathVariable int projectId, @PathVariable String stageName) {
+    @PutMapping("/addComment")
+    public ResponseEntity<?> addCommentOnTask(@RequestBody CommentRequest request) {
         try {
-            return new ResponseEntity<>(commentService.addCommentOnTask(comment, taskId, projectId, stageName), HttpStatus.CREATED);
+            return new ResponseEntity<>(commentService.addCommentOnTask(request.getComment(), request.getTask(), request.getProjectId(),request.getStageName()), HttpStatus.CREATED);
         } catch (ProjectNotFoundException | CommentAlreadyExistsException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+}
+
+@Getter
+class CommentRequest {
+    private Comment comment;
+    private Task task;
+    private String stageName;
+    private int projectId;
 }

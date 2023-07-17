@@ -1,16 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { KanbanService } from '../_services/kanban.service';
-import { Task } from '../_models/task';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Comment } from '../_models/comment';
 import { DataStorageService } from '../_services/data-storage.service';
-import { Stage } from '../_models/stage';
-import { Project } from '../_models/project';
 import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
+import { Task } from '../_models/task';
 
 
 @Component({
@@ -60,11 +57,11 @@ export class TaskDetailsComponent {
     };
     var myComment: any = this.formComment.value;
     myComment.commenter = this.role;
-    const taskId = this.data.task.id;
+    const task = this.data.task;
     const projectId = this.data.project.projectId;
     const stageName = this.data.task.status;
 
-    this.kanbanService.addCommentOnTask(myComment, taskId, projectId, stageName).subscribe(data => {
+    this.kanbanService.addCommentOnTask(myComment, task, projectId, stageName).subscribe(data => {
       console.log(data);
       this.formComment.reset();
     },
@@ -75,10 +72,10 @@ export class TaskDetailsComponent {
     );
   }
   getAllComments() {
-    const taskId = this.data.task.id;
+    const task = this.data.task;
     const projectId = this.data.project.projectId;
     const stageName = this.data.task.status;
-    this.kanbanService.getAllCommentOnTask(taskId, projectId, stageName).subscribe(data => {
+    this.kanbanService.getAllCommentOnTask(task, projectId, stageName).subscribe(data => {
       console.log(data);
       this.comments = data;
     },
@@ -114,9 +111,12 @@ export class TaskDetailsComponent {
   //     });
   //   }
   // }
-  openConfirmDeleteDialog(): void {
+  openConfirmDeleteDialog(task1: Task): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
-      data: { task: `${this.data.project.projectId}/${this.task.status}/${this.task.id}` }
+      data: {
+        task: `${this.data.project.projectId}/${this.task.status}`,
+        task1
+      }
     });
   }
 }

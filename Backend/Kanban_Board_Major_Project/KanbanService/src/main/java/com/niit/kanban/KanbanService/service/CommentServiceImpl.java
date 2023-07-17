@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Project addCommentOnTask(Comment comment, int taskId, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
+    public Project addCommentOnTask(Comment comment, Task task, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
@@ -36,14 +36,14 @@ public class CommentServiceImpl implements CommentService {
                 if (getAllTask == null)
                     break;
                 for (Task task1 : getAllTask) {
-                    if (task1.getId() == taskId) {
+                    if (task1.equals(task)) {
                         List<Comment> comments = task1.getComments();
                         if (comments == null)
                             comments = new ArrayList<>();
-                        int lastId = 0;
-                        if (!comments.isEmpty())
-                            lastId = ((Comment) comments.toArray()[comments.size() - 1]).getId();
-                        comment.setId(lastId + 1);
+//                        int lastId = 0;
+//                        if (!comments.isEmpty())
+//                            lastId = ((Comment) comments.toArray()[comments.size() - 1]).getId();
+//                        comment.setId(lastId + 1);
                         comments.add(comment);
                         task1.setComments(comments);
                     }
@@ -54,7 +54,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getAllCommentOnTask(int taskId, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
+    public List<Comment> getAllCommentOnTask(Task task, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
@@ -66,9 +66,10 @@ public class CommentServiceImpl implements CommentService {
                 List<Task> tasks = stage.getTasks();
                 if (tasks == null)
                     break;
-                for (Task task : tasks) {
-                    if (task.getId() == taskId) {
+                for (Task task1 : tasks) {
+                    if (task1.equals(task)) {
                         myComments = task.getComments();
+                        break;
                     }
                 }
             }

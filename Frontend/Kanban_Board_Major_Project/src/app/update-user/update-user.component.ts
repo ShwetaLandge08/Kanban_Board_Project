@@ -6,6 +6,7 @@ import { AuthService } from '../_services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataStorageService } from '../_services/data-storage.service';
 import ImageCompressor from 'image-compressor.js';
+import { Ng2ImgMaxService } from 'ng2-img-max';
 
 const compressor = new ImageCompressor();
 
@@ -20,7 +21,7 @@ export class UpdateUserComponent {
 
   constructor(private tokenStorage: TokenStorageService, private authService: AuthService,
     private router: Router, private fb: FormBuilder, private snackBar: MatSnackBar,
-    private dataService: DataStorageService) { }
+    private dataService: DataStorageService, private ng2ImgMaxService: Ng2ImgMaxService) { }
 
   user = this.tokenStorage.getUser();
 
@@ -84,42 +85,20 @@ export class UpdateUserComponent {
   }
 
   onFileChanged(event: any) {
-    const file = event.target.files[0];
-    const blobURL = URL.createObjectURL(file);
-    const img = new Image();
-    img.src = blobURL;
-
+    const file: File = event.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event: any) => {
-        console.log(file);
-        //const output = compressor.compress(file, { quality: .7 });
-        this.user.image = event.target.result.split(",")[1];
-        console.log(this.updateForm.value.image);
-      };
-      reader.readAsDataURL(file);
+      this.ng2ImgMaxService.compressImage(file, 0.8).subscribe({
+        next: data => {
+          const reader = new FileReader();
+          reader.onload = (event: any) => {
+            this.user.image = event.target.result.split(",")[1];
+          };
+          reader.readAsDataURL(data);
+        },
+        error: err => {
+          console.log(err);
+        }
+      });
     }
-    // const file = event.target.files[0];
-    // if (!file) return;
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onload = (event: any) => {
-    //   const image = document.createElement("img");
-    //   image.src = event.target.result;
-    //   this.user.image = event.target.result;
-    //   image.onload = (event: any) => {
-    //     const canvas = document.createElement("canvas");
-    //     const max_width = 400;
-    //     const scalesize = max_width / event.target.width;
-    //     canvas.width = max_width;
-    //     canvas.height = event.target.height * scalesize;
-    //     const ctx = canvas.getContext("2d");
-    //     ctx?.drawImage(event.target, 0, 0, canvas.width, canvas.height);
-    //     const Encoded = ctx?.canvas.toDataURL(event.target.result.split(",")[1]);
-    //     this.user.image = Encoded;
-    //     console.log(Encoded);
-    //     console.log(this.updateForm.value.image);
-    //   }
-    // }
   }
 }

@@ -1,41 +1,43 @@
 <mat-card class="project-card">
-    <mat-card-header routerLink="{{project.projectId}}">
-        <mat-card-title>{{project.title}}</mat-card-title>
-        <mat-icon *ngIf="project.priority == 'High' || project.priority == 'high'"
-            style="color: red;position:relative;top:5px">flag</mat-icon>
-        <mat-icon *ngIf="project.priority == 'Low' || project.priority == 'low'"
-            style="color: green;position:relative;top:5px">flag</mat-icon>
-        <mat-icon *ngIf="project.priority == 'Medium' || project.priority == 'medium'"
-            style="color: yellow;position:relative;top:5px">flag</mat-icon>
-        <mat-card-subtitle *ngIf="!isAdmin"><strong>Admin:</strong>&nbsp;{{project.admin?.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <br>
-    <mat-card-content>
-        <span class="flexcontent">
-            <strong>Start Date: </strong>
-            <p>&nbsp;{{project.startDate | date}}</p>
-        </span>
-        <span class="flexcontent">
-            <strong>Due Date: </strong>
-            <p>&nbsp;{{project.dueDate | date}}</p>
-        </span>
+    <div routerLink="{{project.projectId}}">
+        <mat-card-header>
+            <mat-card-title>{{project.title}}</mat-card-title>
+            <mat-icon *ngIf="project.priority == 'High' || project.priority == 'high'"
+                class="position-relative text-danger">flag</mat-icon>
+            <mat-icon *ngIf="project.priority == 'Low' || project.priority == 'low'"
+            class="position-relative text-success">flag</mat-icon>
+            <mat-icon *ngIf="project.priority == 'Medium' || project.priority == 'medium'"
+            class="position-relative text-warning">flag</mat-icon>
+            <mat-card-subtitle *ngIf="!isAdmin"><strong>Admin:</strong>&nbsp;{{project.admin?.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+            <span class="flexcontent">
+                <strong>Start Date: </strong>
+                <p>&nbsp;{{project.startDate | date}}</p>
+            </span>
+            <span class="flexcontent">
+                <strong>Due Date: </strong>
+                <p>&nbsp;{{project.dueDate | date}}</p>
+            </span>
 
-        <span>
-            <strong *ngIf="isDateLessThanToday" style="color: red;">Project is Overdued.
-                <br><br>
-            </strong>
-            <strong *ngIf="isDateIsSameAsTodayDate" style="color: red;"> Project Due Today. Please complete
-                Tasks.
-                <br><br>
-            </strong>
-        </span>
+            <span>
+                <strong *ngIf="isDateLessThanToday" class="text-warning">Project is Overdued.
+                    <br><br>
+                </strong>
+                <strong *ngIf="isDateIsSameAsTodayDate" class="text-warning"> Project Due Today. Please complete
+                    Tasks.
+                    <br><br>
+                </strong>
+            </span>
 
-        <span>
-            <strong>Description: </strong>
-            <p>{{project.description}}</p>
-        </span>
+            <span>
+                <strong>Description: </strong>
+                <p>{{project.description}}</p>
+            </span>
 
-    </mat-card-content>
+        </mat-card-content>
+    </div>
     <mat-card-actions *ngIf="isAdmin">
         <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon>Edit</button>
         <button mat-button

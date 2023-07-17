@@ -1,6 +1,6 @@
 <div class="container">
      <div mat-dialog-action class="close">
-          <button mat-button mat-dialog-close (click)="openConfirmDeleteDialog()"
+          <button mat-button mat-dialog-close (click)="openConfirmDeleteDialog(task)"
                *ngIf="isAdmin"><mat-icon>delete</mat-icon></button>
           <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
      </div>
@@ -8,19 +8,19 @@
           <h2>{{task?.title}}</h2>
      </div>
      <div>
-          <h3 style="font-weight: bold;">Assignee: {{task?.assignee?.name}}</h3>
-          <h3 style="font-weight: bold;">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
+          <h3 class="font-weight-bold">Assignee: {{task?.assignee?.name}}</h3>
+          <h3 class="font-weight-bold">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
           </h3>
-          <h3 style="font-weight: bold;">Priority:
+          <h3 class="font-weight-bold">Priority:
                <mat-icon *ngIf="task.priority == 'High' || task.priority == 'high'"
-                    style="color: red;position:relative;top:5px">flag</mat-icon>
+               class="position-relative text-danger">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Low' || task.priority == 'low'"
-                    style="color: green;position:relative;top:5px">flag</mat-icon>
+               class="position-relative text-success">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Medium' || task.priority == 'medium'"
-                    style="color: yellow;position:relative;top:5px">flag</mat-icon>
+               class="position-relative text-warning">flag</mat-icon>
           </h3>
-          <h3><span  style="font-weight: bold;">Description: </span>
-               <span style="font-weight: light;">{{task?.description}}</span>
+          <h3><span class="font-weight-bold">Description: </span>
+               <span class="font-weight-light">{{task?.description}}</span>
           </h3>
      </div>
      <div>

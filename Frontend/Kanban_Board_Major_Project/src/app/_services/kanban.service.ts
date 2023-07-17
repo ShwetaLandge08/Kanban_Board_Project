@@ -75,8 +75,8 @@ export class KanbanService {
     return this.http.get(TASK_API + "user", httpOptions);
   }
 
-  deleteTask(endPoint: string): Observable<any> {
-    return this.http.put(`${TASK_API}deleteTask/${endPoint}`, httpOptions);
+  deleteTask(endPoint: string, task: Task): Observable<any> {
+    return this.http.put(`${TASK_API}deleteTask/${endPoint}`, task, httpOptions);
   }
 
   //=======================================================================
@@ -95,9 +95,12 @@ export class KanbanService {
 
   //=====================================================================
 
-  addCommentOnTask(comment: Comment, taskId: any, projectId: any, stageName: any): Observable<any> {
-
-    return this.http.put(COMMENT_API + "addComment/" + taskId + '/' + projectId + '/' + stageName, comment, httpOptions).
+  addCommentOnTask(comment: Comment, task: Task, projectId: any, stageName: any): Observable<any> {
+    const body = {
+      comment,
+      task,projectId,stageName
+    };
+    return this.http.put(COMMENT_API + "addComment", body, httpOptions).
       pipe(
         tap(() => {
           this.dataStorage.refreshNeeded.next();
@@ -105,8 +108,8 @@ export class KanbanService {
       );
   }
 
-  getAllCommentOnTask(taskId: number, projectId: any, stageName: any): Observable<any | null> {
-    return this.http.get(COMMENT_API + 'comments/' + taskId + '/' + projectId + '/' + stageName);
+  getAllCommentOnTask(task: any, projectId: any, stageName: any): Observable<any> {
+    return this.http.get(COMMENT_API + 'comments/' + projectId + '/' + stageName, task);
   }
 
   //=======================================================================

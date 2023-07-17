@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export type Task = {
-    id?: number;
+    // id?: number;
     title?: string;
     description?: string;
     assignee?: User;
