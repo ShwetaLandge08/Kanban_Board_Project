@@ -18,13 +18,22 @@ import { Task } from '../_models/task';
 export class TaskDetailsComponent {
   task: any;
   comments: Comment[] = [];
-  role = this.tokenStorage.getUser();
+  //stage: any;
+  user = this.tokenStorage.getUser();
   //project = this.tokenStorage.getProject();
   isAdmin = false;
   constructor(private fb: FormBuilder, private dataStorage: DataStorageService,
     private tokenStorage: TokenStorageService, private kanbanService: KanbanService
     , private snackBar: MatSnackBar, @Inject(MAT_DIALOG_DATA) private data: any,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog) {
+    // this.dataStorage.isUpdate.subscribe(value => {
+    //   this.data.project = value;
+    //   console.log(value);
+    //   // this.stage = value.stages?.filter(stage => stage.name == this.data.stageName);
+    //   // this.stage = this.data.stageName;
+    //   this.data.task.comments = this.comments;
+    // });
+  }
 
 
   ngOnInit() {
@@ -35,7 +44,7 @@ export class TaskDetailsComponent {
       }
     );
     this.getAllComments();
-    if (this.data.project.admin.email == this.role.email)
+    if (this.data.project.admin.email == this.user.email)
       this.isAdmin = true;
   }
 
@@ -56,13 +65,15 @@ export class TaskDetailsComponent {
       return;
     };
     var myComment: any = this.formComment.value;
-    myComment.commenter = this.role;
-    const task = this.data.task;
+    myComment.commenter = this.user;
+    myComment.commenter.image = null;
+    const taskTitle = this.data.task.title;
     const projectId = this.data.project.projectId;
-    const stageName = this.data.task.status;
+    // const stageName = this.data.task.statu
 
-    this.kanbanService.addCommentOnTask(myComment, task, projectId, stageName).subscribe(data => {
+    this.kanbanService.addCommentOnTask(myComment, taskTitle, projectId, this.data.stageName).subscribe(data => {
       console.log(data);
+      this.dataStorage.isUpdate.next(data);
       this.formComment.reset();
     },
       err => {
@@ -72,10 +83,10 @@ export class TaskDetailsComponent {
     );
   }
   getAllComments() {
-    const task = this.data.task;
+    const task = this.data.task.title;
     const projectId = this.data.project.projectId;
-    const stageName = this.data.task.status;
-    this.kanbanService.getAllCommentOnTask(task, projectId, stageName).subscribe(data => {
+    // const stageName = this.data.task.status;
+    this.kanbanService.getAllCommentOnTask(task, projectId, this.data.task.status).subscribe(data => {
       console.log(data);
       this.comments = data;
     },

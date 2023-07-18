@@ -22,20 +22,20 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/comments/{projectId}/{stageName}")
-    public ResponseEntity<?> getAllCommentsOnTask(@RequestBody Task task, @PathVariable int projectId,
-                                                  @PathVariable String stageName) {
+    @GetMapping("/comments/{projectId}/{stageName}/{taskTitle}")
+    public ResponseEntity<?> getAllCommentsOnTask(@PathVariable int projectId,
+                                                  @PathVariable String stageName, @PathVariable String taskTitle) {
         try {
-            return new ResponseEntity<>(commentService.getAllCommentOnTask(task, projectId, stageName), HttpStatus.OK);
+            return new ResponseEntity<>(commentService.getAllCommentOnTask(taskTitle, projectId, stageName), HttpStatus.OK);
         } catch (ProjectNotFoundException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @PutMapping("/addComment")
-    public ResponseEntity<?> addCommentOnTask(@RequestBody CommentRequest request) {
+    @PutMapping("/addComment/{projectId}/{stageName}/{taskTitle}")
+    public ResponseEntity<?> addCommentOnTask(@RequestBody Comment comment, @PathVariable String taskTitle, @PathVariable int projectId, @PathVariable String stageName) {
         try {
-            return new ResponseEntity<>(commentService.addCommentOnTask(request.getComment(), request.getTask(), request.getProjectId(),request.getStageName()), HttpStatus.CREATED);
+            return new ResponseEntity<>(commentService.addCommentOnTask(comment, taskTitle, projectId, stageName), HttpStatus.CREATED);
         } catch (ProjectNotFoundException | CommentAlreadyExistsException | TaskNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -46,6 +46,4 @@ public class CommentController {
 class CommentRequest {
     private Comment comment;
     private Task task;
-    private String stageName;
-    private int projectId;
 }

@@ -10,7 +10,7 @@ import com.niit.kanban.KanbanService.exception.TaskNotFoundException;
 import java.util.List;
 
 public interface CommentService {
-    Project addCommentOnTask(Comment comment, Task task, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException;
+    Project addCommentOnTask(Comment comment, String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException;
 
-    List<Comment> getAllCommentOnTask(Task task, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException;
+    List<Comment> getAllCommentOnTask(String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException;
 }

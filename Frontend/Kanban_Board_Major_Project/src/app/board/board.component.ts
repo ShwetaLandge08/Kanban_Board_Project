@@ -63,8 +63,12 @@ export class BoardComponent implements OnInit {
           event.currentIndex,
         );
       }
+      console.log(event.previousContainer.data);
+      console.log(event.container.data);
+      console.log(this.project.stages);
       this.kanbanService.updateStages(this.project.projectId!, this.project.stages!).subscribe({
         next: data => {
+          console.log(data);
           this.dataStorage.isUpdate.next(data);
           this.snackBar.open("Task moved Successfully", "Saved", {
             duration: 2000,
@@ -93,11 +97,11 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  openTaskDetailsDialogBox(project: Project, task: Task): void {
+  openTaskDetailsDialogBox(project: Project, task: Task,stageName:string): void {
     this.dialog.open(TaskDetailsComponent, {
       width: "50%",
       height: "max-content",
-      data: { project, task }
+      data: { project, task,stageName }
     })
   }
   openConfirmDeleteDialog(stageName: any): void {

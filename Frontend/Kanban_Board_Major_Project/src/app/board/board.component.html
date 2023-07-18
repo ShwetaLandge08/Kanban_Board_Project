@@ -1,5 +1,4 @@
 <div cdkDropListGroup class="board-wrapper">
-    <!-- All lists in here will be connected. -->
     <div cdkDropList [cdkDropListData]="stage.tasks!" *ngFor="let stage of project.stages" class="board-columns"
         (cdkDropListDropped)="drop($event)">
 
@@ -12,7 +11,7 @@
                 <mat-icon class="position-relative" style="top: -7px;">more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button class="hamburgerBtn" mat-menu-item (click)="openAddTaskDialog(project,stage)">
+                <button mat-menu-item (click)="openAddTaskDialog(project,stage)">
                     <mat-icon>add_circle</mat-icon>Add Task
                 </button>
 
@@ -23,8 +22,8 @@
         </div>
 
         <div class="task-main">
-            <div *ngFor="let task of stage.tasks" cdkDrag [cdkDragData]="task" class="task-list">
-                <mat-card (click)="openTaskDetailsDialogBox(project,task)" class="task">
+            <div cdkDrag [cdkDragData]="task" *ngFor="let task of stage.tasks" class="task-list">
+                <mat-card (click)="openTaskDetailsDialogBox(project,task,stage.name!)" class="task">
                     <mat-card-header>
                         <mat-card-title>{{task.title}}</mat-card-title>
                         <mat-card-subtitle><mat-icon

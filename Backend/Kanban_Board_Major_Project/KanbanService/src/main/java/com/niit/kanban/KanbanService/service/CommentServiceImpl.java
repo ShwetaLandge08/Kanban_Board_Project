@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Project addCommentOnTask(Comment comment, Task task, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
+    public Project addCommentOnTask(Comment comment, String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
@@ -36,7 +36,7 @@ public class CommentServiceImpl implements CommentService {
                 if (getAllTask == null)
                     break;
                 for (Task task1 : getAllTask) {
-                    if (task1.equals(task)) {
+                    if (task1.getTitle().equals(taskTitle)) {
                         List<Comment> comments = task1.getComments();
                         if (comments == null)
                             comments = new ArrayList<>();
@@ -48,13 +48,15 @@ public class CommentServiceImpl implements CommentService {
                         task1.setComments(comments);
                     }
                 }
+                stage.setTasks(getAllTask);
             }
+            project.setStages(stages);
         }
         return projectRepository.save(project);
     }
 
     @Override
-    public List<Comment> getAllCommentOnTask(Task task, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
+    public List<Comment> getAllCommentOnTask(String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
             throw new ProjectNotFoundException();
         }
@@ -67,8 +69,8 @@ public class CommentServiceImpl implements CommentService {
                 if (tasks == null)
                     break;
                 for (Task task1 : tasks) {
-                    if (task1.equals(task)) {
-                        myComments = task.getComments();
+                    if (task1.getTitle().equals(taskTitle)) {
+                        myComments = task1.getComments();
                         break;
                     }
                 }

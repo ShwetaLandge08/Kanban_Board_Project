@@ -13,11 +13,11 @@
           </h3>
           <h3 class="font-weight-bold">Priority:
                <mat-icon *ngIf="task.priority == 'High' || task.priority == 'high'"
-               class="position-relative text-danger givetop">flag</mat-icon>
+                    class="position-relative text-danger givetop">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Low' || task.priority == 'low'"
-               class="position-relative text-success givetop">flag</mat-icon>
+                    class="position-relative text-success givetop">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Medium' || task.priority == 'medium'"
-               class="position-relative text-warning givetop">flag</mat-icon>
+                    class="position-relative text-warning givetop">flag</mat-icon>
           </h3>
           <h3><span class="font-weight-bold">Description: </span>
                <span class="font-weight-light">{{task?.description}}</span>
@@ -29,13 +29,12 @@
                <mat-form-field appearance="outline">
                     <mat-label>Add comment here</mat-label>
                     <input matInput formControlName="comment" class="form-control">
-                    <button type="submit" class="btn btn-light button">Comment</button>
-                    <!-- <mat-error *ngIf="comment?.errors?.['required']">comment is required</mat-error> -->
+                    <button type="submit" mat-button class="button">Comment</button>
                     <mat-error *ngIf="comment?.errors?.['minlength']">
                          comment should have minimum of {{comment?.errors?.['minlength']?.requiredLength}}
                          characters
                     </mat-error>
-               </mat-form-field>
+               </mat-form-field><br><br>
 
           </form>
      </div>

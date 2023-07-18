@@ -43,7 +43,7 @@
   border: none;
   margin-top: 20px;
   float: right;
-  background-color: rgb(236, 208, 236);
+  background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
   font-size: large;
   font-weight: medium;
   text-transform: uppercase;
@@ -90,6 +90,7 @@ h3 {
 .board-columns.cdk-drop-list-dragging .task-list:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-mat-icon{
+
+mat-icon {
   top: 4px;
 }

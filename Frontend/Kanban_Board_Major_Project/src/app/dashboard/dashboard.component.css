@@ -5,6 +5,15 @@
     border-radius: 10px;
 }
 
+.addbtn {
+    position: relative;
+    top: 0px;
+}
+
+.mybtn {
+    background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
+}
+
 .main-container {
     overflow-y: scroll;
     height: 85%;

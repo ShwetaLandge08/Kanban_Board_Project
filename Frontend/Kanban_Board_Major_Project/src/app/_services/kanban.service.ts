@@ -95,12 +95,9 @@ export class KanbanService {
 
   //=====================================================================
 
-  addCommentOnTask(comment: Comment, task: Task, projectId: any, stageName: any): Observable<any> {
-    const body = {
-      comment,
-      task,projectId,stageName
-    };
-    return this.http.put(COMMENT_API + "addComment", body, httpOptions).
+  addCommentOnTask(comment: Comment, taskTitle: string, projectId: any, stageName: any): Observable<any> {
+    return this.http.put(COMMENT_API + "addComment/" + projectId + '/' + stageName + '/' + taskTitle,
+     comment, httpOptions).
       pipe(
         tap(() => {
           this.dataStorage.refreshNeeded.next();
@@ -108,9 +105,7 @@ export class KanbanService {
       );
   }
 
-  getAllCommentOnTask(task: any, projectId: any, stageName: any): Observable<any> {
-    return this.http.get(COMMENT_API + 'comments/' + projectId + '/' + stageName, task);
+  getAllCommentOnTask(taskTitle: string, projectId: number, stageName: any): Observable<any> {
+    return this.http.get(COMMENT_API + 'comments/' + projectId + '/' + stageName + '/' + taskTitle, httpOptions);
   }
-
-  //=======================================================================
 }

@@ -46,6 +46,7 @@ public class StageController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateStages(@PathVariable int id, @RequestBody List<Stage> stages) {
         try {
+            System.out.println(stages);
             return new ResponseEntity<>(stageService.updateStages(id, stages), HttpStatus.OK);
         } catch (ProjectNotFoundException e) {
             throw new RuntimeException(e);

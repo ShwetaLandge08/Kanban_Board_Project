@@ -54,7 +54,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllUserTaskFromAllProjects(String email) throws UserNotFoundException, TaskNotFoundException {
+    public List<Task> getAllUserTaskFromAllProjects(String email) throws UserNotFoundException {
         userRepository.findById(email).orElseThrow(UserNotFoundException::new);
         List<Project> getAllProject = projectRepository.findAll();
         List<Task> myTask = new ArrayList<>();
