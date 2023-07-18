@@ -90,27 +90,6 @@ export class TaskDetailsComponent {
     return name.charAt(0);
   }
 
-  // deleteTask() {
-  //   if (confirm("Are you sure to Delete your Task")) {
-  //     this.kanbanService.deleteTask(this.project.projectId!, this.task.id!, this.task.status!).subscribe({
-  //       next: data => {
-  //         console.log(data);
-
-  //         this.snackBar.open("Task Deleted Successfully.", "success", {
-  //           duration: 5000,
-  //           panelClass: ['mat-toolbar', 'mat-primary']
-  //         });
-  //         //location.reload();
-  //         this.dataStorage.isUpdate.next(data);
-  //       },
-  //       error: err => {
-  //         this.snackBar.open(err.errorMessage, "\nFailed", {
-  //           panelClass: ['mat-toolbar', 'mat-primary']
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
   openConfirmDeleteDialog(task1: Task): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
       data: {

@@ -53,10 +53,9 @@
         </mat-form-field><br>
 
         <div class="button">
-            <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+            <button type="submit" mat-raised-button class="btncolor"
                 [disabled]="registrationForm.invalid">Register</button>
         </div>
     </form>
-    <p>Have an Account? <span routerLink="/login" class="text-primary" role="button" style="cursor: default;">Sign
-            in</span></p>
+    <p>Have an Account? <a routerLink="/login" class="text-primary" role="button">Sign in</a></p>
 </div>

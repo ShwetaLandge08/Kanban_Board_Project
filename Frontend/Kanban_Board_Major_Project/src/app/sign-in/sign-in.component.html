@@ -21,10 +21,9 @@
     </mat-form-field>
 
     <div class="button">
-        <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+        <button type="submit" mat-raised-button class="btncolor"
             [disabled]="loginForm.invalid">Login</button>
     </div>
     <!-- <a routerLink="/reset-password">Forgot Password</a> -->
-    <p>Don't have an Account? <span routerLink="/register" class="text-primary" role="button"
-            style="cursor: default;">Sign Up</span></p>
+    <p>Don't have an Account? <a routerLink="/register" class="text-primary" role="button">Sign Up</a></p>
 </form>

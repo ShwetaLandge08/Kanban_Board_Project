@@ -1,3 +1,8 @@
 .full-width {
-     width: 100%;
- } 
+    width: 100%;
+}
+
+.backcolor {
+    background-color: rgb(149, 76, 218);
+    color: white;
+}

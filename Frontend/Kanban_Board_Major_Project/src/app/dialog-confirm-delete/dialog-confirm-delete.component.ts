@@ -26,13 +26,13 @@ export class DialogConfirmDeleteComponent {
           next: data => {
             console.log(data);
             this.snackBar.open("Project Deleted", "Deleted", {
-              duration: 5000
+              duration: 1000
             });
           },
           error: err => {
             console.log(err);
             this.snackBar.open(err.error.message, "Failed", {
-              duration: 7000
+              duration: 1000
             });
           }
         });
@@ -46,13 +46,13 @@ export class DialogConfirmDeleteComponent {
             console.log(data);
             this.dataSharingService.isUpdate.next(data);
             this.snackBar.open("Task Deleted", "Deleted", {
-              duration: 5000
+              duration: 1000
             });
           },
           error: err => {
             console.log(err);
             this.snackBar.open(err.error.message, "Failed", {
-              duration: 7000
+              duration: 1000
             });
           }
         });
@@ -65,13 +65,13 @@ export class DialogConfirmDeleteComponent {
             console.log(data);
             this.dataSharingService.isUpdate.next(data);
             this.snackBar.open("Stage Deleted", "Deleted", {
-              duration: 5000
+              duration: 1000
             });
           },
           error: err => {
             console.log(err);
             this.snackBar.open(err.error.message, "Failed", {
-              duration: 7000
+              duration: 1000
             });
           }
         });
@@ -79,7 +79,7 @@ export class DialogConfirmDeleteComponent {
 
       default:
         this.snackBar.open("Check object transfered to DialogConfirmDeleteComponent", "Error", {
-          duration: 7000
+          duration: 1000
         });
         break;
     }

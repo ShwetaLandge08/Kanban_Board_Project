@@ -13,11 +13,11 @@
           </h3>
           <h3 class="font-weight-bold">Priority:
                <mat-icon *ngIf="task.priority == 'High' || task.priority == 'high'"
-               class="position-relative text-danger">flag</mat-icon>
+               class="position-relative text-danger givetop">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Low' || task.priority == 'low'"
-               class="position-relative text-success">flag</mat-icon>
+               class="position-relative text-success givetop">flag</mat-icon>
                <mat-icon *ngIf="task.priority == 'Medium' || task.priority == 'medium'"
-               class="position-relative text-warning">flag</mat-icon>
+               class="position-relative text-warning givetop">flag</mat-icon>
           </h3>
           <h3><span class="font-weight-bold">Description: </span>
                <span class="font-weight-light">{{task?.description}}</span>
@@ -39,15 +39,15 @@
 
           </form>
      </div>
-     <h3 style="font-weight: bold;">All comments are here</h3>
+     <h3 class="font-weight-bold">All comments are here</h3>
      <div class="commentbox">
           <div *ngFor="let comment of comments">
                <div class="mycard">
                     <h3 class="comment">{{getFirstCharOfName(comment?.commenter?.name)}}</h3>
-                    <h4 style="font-weight: bold">{{comment?.commenter?.name}}</h4>
+                    <h4 class="font-weight-bold">{{comment?.commenter?.name}}</h4>
                </div>
                <h3 class="com">{{comment?.comment}}</h3>
           </div>
-          <h3 *ngIf="!comments?.length" style="font-weight: bold;text-align: center;">No Comments!</h3>
+          <h3 *ngIf="!comments?.length" class="font-weight-bold text-center">No Comments!</h3>
      </div>
 </div>

@@ -39,8 +39,8 @@
                <strong>Stages: </strong>
                <mat-error *ngIf="stages.errors?.['minimumStage']">At least 2 stages are required</mat-error>
                <br><br>
-               <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i" style="display: flex;
-               justify-content: space-between;">
+               <div *ngFor="let control of stages.controls; let i = index" [formGroupName]="i"
+                    class="d-flex justify-content-between">
                     <mat-form-field appearance="outline">
                          <mat-label>Name</mat-label>
                          <input matInput formControlName="name" placeholder="Stage Name">
@@ -50,12 +50,11 @@
                               Name should have minimum of {{control?.errors?.['minlength']?.requiredLength}} characters
                          </mat-error>
                     </mat-form-field>
-                    <button type="button" mat-mini-fab style="background-color: rgb(149, 76, 218);"
-                         (click)="removeStage(i)">
+                    <button type="button" mat-mini-fab class="backcolor" (click)="removeStage(i)">
                          <mat-icon>close</mat-icon></button>
                </div>
 
-               <button type="button" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+               <button type="button" mat-raised-button class="backcolor color"
                     (click)="addStage()">
                     <mat-icon>add</mat-icon>Add Stage
                </button>
@@ -86,7 +85,7 @@
           <br><br>
           <div mat-dialog-actions class="button">
                <button mat-button mat-dialog-close>No</button>
-               <button type="submit" mat-raised-button style="background-color: rgb(149, 76, 218);color: white;"
+               <button type="submit" mat-raised-button class="backcolor color"
                     mat-dialog-close [disabled]="projectForm.invalid">Add</button>
           </div>
      </form>

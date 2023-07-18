@@ -4,13 +4,12 @@
         (cdkDropListDropped)="drop($event)">
 
         <div class="column-title">
-            <h1><span style="float: right;"><mat-icon style="position: relative;top: 4px;">numbers</mat-icon>
+            <h1><span class="float-right"><mat-icon class="position-relative">numbers</mat-icon>
                     {{stage?.tasks?.length}}</span>
             </h1>
             <h2>{{stage.name}}</h2>
-            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" style="position: relative;top: -7px;"
-                *ngIf="isAdmin">
-                <mat-icon>more_vert</mat-icon>
+            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isAdmin">
+                <mat-icon class="position-relative" style="top: -7px;">more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
                 <button class="hamburgerBtn" mat-menu-item (click)="openAddTaskDialog(project,stage)">
@@ -29,7 +28,7 @@
                     <mat-card-header>
                         <mat-card-title>{{task.title}}</mat-card-title>
                         <mat-card-subtitle><mat-icon
-                                style="position: relative;top: 7px;right: 5px;">assignment_ind</mat-icon>{{task.assignee?.name}}</mat-card-subtitle>
+                                class="position-relative">assignment_ind</mat-icon>{{task.assignee?.name}}</mat-card-subtitle>
                     </mat-card-header>
                 </mat-card>
             </div>
@@ -38,6 +37,6 @@
     </div>
     <div *ngIf="isAdmin">
         <button class="btn1" (click)="openAddStageDialog()" title="Add Stage"><mat-icon
-                style="position: relative;top: 7px;">add</mat-icon>Add Stage</button>
+                class="position-relative">add</mat-icon>Add Stage</button>
     </div>
 </div>

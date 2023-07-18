@@ -64,3 +64,7 @@ a {
      border-radius: 10px;
      margin-left: 40px;
 }
+
+.styeletype {
+     list-style-type: circle;
+}

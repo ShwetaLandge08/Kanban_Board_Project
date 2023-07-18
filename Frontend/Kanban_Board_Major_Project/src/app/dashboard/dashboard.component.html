@@ -1,7 +1,7 @@
 <div class="main-container">
     <div>
         <button mat-stroked-button (click)="openAddProjectDialog()"><mat-icon
-                style="position: relative;top: -3px;">add</mat-icon>Add Project</button>
+                style="position: relative;top: 0px;">add</mat-icon>Add Project</button>
         <app-search-project (searchTextChanged)="onSearchTextChanged($event)"></app-search-project>
     </div>
     <div class="container">
@@ -50,55 +50,4 @@
         </table>
         <h3 *ngIf="!tasks?.length">No Tasks Assigned to You!</h3>
     </div>
-    <!-- <mat-grid-list cols="3">
-        <mat-grid-tile colspan="2">
-            <div>
-                <div style="display: flex;">
-                    <h1><span style="float: right;"><mat-icon style="position: relative;top: 4px;">hourglass_top</mat-icon>
-                            {{projects.length}}</span></h1>
-                    <h1>My Projects</h1>
-                </div>
-                <app-project *ngFor="let project of projects" [project]="project"></app-project>
-                <h3 *ngIf="!projects?.length" style="font-weight: bold;margin-left: 30px;">No Projects Available!</h3>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile rowspan="2">
-            <div>
-                <div style="display: flex;">
-                    <h1><span style="float: right;"><mat-icon
-                                style="position: relative;top: 4px;">hourglass_top</mat-icon>
-                            {{tasks.length}}</span></h1>
-                    <h1>My Tasks</h1>
-                </div>
-                <table class="table table-hover table-light">
-                    <thead *ngIf="tasks?.length">
-                        <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Priority</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let task of tasks">
-                            <td>{{task.title}}</td>
-                            <td>{{task.status}}</td>
-                            <td>{{task.priority}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <h3 *ngIf="!tasks?.length" style="font-weight: bold;margin-left: 30px;">No Tasks Assigned to You!</h3>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="2">
-            <div>
-                <div style="display: flex;">
-                    <h1><span style="float: right;"><mat-icon style="position: relative;top: 4px;">hourglass_top</mat-icon>
-                            {{userProjects.length}}</span></h1>
-                    <h1>Assigned Projects</h1>
-                </div>
-                <app-project *ngFor="let project of userProjects" [project]="project"></app-project>
-                <h3 *ngIf="!userProjects?.length" style="font-weight: bold;margin-left: 30px;">No Projects Assigned to You!</h3>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list> -->
 </div>
