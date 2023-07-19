@@ -62,3 +62,19 @@ img {
     color: white;
     margin-left: 20px;
 }
+
+.profile {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.profile>div>img {
+    width: 55px;
+    height: 55px;
+}
+
+.space {
+    margin-left: 5px;
+    margin-right: 10px;
+}

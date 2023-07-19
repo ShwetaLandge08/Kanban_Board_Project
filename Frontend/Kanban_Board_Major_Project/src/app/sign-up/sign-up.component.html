@@ -13,15 +13,15 @@
             <mat-error *ngIf="name?.errors?.['minlength']">
                 Name should have minimum of {{name?.errors?.['minlength']?.requiredLength}} characters
             </mat-error>
-        </mat-form-field><br>
+        </mat-form-field><br><br>
 
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" placeholder="Ex. abc@domain.xyz">
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email?.errors?.['required']">Email is required</mat-error>
-            <mat-error *ngIf="email?.errors?.['email']">Enter valid email address</mat-error>
-        </mat-form-field><br>
+            <mat-error *ngIf="email?.errors?.['pattern']">Enter valid email address</mat-error>
+        </mat-form-field><br><br>
 
         <mat-form-field appearance="outline" class="half_wide">
             <mat-label>Password</mat-label>
@@ -40,7 +40,7 @@
             <mat-error *ngIf="confirmPassword?.errors?.['mustMatch'] === true">
                 Password and Confirm Password should match.
             </mat-error>
-        </mat-form-field><br><br>
+        </mat-form-field><br><br><br><br>
 
         <mat-form-field appearance="outline" class="full_wide">
             <mat-label>Phone Number</mat-label>

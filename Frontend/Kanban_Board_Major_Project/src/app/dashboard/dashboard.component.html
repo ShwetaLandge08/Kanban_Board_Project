@@ -1,54 +1,75 @@
 <div class="main-container">
-    <div>
-        <button class="mybtn" mat-stroked-button (click)="openAddProjectDialog()"><mat-icon
-                class="addbtn">add</mat-icon>Add Project
-        </button>
-        <app-search-project (searchTextChanged)="onSearchTextChanged($event)"></app-search-project>
-    </div>
+    <app-search-project (searchTextChanged)="onSearchTextChanged($event)"></app-search-project>
     <div class="container">
-        <div class="div1">
-            <h1><span><mat-icon>numbers</mat-icon>
-                    {{projects.length}}</span></h1>
-            <h1>My Projects</h1>
+        <button class="mybtn" mat-button (click)="openAddProjectDialog()"><mat-icon class="addbtn">add</mat-icon>Add
+            Project
+        </button>
+        <!-- Logged in User Projects -->
+        <div>
+            <div class="div1">
+                <h1><span><mat-icon>numbers</mat-icon>
+                        {{projects.length}}</span></h1>
+                <h1>My Projects</h1>
+
+            </div>
+            <app-project [project]="project"
+                *ngFor="let project of projects | paginate:{id:'adminPaginator', itemsPerPage:4,currentPage:projectsPerPage}">
+            </app-project>
+            <h3 *ngIf="!projects?.length">No Projects Available!</h3>
+            <pagination-controls (pageChange)="projectsPerPage=$event" id="adminPaginator"></pagination-controls>
         </div>
-        <app-project *ngFor="let project of projects" [project]="project"></app-project>
-        <h3 *ngIf="!projects?.length">No Projects Available!</h3>
+
         <br><br>
         <mat-divider></mat-divider>
         <mat-divider></mat-divider>
 
-        <div class="div1">
-            <h1><span><mat-icon>numbers</mat-icon>
-                    {{userProjects.length}}</span></h1>
-            <h1>Assigned Projects</h1>
+        <!-- Logged in User Assigned Projects -->
+        <div>
+            <div class="div1">
+                <h1><span><mat-icon>numbers</mat-icon>
+                        {{userProjects.length}}</span></h1>
+                <h1>Assigned Projects</h1>
+            </div>
+            <app-project
+                *ngFor="let project of userProjects | paginate:{id: 'userPaginator', itemsPerPage:4,currentPage:userProjectsPerPage}"
+                [project]="project"></app-project>
+            <h3 *ngIf="!userProjects?.length">No Projects Assigned to You!</h3>
+            <pagination-controls (pageChange)="userProjectsPerPage=$event" id="userPaginator"></pagination-controls>
         </div>
-        <app-project *ngFor="let project of userProjects" [project]="project"></app-project>
-        <h3 *ngIf="!userProjects?.length">No Projects Assigned to You!</h3>
+
         <br><br>
         <mat-divider></mat-divider>
         <mat-divider></mat-divider>
 
-        <div class="div1">
-            <h1><span><mat-icon>numbers</mat-icon>
-                    {{tasks.length}}</span></h1>
-            <h1>My Tasks</h1>
+        <!-- Logged in User Tasks -->
+        <div>
+            <div class="div1">
+                <h1><span><mat-icon>numbers</mat-icon>
+                        {{tasks.length}}</span></h1>
+                <h1>My Tasks</h1>
+            </div>
+            <table class="table table-hover table-light">
+                <thead *ngIf="tasks?.length">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let task of tasks | paginate:{id:'taskPaginator', itemsPerPage:5,currentPage:userTaskPerpage}">
+                        <td>{{task.title}}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 *ngIf="!tasks?.length">No Tasks Assigned to You!</h3>
+            <pagination-controls (pageChange)="userTaskPerpage=$event" id="taskPaginator"></pagination-controls>
         </div>
-        <table class="table table-hover table-light">
-            <thead *ngIf="tasks?.length">
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Priority</th>
-                    <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let task of tasks">
-                    <td>{{task.title}}</td>
-                    <td>{{task.priority}}</td>
-                    <td>{{task.status}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <h3 *ngIf="!tasks?.length">No Tasks Assigned to You!</h3>
+        <br><br>
+        <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
     </div>
 </div>

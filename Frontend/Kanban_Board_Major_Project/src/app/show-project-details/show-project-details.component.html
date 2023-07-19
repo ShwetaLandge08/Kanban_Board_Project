@@ -1,0 +1,22 @@
+<mat-card class="my-card">
+     <mat-card-header>
+          <mat-card-title>{{project.title}}</mat-card-title><br>
+          <mat-card-subtitle>{{project.admin?.name}}</mat-card-subtitle>       
+     </mat-card-header>
+     <mat-card-content>
+          <br>
+          <span class="flexcontent">
+               <strong>Start Date: </strong>
+               <p>&nbsp;{{project.startDate | date}}</p>
+          </span>
+          <span class="flexcontent">
+               <strong>Due Date: </strong>
+               <p>&nbsp;{{project.dueDate | date}}</p>
+          </span>
+          <span>
+               <strong>Description: </strong>
+               <p>{{project.description}}</p>
+          </span>
+
+     </mat-card-content>
+</mat-card>

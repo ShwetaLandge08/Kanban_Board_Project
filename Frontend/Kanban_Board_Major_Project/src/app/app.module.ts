@@ -46,6 +46,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { SearchProjectComponent } from './search-project/search-project.component';
 import { DatePipe } from '@angular/common';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { ShowProjectDetailsComponent } from './show-project-details/show-project-details.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,8 @@ import { DatePipe } from '@angular/common';
     TaskDetailsComponent,
     DashboardComponent,
     BoardComponent,
-    SearchProjectComponent
+    SearchProjectComponent,
+    ShowProjectDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,10 @@ import { DatePipe } from '@angular/common';
     MatExpansionModule,
     MatTooltipModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [
     // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

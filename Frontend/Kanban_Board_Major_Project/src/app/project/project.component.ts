@@ -6,6 +6,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { User } from '../_models/user';
 import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
 import { DatePipe } from '@angular/common';
+import { ShowProjectDetailsComponent } from '../show-project-details/show-project-details.component';
 
 @Component({
   selector: 'app-project',
@@ -45,6 +46,11 @@ export class ProjectComponent implements OnInit {
   openConfirmDeleteDialog(id: any): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
       data: { project: id }
+    });
+  }
+  openDecription(project:Project):void{
+    this.dialog.open(ShowProjectDetailsComponent, {
+      data: project
     });
   }
 }

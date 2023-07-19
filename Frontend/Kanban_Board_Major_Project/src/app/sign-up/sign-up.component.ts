@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
 
   registrationForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/)]],
     password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]],
     confirmPassword: ['', [Validators.required]],
     phoneNo: ['', [Validators.required, Validators.pattern(/^[789]\d{9,9}$/)]],

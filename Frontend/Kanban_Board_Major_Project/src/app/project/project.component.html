@@ -1,18 +1,18 @@
 <mat-card class="project-card">
-    <div routerLink="{{project.projectId}}">
+    <div routerLink="{{project.projectId}}" class="main-card">
         <mat-card-header>
             <mat-card-title>{{project.title}}</mat-card-title>
             <mat-icon *ngIf="project.priority == 'High' || project.priority == 'high'"
                 class="position-relative text-danger">flag</mat-icon>
             <mat-icon *ngIf="project.priority == 'Low' || project.priority == 'low'"
-            class="position-relative text-success">flag</mat-icon>
+                class="position-relative text-success">flag</mat-icon>
             <mat-icon *ngIf="project.priority == 'Medium' || project.priority == 'medium'"
-            class="position-relative text-warning">flag</mat-icon>
+                class="position-relative text-warning">flag</mat-icon>
             <mat-card-subtitle *ngIf="!isAdmin"><strong>Admin:</strong>&nbsp;{{project.admin?.name}}</mat-card-subtitle>
         </mat-card-header>
         <br>
         <mat-card-content>
-            <span class="flexcontent">
+            <span class="flexcontent" *ngIf="!isAdmin">
                 <strong>Start Date: </strong>
                 <p>&nbsp;{{project.startDate | date}}</p>
             </span>
@@ -22,25 +22,22 @@
             </span>
 
             <span>
-                <strong *ngIf="isDateLessThanToday" class="text-warning">Project is Overdued.
-                    <br><br>
-                </strong>
+                <strong *ngIf="isDateLessThanToday" class="text-danger">Project is Overdued.</strong>
                 <strong *ngIf="isDateIsSameAsTodayDate" class="text-warning"> Project Due Today. Please complete
-                    Tasks.
-                    <br><br>
-                </strong>
+                    Tasks.</strong>
             </span>
 
-            <span>
+            <span *ngIf="!isAdmin">
                 <strong>Description: </strong>
                 <p>{{project.description}}</p>
             </span>
 
         </mat-card-content>
     </div>
+    <mat-divider *ngIf="isAdmin"></mat-divider>
     <mat-card-actions *ngIf="isAdmin">
-        <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon>Edit</button>
-        <button mat-button
-            (click)="openConfirmDeleteDialog(project.projectId)"><mat-icon>delete</mat-icon>Delete</button>
+        <button mat-button (click)="openDecription(project)"><mat-icon>details</mat-icon></button>
+        <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon></button>
+        <button mat-button (click)="openConfirmDeleteDialog(project.projectId)"><mat-icon>delete</mat-icon></button>
     </mat-card-actions>
 </mat-card>

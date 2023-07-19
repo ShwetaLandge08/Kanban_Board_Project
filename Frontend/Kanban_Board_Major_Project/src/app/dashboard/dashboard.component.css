@@ -3,6 +3,7 @@
     /* background-color: gainsboro; */
     background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
     border-radius: 10px;
+    height: 100%;
 }
 
 .addbtn {
@@ -11,12 +12,17 @@
 }
 
 .mybtn {
-    background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
+    padding: 15px;
+    float: right;
+    /* margin: 20px 105px; */
+    /* background-color: rgb(236, 208, 236); */
+    text-transform: uppercase;
+    /* background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg"); */
 }
 
 .main-container {
-    overflow-y: scroll;
-    height: 85%;
+    /* overflow-y: scroll; */
+    /* height: 80%; */
     width: 100%;
 }
 
@@ -33,16 +39,8 @@ h3 {
 
 }
 
-button {
-    padding: 15px;
-    float: right;
-    margin: 20px 105px;
-    background-color: rgb(236, 208, 236);
-    text-transform: uppercase;
-}
-
 .table {
-    width: 50%;
+    width: 70%;
     margin-left: 30px;
 }
 
@@ -53,4 +51,10 @@ button {
 mat-icon {
     position: relative;
     top: 4px;
+}
+
+#adminPaginator,
+#userPaginator,
+#taskPaginator {
+    float: right;
 }

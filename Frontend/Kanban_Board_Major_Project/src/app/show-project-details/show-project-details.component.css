@@ -1,0 +1,14 @@
+.flexcontent {
+     display: flex;
+}
+
+mat-card-header {
+     display: flex;
+     justify-content: space-between;
+}
+.my-card{
+     width: 100%;
+     height: 250px;
+     overflow-y: auto;
+     overflow-x: hidden;
+}

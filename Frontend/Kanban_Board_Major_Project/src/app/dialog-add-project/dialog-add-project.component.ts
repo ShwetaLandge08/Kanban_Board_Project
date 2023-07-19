@@ -41,7 +41,7 @@ export class DialogAddProjectComponent {
   }
 
   projectForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
+    title: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(10)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
     dueDate: ['', [Validators.required, this.pastDateValidator()]],
     priority: ['', Validators.required],

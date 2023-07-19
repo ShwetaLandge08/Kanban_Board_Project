@@ -1,6 +1,6 @@
 <mat-toolbar>
         <img src="../assets/images.png" alt="logo">
-        <span><a class="name">Kanban Board</a></span>
+        <span class="name">Kanban Board</span>
         <span class="spacer"></span>
         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
                 routerLinkActive="active"><mat-icon>login</mat-icon>Login
@@ -16,16 +16,22 @@
                 routerLink="/dashboard"><mat-icon>dashboard</mat-icon>Dashboard</button>
         &nbsp;&nbsp;
 
-        <button mat-button id="menu" *ngIf="isLoggedIn" [matMenuTriggerFor]="menu" class="profile-button">
-                <div class="profile-image">
-                        {{user.name}}
-                        <img *ngIf="isDefaultImage()" src="{{user.image}}" alt="profile_pic">
-                        <img *ngIf="!isDefaultImage()" id="image" src="data:image/jpeg;base64,{{user.image}}"
-                                alt="profile-pic">
-                </div>
-        </button>
+        <div *ngIf="isLoggedIn" [matMenuTriggerFor]="menu">
+                <img *ngIf="isDefaultImage()" src="{{user.image}}" alt="profile_pic">
+                <img *ngIf="!isDefaultImage()" id="image" src="data:image/jpeg;base64,{{user.image}}" alt="profile-pic">
+        </div>
+
         <!-- <mat-icon>account_circle </mat-icon> -->
         <mat-menu #menu="matMenu">
+                <div class="profile">
+                        <div *ngIf="isLoggedIn" [matMenuTriggerFor]="menu">
+                                <img *ngIf="isDefaultImage()" src="{{user.image}}" alt="profile_pic">
+                                <img *ngIf="!isDefaultImage()" id="image" src="data:image/jpeg;base64,{{user.image}}"
+                                        alt="profile-pic">
+                        </div>
+                        <h3>{{user.name}}<br>{{user.email}}</h3>
+                </div>
+                <mat-divider></mat-divider>
                 <button mat-menu-item mat-dialog-close (click)="openChangePasswordDialog()">
                         <mat-icon>remove_red_eye</mat-icon>
                         <span class="myspan">Change Password</span>

@@ -7,8 +7,8 @@
                     {{stage?.tasks?.length}}</span>
             </h1>
             <h2>{{stage.name}}</h2>
-            <button id="menu" mat-icon-button [matMenuTriggerFor]="menu" *ngIf="isAdmin">
-                <mat-icon class="position-relative" style="top: -7px;">more_vert</mat-icon>
+            <button id="menu" mat-icon-button class="position-relative" style="top: -7px;" [matMenuTriggerFor]="menu" *ngIf="isAdmin">
+                <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="openAddTaskDialog(project,stage)">
