@@ -11,6 +11,9 @@
                <mat-error *ngIf="title?.errors?.['minlength']">
                     Title should have minimum of {{title?.errors?.['minlength']?.requiredLength}} characters
                </mat-error>
+               <mat-error *ngIf="title?.errors?.['maxlength']">
+                    Title should have maximum of {{title?.errors?.['maxlength']?.requiredLength}} characters
+               </mat-error>
           </mat-form-field>
           <br><br>
 

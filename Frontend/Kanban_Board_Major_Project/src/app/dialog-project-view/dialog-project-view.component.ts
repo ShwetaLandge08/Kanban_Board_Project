@@ -21,7 +21,7 @@ export class DialogProjectViewComponent {
   project: Project = this.data;
   currentDate: Date;
   projectToUpdate = this.fb.group({
-    title: [this.project.title, Validators.required],
+    title: [this.project.title,[Validators.required, Validators.minLength(3),Validators.maxLength(15)]],
     description: [this.project.description, Validators.required],
     dueDate: [this.project.dueDate, Validators.required],
     priority: [this.project.priority]

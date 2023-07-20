@@ -3,6 +3,7 @@
    max-width: 250px;
    margin: 20px; 
    padding: 10px;
+   border-radius: 20px;
 }
 .main-card{
   max-height: 200px;
