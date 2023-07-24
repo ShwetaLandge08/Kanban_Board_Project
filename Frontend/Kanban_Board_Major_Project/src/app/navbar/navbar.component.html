@@ -1,6 +1,6 @@
 <mat-toolbar>
-        <img src="../assets/images.png" alt="logo">
-        <span class="name">Kanban Board</span>
+        <img src="../assets/images.png" alt="logo" routerLink="/dashboard">
+        <span class="name" routerLink="/home">Kanban Board</span>
         <span class="spacer"></span>
         <button mat-stroked-button class="btn" *ngIf="!isLoggedIn" routerLink="/login"
                 routerLinkActive="active"><mat-icon>login</mat-icon>Login

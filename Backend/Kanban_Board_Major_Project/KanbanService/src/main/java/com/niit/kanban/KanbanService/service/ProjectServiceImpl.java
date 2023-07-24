@@ -82,6 +82,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<User> getActiveUserOfProject(int projectId) throws ProjectNotFoundException {
+        if (!projectRepository.existsById(projectId)) throw new ProjectNotFoundException();
         List<User> users = new ArrayList<>();
         List<Project> getAllProject = projectRepository.findAll();
         for (Project project : getAllProject) {

@@ -3,7 +3,6 @@
     /* background-color: gainsboro; */
     background-image: url("https://img.freepik.com/free-photo/studio-background-concept-abstract-empty-light-gradient-purple-studio-room-background-product_1258-54675.jpg");
     border-radius: 10px;
-    height: 100%;
 }
 
 .addbtn {
@@ -21,8 +20,8 @@
 }
 
 .main-container {
-    /* overflow-y: scroll; */
-    /* height: 80%; */
+    /* overflow-y: scroll;
+    height: 85%; */
     width: 100%;
 }
 
@@ -40,7 +39,7 @@ h3 {
 }
 
 .table {
-    width: 70%;
+    width: 50%;
     margin-left: 30px;
 }
 
@@ -53,8 +52,8 @@ mat-icon {
     top: 4px;
 }
 
-#adminPaginator,
+/* #adminPaginator,
 #userPaginator,
 #taskPaginator {
     float: right;
-}
+} */

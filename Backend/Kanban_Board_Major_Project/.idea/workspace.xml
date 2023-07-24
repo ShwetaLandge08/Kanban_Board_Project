@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5398faf9-45ee-4b80-a2f6-410a69192503" name="Changes" comment="">
+    <list default="true" id="5398faf9-45ee-4b80-a2f6-410a69192503" name="Changes" comment="changes for email validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/change-password/change-password.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/change-password/change-password.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-add-project/dialog-add-project.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-project-view/dialog-project-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/board/board.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dashboard/dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/navbar/navbar.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/show-project-details/show-project-details.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/show-project-details/show-project-details.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/project/project.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,16 +57,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "full.screen.before.presentation.mode": "false",
-    "last_opened_file_path": "D:/Backup10_09/Users/shweta y. landge/NIIT/MiniProjectSpotifyWebApplication/spotify_web_application/Spotify_Web_App",
-    "settings.editor.selected.configurable": "project.scopes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Backup10_09/Users/shweta y. landge/NIIT/MiniProjectSpotifyWebApplication/spotify_web_application/Spotify_Web_App&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Backup10_09\Users\shweta y. landge\NIIT\CapstoneProjectKanbanBoardFinal\capstone_kanban_board_project\Backend\Kanban_Board_Major_Project\KanbanService\src\main\java\com\niit\kanban\KanbanService\exception" />
@@ -152,6 +157,14 @@
       <option name="presentableId" value="Default" />
       <updated>1688103694945</updated>
     </task>
+    <task id="LOCAL-00001" summary="changes for email validation">
+      <created>1689848691390</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1689848691390</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,5 +177,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changes for email validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes for email validation" />
   </component>
 </project>

@@ -1,23 +1,30 @@
 .project-card {
-   display: inline-flex;
-   max-width: 250px;
-   margin: 20px; 
-   padding: 10px;
-   border-radius: 20px;
+  display: inline-flex;
+  max-width: 250px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
 }
-.main-card{
+
+.project-card:hover {
+  background-color: rgb(217, 215, 219);
+}
+
+.main-card {
   max-height: 200px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.flexcontent{
+.flexcontent {
   display: flex;
 }
-mat-card-header{
+
+mat-card-header {
   display: flex;
   justify-content: space-between;
 }
-mat-card-actions{
-justify-content: space-evenly;
+
+mat-card-actions {
+  justify-content: space-evenly;
 }
