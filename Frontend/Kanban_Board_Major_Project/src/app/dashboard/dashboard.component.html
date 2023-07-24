@@ -16,7 +16,8 @@
                 *ngFor="let project of projects | paginate:{id:'adminPaginator', itemsPerPage:4,currentPage:projectsPerPage}">
             </app-project>
             <h3 *ngIf="!projects?.length">No Projects Available!</h3>
-            <pagination-controls (pageChange)="projectsPerPage=$event" id="adminPaginator"></pagination-controls>
+            <pagination-controls (pageChange)="projectsPerPage=$event" id="adminPaginator"
+                *ngIf="projects?.length"></pagination-controls>
         </div>
 
         <br><br>
@@ -34,7 +35,8 @@
                 *ngFor="let project of userProjects | paginate:{id: 'userPaginator', itemsPerPage:4,currentPage:userProjectsPerPage}"
                 [project]="project"></app-project>
             <h3 *ngIf="!userProjects?.length">No Projects Assigned to You!</h3>
-            <pagination-controls (pageChange)="userProjectsPerPage=$event" id="userPaginator"></pagination-controls>
+            <pagination-controls (pageChange)="userProjectsPerPage=$event" id="userPaginator"
+                *ngIf="userProjects?.length"></pagination-controls>
         </div>
 
         <br><br>
@@ -66,7 +68,8 @@
                 </tbody>
             </table>
             <h3 *ngIf="!tasks?.length">No Tasks Assigned to You!</h3>
-            <pagination-controls (pageChange)="userTaskPerpage=$event" id="taskPaginator"></pagination-controls>
+            <pagination-controls (pageChange)="userTaskPerpage=$event" id="taskPaginator"
+                *ngIf="tasks?.length"></pagination-controls>
         </div>
         <br><br>
         <mat-divider></mat-divider>

@@ -48,9 +48,19 @@ export class ProjectComponent implements OnInit {
       data: { project: id }
     });
   }
-  openDecription(project:Project):void{
+  openDecription(project: Project): void {
     this.dialog.open(ShowProjectDetailsComponent, {
       data: project
     });
+  }
+
+  public hoveredElement: any;
+
+  toggleHover(id:any) {
+    this.hoveredElement = id;
+  }
+
+  removeHover() {
+    this.hoveredElement = null;
   }
 }

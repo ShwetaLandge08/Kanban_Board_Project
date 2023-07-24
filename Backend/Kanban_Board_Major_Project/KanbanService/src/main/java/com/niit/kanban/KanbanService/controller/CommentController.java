@@ -41,9 +41,3 @@ public class CommentController {
         }
     }
 }
-
-@Getter
-class CommentRequest {
-    private Comment comment;
-    private Task task;
-}

@@ -1,4 +1,4 @@
-<mat-card class="project-card">
+<mat-card class="project-card" (mouseover)="toggleHover(project.projectId)" (mouseleave)="removeHover()">
     <div routerLink="{{project.projectId}}" class="main-card">
         <mat-card-header>
             <mat-card-title>{{project.title}}</mat-card-title>
@@ -35,7 +35,7 @@
         </mat-card-content>
     </div>
     <mat-divider *ngIf="isAdmin"></mat-divider>
-    <mat-card-actions *ngIf="isAdmin">
+    <mat-card-actions *ngIf="isAdmin && hoveredElement === project.projectId">
         <button mat-button (click)="openDecription(project)"><mat-icon>details</mat-icon></button>
         <button mat-button (click)="openProjectViewDialog()"><mat-icon>edit</mat-icon></button>
         <button mat-button (click)="openConfirmDeleteDialog(project.projectId)"><mat-icon>delete</mat-icon></button>
