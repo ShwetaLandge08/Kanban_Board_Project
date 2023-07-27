@@ -22,10 +22,16 @@
             </span>
 
             <span>
-                <strong *ngIf="isDateLessThanToday" class="text-danger">Project is Overdued.</strong>
+                <strong *ngIf="isDateLessThanToday" class="text-danger">Project is Overdued.
+                    <br><br>
+                </strong>
                 <strong *ngIf="isDateIsSameAsTodayDate" class="text-warning"> Project Due Today. Please complete
-                    Tasks.</strong>
+                    Tasks.
+                    <br><br>
+                </strong>
+
             </span>
+
 
             <span *ngIf="!isAdmin">
                 <strong>Description: </strong>
