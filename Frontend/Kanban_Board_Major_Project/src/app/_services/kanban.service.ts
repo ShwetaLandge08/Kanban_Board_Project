@@ -75,8 +75,8 @@ export class KanbanService {
     return this.http.get(TASK_API + "user", httpOptions);
   }
 
-  deleteTask(endPoint: string, task: Task): Observable<any> {
-    return this.http.put(`${TASK_API}deleteTask/${endPoint}`, task, httpOptions);
+  deleteTask(endPoint: string): Observable<any> {
+    return this.http.put(`${TASK_API}delete/${endPoint}`, httpOptions);
   }
 
   //=======================================================================

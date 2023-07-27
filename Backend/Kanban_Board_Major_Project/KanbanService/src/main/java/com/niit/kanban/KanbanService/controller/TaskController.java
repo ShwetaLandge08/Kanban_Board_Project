@@ -63,14 +63,11 @@ public class TaskController {
         }
     }
 
-    @PutMapping("/deleteTask/{projectId}/{stageName}")
-    public ResponseEntity<?> deleteTask(@RequestBody Task task, @PathVariable int projectId,
-                                        @PathVariable String stageName) {
+    @PutMapping("/delete/{projectId}/{stageName}/{taskTitle}")
+    public ResponseEntity<?> deleteTask(@PathVariable int projectId, @PathVariable String stageName, @PathVariable String taskTitle) {
         try {
-            System.out.println(task);
-
-            return new ResponseEntity<>(taskService.deleteTask(task, stageName, projectId), HttpStatus.OK);
-        } catch (ProjectNotFoundException | TaskNotFoundException e) {
+            return new ResponseEntity<>(taskService.deleteTask(taskTitle, stageName, projectId), HttpStatus.OK);
+        } catch (TaskNotFoundException | StageNotFoundException | ProjectNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

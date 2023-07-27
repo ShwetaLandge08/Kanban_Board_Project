@@ -101,11 +101,10 @@ export class TaskDetailsComponent {
     return name.charAt(0);
   }
 
-  openConfirmDeleteDialog(task1: Task): void {
+  openConfirmDeleteDialog(): void {
     this.dialog.open(DialogConfirmDeleteComponent, {
       data: {
-        task: `${this.data.project.projectId}/${this.task.status}`,
-        task1
+        task: `${this.data.project.projectId}/${this.task.status}/${this.task.title}`,
       }
     });
   }

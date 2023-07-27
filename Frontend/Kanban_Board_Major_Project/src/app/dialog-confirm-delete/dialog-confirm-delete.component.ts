@@ -41,7 +41,7 @@ export class DialogConfirmDeleteComponent {
 
       case "task":
         console.log("CASE: task");
-        this.kanbanService.deleteTask(this.value, this.data.task1).subscribe({
+        this.kanbanService.deleteTask(this.value).subscribe({
           next: data => {
             console.log(data);
             this.dataSharingService.isUpdate.next(data);
