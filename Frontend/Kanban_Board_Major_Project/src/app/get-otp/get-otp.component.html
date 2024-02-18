@@ -1,0 +1,17 @@
+<div class="form-container">
+     <mat-form-field appearance="outline" id="wide">
+         <mat-label>OTP</mat-label>
+         <input type="text" matInput [formControl]="otpFormControl" placeholder="Ex. 123456">
+         <mat-icon matSuffix>password</mat-icon>
+         <mat-error *ngIf="otpFormControl.hasError('maxLength') && otpFormControl.hasError('minLength') && !otpFormControl.hasError('required')">
+             Please enter a <strong>valid otp</strong> address
+         </mat-error>
+         <mat-error *ngIf="otpFormControl.hasError('required')">
+             OTP is <strong>required</strong>
+         </mat-error>
+     </mat-form-field>
+     <div>
+         <button type="button" mat-raised-button color="primary" [disabled]="otpFormControl.invalid"
+             (click)="getOTP()">Reset your Password</button>
+     </div>
+ </div>

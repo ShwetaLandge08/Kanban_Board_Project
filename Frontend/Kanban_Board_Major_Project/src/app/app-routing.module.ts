@@ -11,6 +11,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AuthCanDeactiveGuard } from './_guards/auth-can-deactive.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BoardComponent } from './board/board.component';
+import { GetOtpComponent } from './get-otp/get-otp.component';
+import { ForgotPasswordResetComponent } from './forgot-password-reset/forgot-password-reset.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'update', component: UpdateUserComponent },
   { path: 'changePassword', component: ChangePasswordComponent },
   { path: 'dashboard/:id', component: BoardComponent, canDeactivate: [AuthCanDeactiveGuard] },
+  { path: 'forgot-password', component: ForgotPasswordResetComponent },
+  { path: 'get-otp', component: GetOtpComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

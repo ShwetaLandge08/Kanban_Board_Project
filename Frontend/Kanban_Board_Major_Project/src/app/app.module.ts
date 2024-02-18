@@ -50,6 +50,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { ShowProjectDetailsComponent } from './show-project-details/show-project-details.component';
+import { ForgotPasswordResetComponent } from './forgot-password-reset/forgot-password-reset.component';
+import { GetOtpComponent } from './get-otp/get-otp.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { ShowProjectDetailsComponent } from './show-project-details/show-project
     DashboardComponent,
     BoardComponent,
     SearchProjectComponent,
-    ShowProjectDetailsComponent
+    ShowProjectDetailsComponent,
+    ForgotPasswordResetComponent,
+    GetOtpComponent
   ],
   imports: [
     BrowserModule,

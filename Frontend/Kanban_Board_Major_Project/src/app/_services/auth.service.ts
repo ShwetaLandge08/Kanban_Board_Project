@@ -9,6 +9,7 @@ const PROFILE_API = 'http://localhost:9000/api/auth/';
 const ALL_USERS_API = 'http://localhost:9000/api/kanban/user/all';
 const UPDATE_USER = "http://localhost:9000/api/kanban/user/update";
 const UPDATE_PASSWORD_API = "http://localhost:9000/api/auth/updatePassword";
+const FORGOT_PASSOWRD = "http://localhost:9000/api/auth/password/sentOTP/"
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -47,4 +48,8 @@ export class AuthService {
     };
     return this.http.put(UPDATE_PASSWORD_API, body, httpOptions);
   }//using
+  
+  generateOTPForForgotPassword(email: string) {
+    return this.http.put<any>(FORGOT_PASSOWRD + email, httpOptions);
+  }
 }
