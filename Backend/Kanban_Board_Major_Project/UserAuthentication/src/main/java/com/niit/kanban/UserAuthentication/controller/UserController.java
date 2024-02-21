@@ -4,6 +4,7 @@ import com.niit.kanban.UserAuthentication.domain.EmailDetails;
 import com.niit.kanban.UserAuthentication.domain.User;
 import com.niit.kanban.UserAuthentication.exception.UserAlreadyExistException;
 import com.niit.kanban.UserAuthentication.exception.UserNotFoundException;
+import com.niit.kanban.UserAuthentication.request.PasswordUpdateRequest;
 import com.niit.kanban.UserAuthentication.security.JwtSecurityTokenGenerator;
 import com.niit.kanban.UserAuthentication.service.EmailSenderService;
 import com.niit.kanban.UserAuthentication.service.UserService;
@@ -52,10 +53,11 @@ public class UserController {
         }
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getUser(@PathVariable int id) {
+
+    @GetMapping("/{email}")
+    public ResponseEntity<?> getUser(@PathVariable String email) {
         try {
-            return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+            return new ResponseEntity<>(userService.getUser(email), HttpStatus.OK);
         } catch (UserNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -89,11 +91,4 @@ public class UserController {
             throw new RuntimeException(e);
         }
     }
-}
-
-@Getter
-class PasswordUpdateRequest {
-    private String email;
-    private String currentPassword;
-    private String newPassword;
 }

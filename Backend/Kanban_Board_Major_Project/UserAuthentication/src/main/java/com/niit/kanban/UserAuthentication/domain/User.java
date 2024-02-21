@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalTime;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,5 +26,6 @@ public class User {
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
-
+    private Long otp;
+    private LocalTime otpExpirationTime;
 }
