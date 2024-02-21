@@ -13,8 +13,8 @@ Things That are implemented in this project:
 11. once users log in, they can't move to the login and register page.
 12. provided routing for each task.
 13. Users will receive an email confirmation for successful registration, updating details, and after they are assigned to any task.
+14. implemented for Forgot password through email by sending otp for reset to mail.
 
 Future Enhancement:
-1. implement for Forgot password through email.
-2. will show notification for tasks assigned on the navbar when the user logs in to the dashboard.
-3. task reassignment.
+1. will show notification for tasks assigned on the navbar when the user logs in to the dashboard.
+2. task reassignment.
