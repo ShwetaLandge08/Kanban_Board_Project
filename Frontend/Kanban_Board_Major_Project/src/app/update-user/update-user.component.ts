@@ -57,7 +57,7 @@ export class UpdateUserComponent {
           console.log(data);
           console.log(this.user.id);
 
-          this.authService.getProfile(this.user.id).subscribe({
+          this.authService.getProfile(this.user.email).subscribe({
             next: response => {
               this.tokenStorage.saveUser(response);
               console.log(response);

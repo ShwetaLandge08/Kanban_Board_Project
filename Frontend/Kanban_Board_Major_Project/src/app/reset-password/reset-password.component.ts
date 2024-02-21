@@ -22,7 +22,9 @@ export class ResetPasswordComponent {
     console.log(this.emailFormControl.value);
     this.authService.generateOTPForForgotPassword(this.emailFormControl.value)
       .subscribe(
-        () => {
+        (data) => {
+          console.log(data);
+          localStorage.setItem("email",this.emailFormControl.value);
           this.token.signOut();
           this.dataStorage.isLoggedIn.next(false);
           this.router.navigateByUrl("/get-otp");

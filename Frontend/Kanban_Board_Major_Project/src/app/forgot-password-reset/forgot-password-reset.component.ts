@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Request } from '../_models/requestForForgotPassword';
 
 @Component({
   selector: 'app-forgot-password-reset',
@@ -12,8 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ForgotPasswordResetComponent {
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar,
-    private authService: AuthService, private router: Router,
-    private http: HttpClient) { }
+    private authService: AuthService, private router: Router) { }
 
   resetPassword = this.fb.group({
     password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]],
@@ -37,17 +37,24 @@ export class ForgotPasswordResetComponent {
     }
     return null;
   }
-  
+
   onSubmit(resetPassword: FormGroup): void {
     if (resetPassword.valid) {
+      const email = localStorage.getItem("email");
       const userPassword: string = resetPassword.value.password;
-      const resetToken = localStorage.getItem("otp");
-      const token = "http://localhost:9000/api/auth/password/forgot-password?otp=" + resetToken;
-      this.http.put(token, userPassword).subscribe({
+      const otp = localStorage.getItem("otp");
+      const request: Request = {
+        otp: otp,
+        email: email,
+        password: userPassword
+      }
+
+      this.authService.forgotPassword(request).subscribe({
         next: data => {
           console.log(data);
           this.router.navigate(['/login']);
           localStorage.removeItem("otp");
+          localStorage.removeItem("email");
           this.snackBar.open("Your Password has been reset Successfully", "success", {
             duration: 1000,
             panelClass: ['mat-toolbar', 'mat-primary']

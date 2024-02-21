@@ -51,12 +51,12 @@ export class SignInComponent implements OnInit {
         next: data => {
           this.tokenStorage.saveToken(data.token);
           //this.tokenStorage.saveUser(data);
-
+          console.log(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           //this.role = this.tokenStorage.getUser().role;
           //this.dataSharingService.isLoggedIn.next(true);
-          this.authService.getProfile(data.id).subscribe({
+          this.authService.getProfile(data.email).subscribe({
             next: response => {
               console.log(response);
               if (!response.image) {

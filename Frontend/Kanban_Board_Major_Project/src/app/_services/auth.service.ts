@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
+import { Request } from '../_models/requestForForgotPassword';
 
 const LOGIN_API = 'http://localhost:9000/api/auth/login';
 const REGISTER_API = 'http://localhost:9000/api/kanban/user/register';
@@ -9,7 +10,10 @@ const PROFILE_API = 'http://localhost:9000/api/auth/';
 const ALL_USERS_API = 'http://localhost:9000/api/kanban/user/all';
 const UPDATE_USER = "http://localhost:9000/api/kanban/user/update";
 const UPDATE_PASSWORD_API = "http://localhost:9000/api/auth/updatePassword";
-const FORGOT_PASSOWRD = "http://localhost:9000/api/auth/password/sentOTP/"
+const SENT_OTP = "http://localhost:9000/api/auth/password/sentOTP/";
+const VALIDATE_OTP = "http://localhost:9000/api/auth/password/validate-otp/"
+const FORGOT_PASSWORD = "http://localhost:9000/api/auth/password/forgot-password"
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -28,8 +32,8 @@ export class AuthService {
     return this.http.post(REGISTER_API, user, httpOptions);
   }
 
-  getProfile(id: number): Observable<any> {
-    return this.http.get(PROFILE_API + id, httpOptions);
+  getProfile(email: string): Observable<any> {
+    return this.http.get(PROFILE_API + email, httpOptions);
   }
 
   getAllUsers(): Observable<any | null> {
@@ -48,8 +52,16 @@ export class AuthService {
     };
     return this.http.put(UPDATE_PASSWORD_API, body, httpOptions);
   }//using
-  
+
   generateOTPForForgotPassword(email: string) {
-    return this.http.put<any>(FORGOT_PASSOWRD + email, httpOptions);
+    return this.http.put<any>(SENT_OTP + email, httpOptions);
+  }
+
+  validateOTP(otp: number) {
+    return this.http.get(VALIDATE_OTP + otp, httpOptions);
+  }
+
+  forgotPassword(request: Request) {
+    return this.http.put(FORGOT_PASSWORD, request, httpOptions);
   }
 }
