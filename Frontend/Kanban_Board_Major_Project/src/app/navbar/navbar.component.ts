@@ -8,6 +8,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { UpdateUserComponent } from '../update-user/update-user.component';
 import { User } from '../_models/user';
+import { AuthService } from '../_services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +28,7 @@ export class NavbarComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private tokenStorage: TokenStorageService,
+    private tokenStorage: TokenStorageService, private auth: AuthService, private snackbar: MatSnackBar,
     private router: Router, private dataSharingService: DataStorageService, private dialog: MatDialog
   ) {
     this.dataSharingService.isLoggedIn.subscribe(value => {
@@ -54,10 +57,9 @@ export class NavbarComponent {
 
   }
 
-  // openUpdateUserDialog() {
-  //   this.dialog.open(UpdateUserComponent, {
-  //     height: "max-content",
-  //     width: "max-content"
-  //   });
-  // }
+  openConfirmDeleteDialog(email: any): void {
+    this.dialog.open(DialogConfirmDeleteComponent, {
+      data: { user: email }
+    });
+  }
 }

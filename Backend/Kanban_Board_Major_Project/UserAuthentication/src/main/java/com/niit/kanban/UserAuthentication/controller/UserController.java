@@ -91,4 +91,12 @@ public class UserController {
             throw new RuntimeException(e);
         }
     }
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<?> deleteUser(@PathVariable String email) {
+        try {
+            return new ResponseEntity<>(userService.deleteUser(email), HttpStatus.OK);
+        } catch (UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

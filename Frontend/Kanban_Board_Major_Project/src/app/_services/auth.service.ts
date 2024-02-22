@@ -13,7 +13,7 @@ const UPDATE_PASSWORD_API = "http://localhost:9000/api/auth/updatePassword";
 const SENT_OTP = "http://localhost:9000/api/auth/password/sentOTP/";
 const VALIDATE_OTP = "http://localhost:9000/api/auth/password/validate-otp/"
 const FORGOT_PASSWORD = "http://localhost:9000/api/auth/password/forgot-password"
-
+const DELETE_API = 'http://localhost:9000/api/kanban/user/delete/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -43,6 +43,10 @@ export class AuthService {
   updateUser(role: any) {
     return this.http.put(UPDATE_USER, role, httpOptions);
   }//using
+
+  deleteUser(email: any) {
+    return this.http.delete(DELETE_API + email);
+  }
 
   changePassword(email: string, currentPassword: string | null | undefined, newPassword: string | null | undefined): Observable<any> {
     const body = {

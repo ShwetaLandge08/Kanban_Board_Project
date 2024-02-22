@@ -40,6 +40,10 @@
                         <mat-icon>update</mat-icon>
                         <span class="myspan">Update Profile</span>
                 </button>
+                <button mat-menu-item mat-dialog-close (click)="openConfirmDeleteDialog(user.email)">
+                        <mat-icon>delete</mat-icon>
+                        <span class="myspan">Delete Account</span>
+                </button>
                 <button mat-menu-item mat-dialog-close (click)="logout()">
                         <mat-icon>logout</mat-icon>
                         <span class="myspan">Logout</span>
