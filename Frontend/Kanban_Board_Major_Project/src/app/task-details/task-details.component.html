@@ -9,6 +9,22 @@
      </div>
      <div>
           <h3 class="font-weight-bold">Assignee: {{task?.assignee?.name}}</h3>
+
+
+          <mat-form-field class="width">
+               <mat-label>Select your Assignee</mat-label>
+
+               <mat-select [(ngModel)]="selectedUser">
+                    <mat-option *ngFor="let user of users" [value]="user">{{user.name}}</mat-option>
+               </mat-select>
+          </mat-form-field>
+          <button class="updateBtn" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon"
+               (click)="updateTaskAssignee()">
+               <mat-icon>update</mat-icon>
+          </button>
+
+
+
           <h3 class="font-weight-bold">Status: <span class=" badge badge-pill badge-info">{{task?.status}}</span>
           </h3>
           <h3 class="font-weight-bold">Priority:

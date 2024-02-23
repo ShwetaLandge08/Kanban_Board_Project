@@ -67,6 +67,16 @@ button {
      display: flex;
      align-self: self-end;
 }
-.givetop{
+
+.givetop {
      top: 4px;
+}
+
+.updateBtn {
+     float: right;
+     margin-top: 10px;
+}
+
+.width {
+     width: 93%;
 }

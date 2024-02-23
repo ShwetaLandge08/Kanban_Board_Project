@@ -86,9 +86,13 @@ public class UserServiceImpl implements UserService {
                 List<Stage> allStages = project.getStages();
                 for (Stage stage : allStages) {
                     List<Task> tasks = stage.getTasks();
-                    //we should not remove task but we have to change assignee to null for that task. this can
-                    //be only done after adding functionality for update task Assignee.
-                    tasks.removeIf(task -> task.getAssignee().getEmail().equals(email));
+//                    //we should not remove task, but we have to change assignee to null for that task. this can
+//                    //be only done after adding functionality for update task Assignee.
+//                    tasks.removeIf(task -> task.getAssignee().getEmail().equals(email));
+                    for(Task task : tasks){
+                        if(task.getAssignee().getEmail().equals(email))
+                            task.setAssignee(null);
+                    }
                 }
                 projectRepository.save(project);
             }

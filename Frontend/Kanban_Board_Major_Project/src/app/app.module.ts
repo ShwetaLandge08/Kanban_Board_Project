@@ -52,6 +52,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { ShowProjectDetailsComponent } from './show-project-details/show-project-details.component';
 import { ForgotPasswordResetComponent } from './forgot-password-reset/forgot-password-reset.component';
 import { GetOtpComponent } from './get-otp/get-otp.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,9 @@ import { GetOtpComponent } from './get-otp/get-otp.component';
     MatProgressBarModule,
     MatPaginatorModule,
     NgxPaginationModule,
-    Ng2OrderModule
+    Ng2OrderModule,
+    MatFormFieldModule ,
+    MatInputModule
   ],
   providers: [
     // { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

@@ -71,6 +71,14 @@ public class TaskController {
             throw new RuntimeException(e);
         }
     }
+    @PutMapping("/updateTaskAssignee/{taskTitle}")
+    public ResponseEntity<?> updateTaskAssignee(@PathVariable String taskTitle,@RequestBody User assignee) {
+        try {
+            return new ResponseEntity<>(taskService.updateAssigneeOfTask(taskTitle,assignee), HttpStatus.OK);
+        } catch (TaskNotFoundException | UserNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

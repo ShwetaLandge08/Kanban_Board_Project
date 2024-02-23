@@ -1,6 +1,9 @@
 package com.niit.kanban.KanbanService.service;
 
-import com.niit.kanban.KanbanService.domain.*;
+import com.niit.kanban.KanbanService.domain.Project;
+import com.niit.kanban.KanbanService.domain.Stage;
+import com.niit.kanban.KanbanService.domain.Task;
+import com.niit.kanban.KanbanService.domain.User;
 import com.niit.kanban.KanbanService.exception.*;
 import com.niit.kanban.KanbanService.proxy.EmailProxy;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
@@ -99,6 +102,29 @@ public class TaskServiceImpl implements TaskService {
             }
         }
         return userProject;
+    }
+
+    @Override
+    public Task updateAssigneeOfTask(String taskTitle, User assignee) throws TaskNotFoundException, UserNotFoundException {
+        userRepository.findById(assignee.getEmail()).orElseThrow(UserNotFoundException::new);
+        List<Project> getAllProject = projectRepository.findAll();
+        Task myTask = null;
+        for (Project project : getAllProject) {
+            List<Stage> stages = project.getStages();
+            for (Stage stage : stages) {
+                List<Task> tasks = stage.getTasks();
+                if (tasks == null)
+                    throw new TaskNotFoundException();
+                for (Task task : tasks) {
+                    if (task.getTitle().equals(taskTitle)) {
+                        task.setAssignee(assignee);
+                        myTask = task;
+                    }
+                }
+            }
+            projectRepository.save(project);
+        }
+        return myTask;
     }
 
     @Override

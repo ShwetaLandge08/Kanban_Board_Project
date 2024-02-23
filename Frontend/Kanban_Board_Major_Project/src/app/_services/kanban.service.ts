@@ -7,6 +7,7 @@ import { Task } from '../_models/task';
 import { TokenStorageService } from './token-storage.service';
 import { Comment } from '../_models/comment';
 import { DataStorageService } from './data-storage.service';
+import { User } from '../_models/user';
 
 const STAGE_API = 'http://localhost:9000/api/kanban/stage/';
 const TASK_API = 'http://localhost:9000/api/kanban/task/';
@@ -79,6 +80,10 @@ export class KanbanService {
     return this.http.put(`${TASK_API}delete/${endPoint}`, httpOptions);
   }
 
+  updateTaskAssignee(taskTitle: any, user: any) {
+    return this.http.put(TASK_API + "updateTaskAssignee/" + taskTitle, user, httpOptions);
+  }
+
   //=======================================================================
 
   addStage(stage: Stage, projectId: number): Observable<any | null> {
@@ -97,7 +102,7 @@ export class KanbanService {
 
   addCommentOnTask(comment: Comment, taskTitle: string, projectId: any, stageName: any): Observable<any> {
     return this.http.put(COMMENT_API + "addComment/" + projectId + '/' + stageName + '/' + taskTitle,
-     comment, httpOptions).
+      comment, httpOptions).
       pipe(
         tap(() => {
           this.dataStorage.refreshNeeded.next();
