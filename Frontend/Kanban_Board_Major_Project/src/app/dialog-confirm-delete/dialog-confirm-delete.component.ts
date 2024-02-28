@@ -95,8 +95,8 @@ export class DialogConfirmDeleteComponent {
             this.router.navigateByUrl("/register");
           },
           (error) => {
-
-            this.snackBar.open(error.errorMessage, "\nFailed", {
+            console.log(error.error);
+            this.snackBar.open(error.error, "\nFailed", {
               panelClass: ['mat-toolbar', 'mat-primary']
             });
           }

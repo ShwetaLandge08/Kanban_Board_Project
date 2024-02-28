@@ -85,7 +85,8 @@ export class SignUpComponent implements OnInit {
         error: err => {
           this.errorMessage = err.error.message;
           this.isSignUpFailed = true;
-          this.snackBar.open(err.errorMessage, "\nFailed", {
+          console.log(err.error);
+          this.snackBar.open(err.error, "\nFailed", {
             panelClass: ['mat-toolbar', 'mat-primary']
           });
         }
@@ -107,6 +108,4 @@ export class SignUpComponent implements OnInit {
   // onUpload() {
   //   const formData = new FormData();
   //   formData.append('profilePicture', this.selectedFile!, this.selectedFile?.name!);
-  //   console.log(this.selectedFile);
-  // }
-}
+  //   console.log(th

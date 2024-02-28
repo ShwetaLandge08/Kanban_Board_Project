@@ -1,58 +1,43 @@
-resilience4j.circuitbreaker:
-  instances:
-    registerAPI:
-      registerHealthIndicator: true
-      slidingWindowSize: 60
-      slidingWindowType: TIME_BASED
-      permittedNumberOfCallsInHalfOpenState: 3
-      minimumNumberOfCalls: 10
-      waitDurationInOpenState: 5s
-      slowCallRateThreshold: 100
-      slowCallDurationThreshold: 2000
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
-      ignoreExceptions:
-        - com.jsession4d.feignclient.BusinessException
-    updateAPI:
-      registerHealthIndicator: true
-      slidingWindowSize: 60
-      slidingWindowType: TIME_BASED
-      permittedNumberOfCallsInHalfOpenState: 3
-      minimumNumberOfCalls: 10
-      waitDurationInOpenState: 5s
-      slowCallRateThreshold: 100
-      slowCallDurationThreshold: 2000
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
-      ignoreExceptions:
-        - com.jsession4d.feignclient.BusinessException
-    deleteAPI:
-      registerHealthIndicator: true
-      slidingWindowSize: 60
-      slidingWindowType: TIME_BASED
-      permittedNumberOfCallsInHalfOpenState: 3
-      minimumNumberOfCalls: 10
-      waitDurationInOpenState: 5s
-      slowCallRateThreshold: 100
-      slowCallDurationThreshold: 2000
-      failureRateThreshold: 50
-      eventConsumerBufferSize: 10
-      ignoreExceptions:
-        - com.jsession4d.feignclient.BusinessException
+resilience4j:
+
+  circuitbreaker:
+
+    instances:
+
+      service_User:
+
+        registerHealthIndicator: true
+
+        eventConsumerBufferSize: 10
+
+        failureRateThreshold: 50
+
+        minimumNumberOfCalls: 5
+
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+        waitDurationInOpenState: 5s
+
+        permittedNumberOfCallsInHalfOpenState: 3
+
+        slidingWindowSize: 10
+
+        slidingWindowType: COUNT_BASED
 management:
+  security:
+    enabled:false
+  health:
+    circuitbreakers:
+      enabled: true
   endpoint:
     health:
-      show-details: always         #To show all details in /health endpoint.
+      show-details: "ALWAYS"
+  endpoints:
     web:
       exposure:
         include: "*"
 
-management.health.circuitbreakers.enabled: true #To show Circuit Breaker status
-resilience4j.ratelimiter:
-  instances:
-    my5TPSRateLimiter:
-      limitRefreshPeriod: 1s
-      limitForPeriod: 5
-      timeoutDuration: 3s
-      registerHealthIndicator: true    #To register ratelimiter details to /actuator/health endpoint.
-      eventConsumerBufferSize: 100     #Buffer size to store the ratelimiter events - viewable via /actuator/ratelimiterevents
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true

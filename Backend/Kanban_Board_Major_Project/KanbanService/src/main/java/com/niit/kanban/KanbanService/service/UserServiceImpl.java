@@ -10,6 +10,7 @@ import com.niit.kanban.KanbanService.proxy.EmailProxy;
 import com.niit.kanban.KanbanService.proxy.IUserProxy;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import com.niit.kanban.KanbanService.repository.UserRepository;
+import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,15 @@ public class UserServiceImpl implements UserService {
     private final EmailProxy emailProxy;
     private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
+    private final CircuitBreakerRegistry circuitBreakerRegistry;
 
     @Autowired
-    public UserServiceImpl(IUserProxy userProxy, EmailProxy emailProxy, UserRepository userRepository, ProjectRepository projectRepository) {
+    public UserServiceImpl(IUserProxy userProxy, EmailProxy emailProxy, UserRepository userRepository, ProjectRepository projectRepository, CircuitBreakerRegistry circuitBreakerRegistry) {
         this.userProxy = userProxy;
         this.emailProxy = emailProxy;
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
+        this.circuitBreakerRegistry = circuitBreakerRegistry;
     }
 
     @Override
@@ -89,8 +92,8 @@ public class UserServiceImpl implements UserService {
 //                    //we should not remove task, but we have to change assignee to null for that task. this can
 //                    //be only done after adding functionality for update task Assignee.
 //                    tasks.removeIf(task -> task.getAssignee().getEmail().equals(email));
-                    for(Task task : tasks){
-                        if(task.getAssignee().getEmail().equals(email))
+                    for (Task task : tasks) {
+                        if (task.getAssignee().getEmail().equals(email))
                             task.setAssignee(null);
                     }
                 }
@@ -102,4 +105,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    public String circuitBreakerState() {
+        return circuitBreakerRegistry.circuitBreaker("circuitBreaker").getState().name();
+    }
 }

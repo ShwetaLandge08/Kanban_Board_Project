@@ -71,8 +71,8 @@ export class UpdateUserComponent {
           this.router.navigate(['/dashboard']);
         },
         error: err => {
-          console.log(err);
-          this.snackBar.open(err.error.message, "Failed", {
+          console.log(err.error);
+          this.snackBar.open(err.error, "Failed", {
             duration: 7000
           });
         }
