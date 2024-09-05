@@ -5,16 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5398faf9-45ee-4b80-a2f6-410a69192503" name="Changes" comment="Merge remote-tracking branch 'github/master'&#10;&#10;# Conflicts:&#10;#&#9;Backend/Kanban_Board_Major_Project/.idea/workspace.xml">
-      <change afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/HealthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/AlreadyExistException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/ExceptionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_28_2024_2_26_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/StageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/StageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/TaskController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/CommentAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/CommentNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/ProjectAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/ProjectNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/StageAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/StageNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/TaskAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/TaskNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/UserAlreadyExistsException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/exception/UserNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/StageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/java/com/niit/kanban/KanbanService/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KanbanService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-delete/dialog-confirm-delete.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/dialog-confirm-delete/dialog-confirm-delete.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/sign-up/sign-up.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../Frontend/Kanban_Board_Major_Project/src/app/update-user/update-user.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/controller/ProjectControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/controller/ProjectControllerTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/service/ProjectServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/KanbanService/src/test/java/com/niit/kanban/KanbanService/service/ProjectServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +103,7 @@
       <recent name="D:\Backup10_09\Users\shweta y. landge\NIIT\CapstoneProjectKanbanBoardFinal\capstone_kanban_board_project\Backend\Kanban_Board_Major_Project\KanbanService\src\main\java\com\niit\kanban\KanbanService\exception" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.KanbanServiceApplication">
+  <component name="RunManager" selected="Application.UserAuthenticationApplication">
     <configuration name="ApiGatewayServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.niit.kanban.APIGatewayService.ApiGatewayServiceApplication" />
       <module name="APIGatewayService" />
@@ -148,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.KanbanServiceApplication" />
+        <item itemvalue="Application.UserAuthenticationApplication" />
         <item itemvalue="Application.NotificationServiceApplication" />
+        <item itemvalue="Application.KanbanServiceApplication" />
         <item itemvalue="Application.ApiGatewayServiceApplication" />
         <item itemvalue="Application.EurekaServiceApplication" />
-        <item itemvalue="Application.UserAuthenticationApplication" />
       </list>
     </recent_temporary>
   </component>

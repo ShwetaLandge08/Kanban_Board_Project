@@ -4,9 +4,7 @@ import com.niit.kanban.KanbanService.domain.Comment;
 import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.Task;
-import com.niit.kanban.KanbanService.exception.CommentAlreadyExistsException;
-import com.niit.kanban.KanbanService.exception.ProjectNotFoundException;
-import com.niit.kanban.KanbanService.exception.TaskNotFoundException;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +22,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Project addCommentOnTask(Comment comment, String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, CommentAlreadyExistsException, TaskNotFoundException {
+    public Project addCommentOnTask(Comment comment, String taskTitle, int projectId, String stageName) throws NotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
-            throw new ProjectNotFoundException();
+            throw new NotFoundException("Project Not Found with this ID");
         }
         Project project = projectRepository.findByProjectId(projectId);
         List<Stage> stages = project.getStages();
@@ -56,9 +54,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> getAllCommentOnTask(String taskTitle, int projectId, String stageName) throws ProjectNotFoundException, TaskNotFoundException {
+    public List<Comment> getAllCommentOnTask(String taskTitle, int projectId, String stageName) throws NotFoundException {
         if (projectRepository.findById(projectId).isEmpty()) {
-            throw new ProjectNotFoundException();
+            throw new NotFoundException("Project Not Found with this ID");
         }
         Project project = projectRepository.findByProjectId(projectId);
         List<Comment> myComments = new ArrayList<>();

@@ -4,7 +4,7 @@ import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.domain.User;
-import com.niit.kanban.KanbanService.exception.*;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.proxy.EmailProxy;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import com.niit.kanban.KanbanService.repository.UserRepository;
@@ -28,9 +28,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Project addTaskToStage(int projectId, String stageName, Task task) throws ProjectNotFoundException, StageNotFoundException, TaskAlreadyExistsException {
-        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
-        Stage stage = project.getStages().stream().filter(s -> s.getName().equals(stageName)).findFirst().orElseThrow(StageNotFoundException::new);
+    public Project addTaskToStage(int projectId, String stageName, Task task) throws NotFoundException {
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new NotFoundException("Project Not Found with this ID"));
+        Stage stage = project.getStages().stream().filter(s -> s.getName().equals(stageName)).findFirst().orElseThrow(() -> new NotFoundException("Stage Not Found with this Name"));
         List<Task> tasks = stage.getTasks();
         if (tasks == null) tasks = new ArrayList<>();
 //        int lastId = 0;
@@ -44,8 +44,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllTaskForProject(int projectId) throws ProjectNotFoundException, TaskNotFoundException {
-        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
+    public List<Task> getAllTaskForProject(int projectId) throws NotFoundException {
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new NotFoundException("Project Not Found with this ID"));
         List<Stage> stages = project.getStages();
         List<Task> tasks = new ArrayList<>();
         for (Stage stage : stages) {
@@ -57,8 +57,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllUserTaskFromAllProjects(String email) throws UserNotFoundException {
-        userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+    public List<Task> getAllUserTaskFromAllProjects(String email) throws NotFoundException {
+        userRepository.findById(email).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
         List<Project> getAllProject = projectRepository.findAll();
         List<Task> myTask = new ArrayList<>();
         for (Project project : getAllProject) {
@@ -77,8 +77,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Project> getProjectsOfUsersWhichContainTaskForThatUser(String email) throws UserNotFoundException {
-        userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+    public List<Project> getProjectsOfUsersWhichContainTaskForThatUser(String email) throws NotFoundException {
+        userRepository.findById(email).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
         List<Project> allProjectList = projectRepository.findAll();
         List<Project> userProject = new ArrayList<>();
         for (Project project : allProjectList) {
@@ -105,8 +105,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task updateAssigneeOfTask(String taskTitle, User assignee) throws TaskNotFoundException, UserNotFoundException {
-        userRepository.findById(assignee.getEmail()).orElseThrow(UserNotFoundException::new);
+    public Task updateAssigneeOfTask(String taskTitle, User assignee) throws NotFoundException {
+        userRepository.findById(assignee.getEmail()).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
         List<Project> getAllProject = projectRepository.findAll();
         Task myTask = null;
         for (Project project : getAllProject) {
@@ -114,7 +114,7 @@ public class TaskServiceImpl implements TaskService {
             for (Stage stage : stages) {
                 List<Task> tasks = stage.getTasks();
                 if (tasks == null)
-                    throw new TaskNotFoundException();
+                    throw new NotFoundException("Task not found for this project");
                 for (Task task : tasks) {
                     if (task.getTitle().equals(taskTitle)) {
                         task.setAssignee(assignee);
@@ -128,15 +128,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Project deleteTask(String taskTitle, String stageName, int projectId) throws ProjectNotFoundException, TaskNotFoundException, StageNotFoundException {
-        Project project = projectRepository.findById(projectId).orElseThrow(ProjectNotFoundException::new);
+    public Project deleteTask(String taskTitle, String stageName, int projectId) throws NotFoundException {
+        Project project = projectRepository.findById(projectId).orElseThrow(() -> new NotFoundException("Project Not Found with this ID"));
         Stage stage = project.getStages().stream()
                 .filter((s -> s.getName().equals(stageName)))
                 .findFirst()
-                .orElseThrow(StageNotFoundException::new);
+                .orElseThrow(() -> new NotFoundException("Stage Not Found with this Name"));
         List<Task> tasks = stage.getTasks();
         if (!tasks.removeIf(task1 -> task1.getTitle().equalsIgnoreCase(taskTitle)))
-            throw new TaskNotFoundException();
+            throw new NotFoundException("Task not found for deletion");
         return projectRepository.save(project);
     }
 }

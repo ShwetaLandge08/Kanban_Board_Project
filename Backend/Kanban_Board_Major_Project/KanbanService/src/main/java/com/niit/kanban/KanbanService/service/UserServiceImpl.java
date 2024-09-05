@@ -4,8 +4,8 @@ import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.domain.User;
-import com.niit.kanban.KanbanService.exception.UserAlreadyExistsException;
-import com.niit.kanban.KanbanService.exception.UserNotFoundException;
+import com.niit.kanban.KanbanService.exception.AlreadyExistException;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.proxy.EmailProxy;
 import com.niit.kanban.KanbanService.proxy.IUserProxy;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
@@ -34,8 +34,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) throws UserAlreadyExistsException {
-        if (userRepository.existsById(user.getEmail())) throw new UserAlreadyExistsException();
+    public User saveUser(User user) throws AlreadyExistException {
+        if (userRepository.existsById(user.getEmail())) throw new AlreadyExistException("User Already Exist");
         userProxy.saveUser(user);
         emailProxy.sendRegistrationMail(user);
         user.setPhoneNo(null);
@@ -50,13 +50,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String email) throws UserNotFoundException {
-        return userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+    public User getUser(String email) throws NotFoundException {
+        return userRepository.findById(email).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
     }
 
     @Override
-    public User updateUser(String email, User user) throws UserNotFoundException {
-        User existingUser = userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+    public User updateUser(String email, User user) throws NotFoundException {
+        User existingUser = userRepository.findById(email).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
 
         if (user.getName() != null && !user.getName().isEmpty())
             existingUser.setName(user.getName());
@@ -76,8 +76,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(String email) throws UserNotFoundException {
-        User user = userRepository.findById(email).orElseThrow(UserNotFoundException::new);
+    public boolean deleteUser(String email) throws NotFoundException {
+        User user = userRepository.findById(email).orElseThrow(() -> new NotFoundException("User Not Found with this ID"));
         List<Project> allProject = projectRepository.findAll();
         for (Project project : allProject) {
             if (project.getAdmin().getEmail().equals(email)) {

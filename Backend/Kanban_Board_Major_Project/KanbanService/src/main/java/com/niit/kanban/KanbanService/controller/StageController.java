@@ -1,14 +1,14 @@
 package com.niit.kanban.KanbanService.controller;
 
 import com.niit.kanban.KanbanService.domain.Stage;
-import com.niit.kanban.KanbanService.exception.ProjectNotFoundException;
-import com.niit.kanban.KanbanService.exception.StageAlreadyExistsException;
-import com.niit.kanban.KanbanService.exception.StageNotFoundException;
+import com.niit.kanban.KanbanService.exception.AlreadyExistException;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.service.StageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -26,8 +26,8 @@ public class StageController {
     public ResponseEntity<?> addStageForGivenProject(@RequestBody Stage stage, @PathVariable int projectId) {
         try {
             System.out.println(stage);
-            responseEntity = new ResponseEntity<>(stageService.addStage(projectId,stage), HttpStatus.CREATED);
-        } catch (ProjectNotFoundException | StageAlreadyExistsException ex) {
+            responseEntity = new ResponseEntity<>(stageService.addStage(projectId, stage), HttpStatus.CREATED);
+        } catch (NotFoundException | AlreadyExistException ex) {
             throw new RuntimeException(ex);
         }
         return responseEntity;
@@ -38,7 +38,7 @@ public class StageController {
         try {
             System.out.println(stageName);
             return new ResponseEntity<>(stageService.deleteStage(stageName, projectId), HttpStatus.OK);
-        } catch (ProjectNotFoundException | StageNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -48,7 +48,7 @@ public class StageController {
         try {
             System.out.println(stages);
             return new ResponseEntity<>(stageService.updateStages(id, stages), HttpStatus.OK);
-        } catch (ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,7 +1,9 @@
 package com.niit.kanban.KanbanService.controller;
 
-import com.niit.kanban.KanbanService.domain.*;
-import com.niit.kanban.KanbanService.exception.*;
+import com.niit.kanban.KanbanService.domain.Project;
+import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.exception.AlreadyExistException;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.service.ProjectService;
 import com.niit.kanban.KanbanService.service.UserService;
 import io.jsonwebtoken.Claims;
@@ -33,7 +35,7 @@ public class ProjectController {
             project.setAdmin(user);
             System.out.println("project after= " + project);
             return new ResponseEntity<>(projectService.addProject(project), HttpStatus.CREATED);
-        } catch (ProjectAlreadyExistsException | UserNotFoundException e) {
+        } catch (AlreadyExistException | NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -42,7 +44,7 @@ public class ProjectController {
     public ResponseEntity<?> findProject(@PathVariable int id) {
         try {
             return new ResponseEntity<>(projectService.getProject(id), HttpStatus.OK);
-        } catch (ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -51,7 +53,7 @@ public class ProjectController {
     public ResponseEntity<?> updateProject(@RequestBody Project project) {
         try {
             return new ResponseEntity<>(projectService.updateProject(project), HttpStatus.OK);
-        } catch (ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -60,13 +62,13 @@ public class ProjectController {
     public ResponseEntity<?> deleteProject(@PathVariable int projectId) {
         try {
             return new ResponseEntity<>(projectService.removeProject(projectId), HttpStatus.OK);
-        } catch (ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
     @GetMapping("/projects")
-    public ResponseEntity<?> getAllProjects() throws ProjectNotFoundException {
+    public ResponseEntity<?> getAllProjects() throws NotFoundException {
         return new ResponseEntity<>(projectService.getAllProjects(), HttpStatus.OK);
     }
 
@@ -78,13 +80,13 @@ public class ProjectController {
             User user = userService.getUser(email);
 //            System.out.println(user);
             return new ResponseEntity<>(projectService.getProjectsOfAdmin(user), HttpStatus.OK);
-        } catch (UserNotFoundException | ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
     @GetMapping("/getActiveUser/{projectId}")
-    public ResponseEntity<?> getActiveUser(@PathVariable int projectId) throws ProjectNotFoundException {
+    public ResponseEntity<?> getActiveUser(@PathVariable int projectId) throws NotFoundException {
         return new ResponseEntity<>(projectService.getActiveUserOfProject(projectId), HttpStatus.OK);
     }
 }

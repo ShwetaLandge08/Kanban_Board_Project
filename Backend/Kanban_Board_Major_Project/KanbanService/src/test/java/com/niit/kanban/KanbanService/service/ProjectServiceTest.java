@@ -1,11 +1,7 @@
 package com.niit.kanban.KanbanService.service;
 
 import com.niit.kanban.KanbanService.domain.Project;
-import com.niit.kanban.KanbanService.domain.Stage;
 import com.niit.kanban.KanbanService.domain.User;
-import com.niit.kanban.KanbanService.exception.ProjectAlreadyExistsException;
-import com.niit.kanban.KanbanService.exception.ProjectNotFoundException;
-import com.niit.kanban.KanbanService.exception.StageAlreadyExistsException;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,11 +12,9 @@ import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @DataMongoTest

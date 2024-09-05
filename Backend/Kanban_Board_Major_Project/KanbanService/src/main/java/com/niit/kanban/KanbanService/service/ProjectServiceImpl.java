@@ -1,12 +1,19 @@
 package com.niit.kanban.KanbanService.service;
 
-import com.niit.kanban.KanbanService.domain.*;
-import com.niit.kanban.KanbanService.exception.*;
+import com.niit.kanban.KanbanService.domain.Project;
+import com.niit.kanban.KanbanService.domain.Stage;
+import com.niit.kanban.KanbanService.domain.Task;
+import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.exception.AlreadyExistException;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -18,9 +25,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public Project addProject(Project project) throws ProjectAlreadyExistsException {
+    public Project addProject(Project project) throws AlreadyExistException {
         if (project.getProjectId() != 0 && projectRepository.existsById(project.getProjectId()))
-            throw new ProjectAlreadyExistsException();
+            throw new AlreadyExistException("Project with this ID already present");
         List<Project> projects = projectRepository.findAll();
         int lastId = 0;
         if (!projects.isEmpty()) lastId = ((Project) projects.toArray()[projects.size() - 1]).getProjectId();
@@ -33,18 +40,18 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public boolean removeProject(int projectId) throws ProjectNotFoundException {
-        if (!projectRepository.existsById(projectId)) throw new ProjectNotFoundException();
+    public boolean removeProject(int projectId) throws NotFoundException {
+        if (!projectRepository.existsById(projectId)) throw new NotFoundException("Project Not Found with this ID");
         projectRepository.deleteById(projectId);
         return true;
 
     }
 
     @Override
-    public Project updateProject(Project project) throws ProjectNotFoundException {
+    public Project updateProject(Project project) throws NotFoundException {
         Optional<Project> optional = projectRepository.findById(project.getProjectId());
         if (optional.isEmpty()) {
-            throw new ProjectNotFoundException();
+            throw new NotFoundException("Project Not Found with this ID");
         }
         Project existingProject = optional.get();
         if (existingProject.getTitle() != null) {
@@ -63,26 +70,26 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> getAllProjects() throws ProjectNotFoundException {
+    public List<Project> getAllProjects() throws NotFoundException {
         List<Project> projects = projectRepository.findAll();
-        if (projects.isEmpty()) throw new ProjectNotFoundException();
+        if (projects.isEmpty()) throw new NotFoundException("Project Not Found with this ID");
         return projects;
     }
 
     @Override
-    public Project getProject(int id) throws ProjectNotFoundException {
-        return projectRepository.findById(id).orElseThrow(ProjectNotFoundException::new);
+    public Project getProject(int id) throws NotFoundException {
+        return projectRepository.findById(id).orElseThrow(()->new NotFoundException("Project Not Found with this ID"));
     }
 
     @Override
-    public List<Project> getProjectsOfAdmin(User admin) throws ProjectNotFoundException {
+    public List<Project> getProjectsOfAdmin(User admin) throws NotFoundException {
 //        System.out.println(projectRepository.findAllByAdmin(admin));
-        return projectRepository.findAllByAdmin(admin).orElseThrow(ProjectNotFoundException::new);
+        return projectRepository.findAllByAdmin(admin).orElseThrow(()->new NotFoundException("Project Not Found with this ID"));
     }
 
     @Override
-    public List<User> getActiveUserOfProject(int projectId) throws ProjectNotFoundException {
-        if (!projectRepository.existsById(projectId)) throw new ProjectNotFoundException();
+    public List<User> getActiveUserOfProject(int projectId) throws NotFoundException {
+        if (!projectRepository.existsById(projectId)) throw new NotFoundException("Project Not Found with this ID");
         List<User> users = new ArrayList<>();
         List<Project> getAllProject = projectRepository.findAll();
         for (Project project : getAllProject) {

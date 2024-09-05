@@ -2,7 +2,7 @@ package com.niit.kanban.KanbanService.controller;
 
 import com.niit.kanban.KanbanService.domain.Task;
 import com.niit.kanban.KanbanService.domain.User;
-import com.niit.kanban.KanbanService.exception.*;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.service.TaskService;
 import com.niit.kanban.KanbanService.service.UserService;
 import io.jsonwebtoken.Claims;
@@ -28,13 +28,13 @@ public class TaskController {
     public ResponseEntity<?> createTask(@PathVariable int projectId, @PathVariable String stageName, @RequestBody Task task) {
         try {
             return new ResponseEntity<>(taskService.addTaskToStage(projectId, stageName, task), HttpStatus.CREATED);
-        } catch (ProjectNotFoundException | StageNotFoundException | TaskAlreadyExistsException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
     @GetMapping("/getAllTask/{projectId}")
-    public ResponseEntity<?> getAllProjectTasks(@PathVariable int projectId) throws ProjectNotFoundException, TaskNotFoundException {
+    public ResponseEntity<?> getAllProjectTasks(@PathVariable int projectId) throws NotFoundException {
         return new ResponseEntity<>(taskService.getAllTaskForProject(projectId), HttpStatus.OK);
     }
 
@@ -45,7 +45,7 @@ public class TaskController {
         try {
             User user = userService.getUser(email);
             return new ResponseEntity<>(taskService.getAllUserTaskFromAllProjects(user.getEmail()), HttpStatus.OK);
-        } catch (UserNotFoundException | TaskNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -58,7 +58,7 @@ public class TaskController {
             User user = userService.getUser(email);
             return new ResponseEntity<>(taskService.getProjectsOfUsersWhichContainTaskForThatUser(user.getEmail()), HttpStatus.OK);
 
-        } catch (RuntimeException | UserNotFoundException e) {
+        } catch (RuntimeException | NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -67,15 +67,16 @@ public class TaskController {
     public ResponseEntity<?> deleteTask(@PathVariable int projectId, @PathVariable String stageName, @PathVariable String taskTitle) {
         try {
             return new ResponseEntity<>(taskService.deleteTask(taskTitle, stageName, projectId), HttpStatus.OK);
-        } catch (TaskNotFoundException | StageNotFoundException | ProjectNotFoundException e) {
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+
     @PutMapping("/updateTaskAssignee/{taskTitle}")
-    public ResponseEntity<?> updateTaskAssignee(@PathVariable String taskTitle,@RequestBody User assignee) {
+    public ResponseEntity<?> updateTaskAssignee(@PathVariable String taskTitle, @RequestBody User assignee) {
         try {
-            return new ResponseEntity<>(taskService.updateAssigneeOfTask(taskTitle,assignee), HttpStatus.OK);
-        } catch (TaskNotFoundException | UserNotFoundException e) {
+            return new ResponseEntity<>(taskService.updateAssigneeOfTask(taskTitle, assignee), HttpStatus.OK);
+        } catch (NotFoundException e) {
             throw new RuntimeException(e);
         }
     }
