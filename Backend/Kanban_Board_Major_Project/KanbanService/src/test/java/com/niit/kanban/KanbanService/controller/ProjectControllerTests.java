@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.service.ProjectService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +40,7 @@ public class ProjectControllerTests {
     private MockMvc mockMvc;
 
     @BeforeEach
-    public void setUp() throws UserNotFoundException {
+    public void setUp() throws NotFoundException {
         this.project = new Project(1, "Project-1", "create a website", new User(), new Date(),
                 new Date("22/07/2023"), "High", 0.0, new ArrayList<>(), new ArrayList<>());
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
@@ -85,7 +86,7 @@ public class ProjectControllerTests {
     @Test
     @DisplayName("test for deleting project failure")
     public void testStageDeleteFailure() throws Exception {
-        when(service.removeProject(anyInt())).thenThrow(ProjectNotFoundException.class);
+        when(service.removeProject(anyInt())).thenThrow(NotFoundException.class);
         mockMvc.perform(delete("/api/kanban/project/delete/1"))
                 .andExpect(status().isNotFound())
                 .andDo(MockMvcResultHandlers.print());

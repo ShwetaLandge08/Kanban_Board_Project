@@ -2,6 +2,7 @@ package com.niit.kanban.KanbanService.service;
 
 import com.niit.kanban.KanbanService.domain.Project;
 import com.niit.kanban.KanbanService.domain.User;
+import com.niit.kanban.KanbanService.exception.NotFoundException;
 import com.niit.kanban.KanbanService.repository.ProjectRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,6 +62,6 @@ public class ProjectServiceTest {
     @DisplayName("test for remove project failure")
     void testProjectForRemoveProjectFailure() {
         lenient().when(repository.findById(project.getProjectId())).thenReturn(Optional.ofNullable(null));
-        Assertions.assertThrows(ProjectNotFoundException.class, () -> service.removeProject(project.getProjectId()));
+        Assertions.assertThrows(NotFoundException.class, () -> service.removeProject(project.getProjectId()));
     }
 }
